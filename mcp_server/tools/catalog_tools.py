@@ -5,46 +5,90 @@ lowest-risk, good for validating that @mcp.tool() schema derivation from
 type hints works before touching any write tools.
 """
 
-from server import mcp
+from typing import Annotated, cast
+
+from pydantic import Field
+from typing_extensions import TypedDict
+
+from mcp_instance import mcp
 from http_client import DataServiceClient
 
 _client = DataServiceClient()
 
 
-@mcp.tool()
-def search_titles(query: str, limit: int = 10) -> dict:
-    """Search the local movie catalog by title text.
+class TitleHit(TypedDict):
+    id: int
+    title: str
+    release_date: str | None
+    popularity: float
+    vote_average: float
 
-    Args:
-        query: free-text search term matched against title.
-        limit: max results to return (default 10).
 
-    Returns:
-        {"results": [{"id", "title", "release_date", "popularity", "vote_average"}, ...]}
-    """
-    # TODO(you): call _client.search_titles(...) and shape the response dict.
-    raise NotImplementedError
+class SearchTitlesResult(TypedDict):
+    results: list[TitleHit]
 
 
 @mcp.tool()
-def get_title_details(title_id: int) -> dict:
-    """Get full details for one movie, including genres, cast, and crew.
+def search_titles(
+    query: Annotated[
+        str, Field(description="Free-text term matched against the movie title.")
+    ],
+    limit: Annotated[
+        int, Field(default=10, ge=1, le=50, description="Max results to return.")
+    ] = 10,
+) -> SearchTitlesResult:
+    """Search the local movie catalog by title text."""
+    response = _client.search_titles(query, limit)
+    return {"results": cast(list[TitleHit], response)}
 
-    Args:
-        title_id: the TMDB id of the movie.
 
-    Returns:
-        {"id", "title", "overview", "release_date", "runtime", "status",
-         "vote_average", "adult", "softcore", "collection_name",
-         "genres": [...], "cast": [...] (top 10),
-         "crew": [...] (director/cinematographer/writers/producer)}
-    """
-    # TODO(you): call _client.get_title(title_id) and shape the response dict.
-    raise NotImplementedError
+class GenreHit(TypedDict):
+    id: int
+    name: str
+
+
+class CastHit(TypedDict):
+    person_id: int
+    name: str
+    character: str | None
+    order: int | None
+
+
+class CrewHit(TypedDict):
+    person_id: int
+    name: str
+    job: str | None
+
+
+class TitleDetails(TypedDict):
+    id: int
+    title: str
+    overview: str | None
+    release_date: str | None
+    runtime: int | None
+    status: str | None
+    vote_average: float | None
+    adult: bool | None
+    softcore: bool | None
+    collection_name: str | None
+    genres: list[GenreHit]
+    cast: list[CastHit]
+    crew: list[CrewHit]
 
 
 @mcp.tool()
-def get_recommendations(based_on: str, genre: str | None = None, limit: int = 10) -> dict:
+def get_title_details(
+    title_id: Annotated[int, Field(description="The TMDB id of the movie.")],
+) -> TitleDetails:
+    """Get full details for one movie, including genres, cast, and crew."""
+    response = _client.get_title(title_id)
+    return cast(TitleDetails, response)
+
+
+@mcp.tool()
+def get_recommendations(
+    based_on: str, genre: str | None = None, limit: int = 10
+) -> dict:
     """Suggest titles based on either the watchlist or a genre.
 
     This is the deliberately COARSE, task-level tool of the set — it composes

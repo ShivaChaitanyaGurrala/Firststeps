@@ -27,3 +27,12 @@ Sanity check standalone (should sit silent on stdin — any stray stdout output
 means something is corrupting the protocol stream):
     mcp run server.py
 """
+
+from mcp_instance import mcp
+
+import tools.catalog_tools
+import tools.sync_tools
+
+if __name__ == "__main__":
+
+    mcp.run()

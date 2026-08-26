@@ -1,6 +1,6 @@
 """Rating tool — thin 1:1 wrapper around the ratings endpoint."""
 
-from server import mcp
+from mcp_instance import mcp
 from http_client import DataServiceClient
 
 _client = DataServiceClient()

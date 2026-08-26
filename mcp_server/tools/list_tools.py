@@ -1,6 +1,6 @@
 """Custom list tools — thin 1:1 wrappers around the lists endpoints."""
 
-from server import mcp
+from mcp_instance import mcp
 from http_client import DataServiceClient
 
 _client = DataServiceClient()

@@ -4,7 +4,7 @@ Third in the M1 build order, alongside rating_tools.py and list_tools.py —
 the write tools, built after the read tools are validated.
 """
 
-from server import mcp
+from mcp_instance import mcp
 from http_client import DataServiceClient
 
 _client = DataServiceClient()

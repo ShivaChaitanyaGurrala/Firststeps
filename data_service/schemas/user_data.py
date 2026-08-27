@@ -32,6 +32,7 @@ class RatingOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: int
     title_id: int
+    title: str
     score: int
     review: str | None = None
     rated_at: datetime

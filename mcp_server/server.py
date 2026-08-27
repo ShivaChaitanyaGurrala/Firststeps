@@ -32,6 +32,9 @@ from mcp_instance import mcp
 
 import tools.catalog_tools
 import tools.sync_tools
+import tools.watchlist_tools
+import tools.rating_tools
+import tools.list_tools
 
 if __name__ == "__main__":
 

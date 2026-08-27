@@ -5,7 +5,8 @@ lowest-risk, good for validating that @mcp.tool() schema derivation from
 type hints works before touching any write tools.
 """
 
-from typing import Annotated, cast
+from collections import Counter
+from typing import Annotated, Literal, cast
 
 from pydantic import Field
 from typing_extensions import TypedDict
@@ -85,10 +86,30 @@ def get_title_details(
     return cast(TitleDetails, response)
 
 
+class RecommendationHit(TypedDict):
+    id: int
+    title: str
+    reason: str
+
+
+class RecommendationsResult(TypedDict):
+    results: list[RecommendationHit]
+
+
 @mcp.tool()
 def get_recommendations(
-    based_on: str, genre: str | None = None, limit: int = 10
-) -> dict:
+    based_on: Annotated[
+        Literal["watchlist", "genre"],
+        Field(description="Base recommendations on the watchlist's dominant genre, or on a specific genre."),
+    ],
+    genre: Annotated[
+        str | None,
+        Field(default=None, description="Required when based_on='genre' — the genre name to filter by."),
+    ] = None,
+    limit: Annotated[
+        int, Field(default=10, ge=1, le=50, description="Max results to return.")
+    ] = 10,
+) -> RecommendationsResult:
     """Suggest titles based on either the watchlist or a genre.
 
     This is the deliberately COARSE, task-level tool of the set — it composes
@@ -96,18 +117,37 @@ def get_recommendations(
     separate tool calls and reason about the join). Compare this to
     search_titles/get_title_details, which stay thin and separate on purpose.
     Think about the tradeoff each design makes before implementing this one.
-
-    Args:
-        based_on: "watchlist" or "genre".
-        genre: required when based_on="genre" — the genre name to filter by.
-        limit: max results to return (default 10).
-
-    Returns:
-        {"results": [{"id", "title", "reason"}, ...]}
     """
-    # TODO(you): if based_on == "watchlist", call _client.list_watchlist() and
-    # derive recommendations (e.g. same genres as watchlisted titles) using
-    # _client.list_titles_by_genre(...). If based_on == "genre", call
-    # _client.list_titles_by_genre(genre, limit) directly. Fill in "reason"
-    # with a short string explaining why each title was picked.
-    raise NotImplementedError
+    if based_on == "genre":
+        if not genre:
+            raise ValueError("genre is required when based_on='genre'")
+        hits = _client.list_titles_by_genre(genre, limit)
+        results = [
+            {"id": h["id"], "title": h["title"], "reason": f"Matches genre '{genre}'"}
+            for h in hits
+        ]
+        return {"results": cast(list[RecommendationHit], results)}
+
+    watchlist = _client.list_watchlist()
+    watchlisted_ids = {item["title_id"] for item in watchlist}
+
+    genre_counts: Counter[str] = Counter()
+    for item in watchlist:
+        details = _client.get_title(item["title_id"])
+        genre_counts.update(g["name"] for g in details.get("genres", []))
+
+    if not genre_counts:
+        return {"results": []}
+
+    top_genre, _count = genre_counts.most_common(1)[0]
+    hits = _client.list_titles_by_genre(top_genre, limit)
+    results = [
+        {
+            "id": h["id"],
+            "title": h["title"],
+            "reason": f"Because your watchlist favors '{top_genre}'",
+        }
+        for h in hits
+        if h["id"] not in watchlisted_ids
+    ][:limit]
+    return {"results": cast(list[RecommendationHit], results)}

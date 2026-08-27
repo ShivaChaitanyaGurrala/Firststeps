@@ -79,7 +79,7 @@ class Credit(Base):
     title_id: Mapped[int] = mapped_column(ForeignKey("titles.id"))
     person_id: Mapped[int] = mapped_column(ForeignKey("people.id"))
     role: Mapped[str] = mapped_column(String(10))  # "cast" | "crew"
-    character: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    character: Mapped[str | None] = mapped_column(Text, nullable=True)
     # crew job, e.g. "Director", "Director of Photography", "Writer",
     # "Screenplay", "Story", "Producer" — see _CREW_JOB_WHITELIST in upsert.py
     job: Mapped[str | None] = mapped_column(String(100), nullable=True)

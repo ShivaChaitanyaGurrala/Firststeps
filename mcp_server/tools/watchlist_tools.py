@@ -4,47 +4,65 @@ Third in the M1 build order, alongside rating_tools.py and list_tools.py —
 the write tools, built after the read tools are validated.
 """
 
+from typing import Annotated, cast
+from pydantic import Field
+from typing_extensions import TypedDict
+
 from mcp_instance import mcp
 from http_client import DataServiceClient
 
 _client = DataServiceClient()
 
 
-@mcp.tool()
-def add_to_watchlist(title_id: int, notes: str | None = None) -> dict:
-    """Add a title to the watchlist.
-
-    Args:
-        title_id: the TMDB id of the movie or TV show to add.
-        notes: optional free-text note.
-
-    Returns:
-        {"id", "title_id", "added_at"}
-    """
-    # TODO(you): call _client.add_to_watchlist(title_id, notes) and shape the response dict.
-    raise NotImplementedError
+class AddToWatchlistResult(TypedDict):
+    id: int
+    title_id: int
+    title: str
+    added_at: str
+    notes: str | None
 
 
 @mcp.tool()
-def remove_from_watchlist(watchlist_id: int) -> dict:
-    """Remove an entry from the watchlist.
+def add_to_watchlist(
+    title_id: Annotated[int, Field(description="The TMDB id of the movie to add")],
+    notes: Annotated[
+        str | None, Field(default=None, description="Optional free-text note")
+    ] = None,
+) -> AddToWatchlistResult:
+    """Given a title id Add a title to the watchlist."""
+    response = _client.add_to_watchlist(title_id, notes)
+    return cast(AddToWatchlistResult, response)
 
-    Args:
-        watchlist_id: the watchlist entry's own id (not the title id).
 
-    Returns:
-        {"success": true}
-    """
-    # TODO(you): call _client.remove_from_watchlist(watchlist_id).
-    raise NotImplementedError
+class RemoveFromWatchlistResult(TypedDict):
+    success: bool
 
 
 @mcp.tool()
-def list_watchlist() -> dict:
-    """List everything currently on the watchlist.
+def remove_from_watchlist(
+    watchlist_id: Annotated[
+        int, Field(description="The watchlist entry's own id (not the title id)")
+    ],
+) -> RemoveFromWatchlistResult:
+    """Given a watchlist entry id, remove it from the watchlist."""
+    _client.remove_from_watchlist(watchlist_id)
+    return {"success": True}
 
-    Returns:
-        {"items": [{"id", "title_id", "title", "added_at", "notes"}, ...]}
-    """
-    # TODO(you): call _client.list_watchlist() and shape the response dict.
-    raise NotImplementedError
+
+class WatchlistHit(TypedDict):
+    id: int
+    title_id: int
+    title: str
+    added_at: str
+    notes: str | None
+
+
+class ListWatchlistResult(TypedDict):
+    items: list[WatchlistHit]
+
+
+@mcp.tool()
+def list_watchlist() -> ListWatchlistResult:
+    """Lists everything currently on the watchlist."""
+    response = _client.list_watchlist()
+    return cast(ListWatchlistResult, {"items": response})

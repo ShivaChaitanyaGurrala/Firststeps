@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 
 from data_service.models.catalog import Title
 from data_service.models.user_data import Rating
+from data_service.schemas.user_data import RatingOut
 from data_service.services.exceptions import RatingNotFoundError, TitleNotFoundError
 
 
@@ -47,3 +48,14 @@ def delete_rating(db: Session, rating_id: int) -> None:
         raise RatingNotFoundError(f"Rating {rating_id} not found")
     db.delete(rating)
     db.commit()
+
+
+def to_rating_out(rating: Rating) -> RatingOut:
+    return RatingOut(
+        id=rating.id,
+        title_id=rating.title_id,
+        title=rating.title.title,
+        score=rating.score,
+        review=rating.review,
+        rated_at=rating.rated_at,
+    )

@@ -26,16 +26,36 @@ invoke each manually and watch the raw JSON-RPC request/response frames.
 Sanity check standalone (should sit silent on stdin — any stray stdout output
 means something is corrupting the protocol stream):
     mcp run server.py
+
+M2 additions: resources/catalog_resources.py, prompts/catalog_prompts.py, and
+tools/sampling_tools.py register onto this same `mcp` instance the same way
+the M1 tool modules do — import for side effect, nothing else needed here.
+Transport is chosen at the bottom via config.settings.mcp_transport (stdio by
+default, so `mcp dev server.py` keeps working unmodified); set
+MCP_TRANSPORT=streamable-http in .env to run this as an HTTP server instead
+and test that transport with an HTTP-capable MCP client/Inspector session.
 """
 
 from mcp_instance import mcp
+from config import settings
 
 import tools.catalog_tools
 import tools.sync_tools
 import tools.watchlist_tools
 import tools.rating_tools
 import tools.list_tools
+import tools.sampling_tools
+
+import resources.catalog_resources
+import prompts.catalog_prompts
 
 if __name__ == "__main__":
 
-    mcp.run()
+    if settings.mcp_transport == "streamable-http":
+        mcp.run(
+            transport="streamable-http",
+            host=settings.mcp_http_host,
+            port=settings.mcp_http_port,
+        )
+    else:
+        mcp.run()

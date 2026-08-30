@@ -103,6 +103,12 @@ class DataServiceClient:
         response.raise_for_status()
         return response.json()
 
+    def get_person(self, person_id: int) -> dict[str, Any]:
+        """GET /people/{person_id} -> PersonDetail"""
+        response = self._client.get(f"/people/{person_id}")
+        response.raise_for_status()
+        return response.json()
+
     def list_sync_runs(self, run_id: int | None = None) -> list[dict[str, Any]]:
         """GET /sync/runs (all recent) or GET /sync/runs/{run_id} (one) -> SyncRunOut[]"""
         response = self._client.get("/sync/runs" + (f"/{run_id}" if run_id else ""))

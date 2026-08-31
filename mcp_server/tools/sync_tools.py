@@ -2,6 +2,12 @@
 
 Second in the M1 build order — mostly read-oriented (sync_status), and
 exercises the M0 sync_runs audit log end-to-end through MCP.
+
+M3 TODO(you): catch errors.DataServiceError here and re-raise as
+mcp.server.mcpserver.exceptions.ToolError(str(exc)) — see errors.py. Note
+trigger_sync is not a candidate for the client-level retry pattern either:
+retrying it after a dropped response risks kicking off a second background
+bulk_seed/daily_sync run, not just re-reading the same state.
 """
 
 from typing import Annotated, Literal, cast
@@ -11,6 +17,8 @@ from typing_extensions import TypedDict
 
 from mcp_instance import mcp
 from http_client import DataServiceClient
+from mcp.server.mcpserver.exceptions import ToolError
+from errors import DataServiceError
 
 _client = DataServiceClient()
 
@@ -39,7 +47,10 @@ def sync_status(
     ] = None,
 ) -> SyncStatusResult:
     """Check the status of sync jobs (bulk_seed / daily_sync runs)"""
-    response = _client.list_sync_runs(run_id)
+    try:
+        response = _client.list_sync_runs(run_id)
+    except DataServiceError as exc:
+        raise ToolError(str(exc)) from exc
     runs = response if isinstance(response, list) else [response]
     return {"runs": cast(list[SyncRunOut], runs)}
 
@@ -59,5 +70,8 @@ def trigger_sync(
     ],
 ) -> TriggerSyncResult:
     """Kick off a bulk_seed or daily_sync job in the background."""
-    response = _client.trigger_sync(run_type)
+    try:
+        response = _client.trigger_sync(run_type)
+    except DataServiceError as exc:
+        raise ToolError(str(exc)) from exc
     return cast(TriggerSyncResult, response)

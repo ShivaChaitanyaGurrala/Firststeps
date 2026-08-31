@@ -28,6 +28,10 @@ TODO(you):
    so you can exercise this tool without a real LLM in the loop).
 
 Docs: https://modelcontextprotocol.io/docs/concepts/sampling
+
+M3 TODO(you): _sample_blurb's _client.list_watchlist() call should
+eventually go through the same errors.DataServiceError -> ToolError
+normalization as every other tool — see errors.py.
 """
 
 from typing import Annotated
@@ -39,6 +43,8 @@ from mcp.server.mcpserver import Context, Resolve, Sample
 
 from mcp_instance import mcp
 from http_client import DataServiceClient
+from mcp.server.mcpserver.exceptions import ToolError
+from errors import DataServiceError
 
 _client = DataServiceClient()
 
@@ -48,7 +54,10 @@ def _sample_blurb(ctx: Context) -> Sample:
 
     If the watchlist is empty, return a "nothing on your watchlist yet" blurb.
     """
-    list_to_watch = _client.list_watchlist()
+    try:
+        list_to_watch = _client.list_watchlist()
+    except DataServiceError as exc:
+        raise ToolError(str(exc)) from exc
     if not list_to_watch:
         return Sample(
             messages=[

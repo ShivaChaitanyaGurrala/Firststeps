@@ -2,6 +2,12 @@
 
 Third in the M1 build order, alongside rating_tools.py and list_tools.py —
 the write tools, built after the read tools are validated.
+
+M3 TODO(you): add_to_watchlist is one of the two writes http_client.py's
+docstring calls out as safe to retry (upsert-by-id at the service layer).
+Once that retry lands there, catch errors.DataServiceError here and
+re-raise as mcp.server.mcpserver.exceptions.ToolError(str(exc)) — see
+errors.py for the full pattern.
 """
 
 from typing import Annotated, cast
@@ -10,6 +16,8 @@ from typing_extensions import TypedDict
 
 from mcp_instance import mcp
 from http_client import DataServiceClient
+from mcp.server.mcpserver.exceptions import ToolError
+from errors import DataServiceError
 
 _client = DataServiceClient()
 
@@ -30,7 +38,10 @@ def add_to_watchlist(
     ] = None,
 ) -> AddToWatchlistResult:
     """Given a title id Add a title to the watchlist."""
-    response = _client.add_to_watchlist(title_id, notes)
+    try:
+        response = _client.add_to_watchlist(title_id, notes)
+    except DataServiceError as exc:
+        raise ToolError(str(exc)) from exc
     return cast(AddToWatchlistResult, response)
 
 
@@ -45,7 +56,10 @@ def remove_from_watchlist(
     ],
 ) -> RemoveFromWatchlistResult:
     """Given a watchlist entry id, remove it from the watchlist."""
-    _client.remove_from_watchlist(watchlist_id)
+    try:
+        _client.remove_from_watchlist(watchlist_id)
+    except DataServiceError as exc:
+        raise ToolError(str(exc)) from exc
     return {"success": True}
 
 
@@ -64,5 +78,8 @@ class ListWatchlistResult(TypedDict):
 @mcp.tool()
 def list_watchlist() -> ListWatchlistResult:
     """Lists everything currently on the watchlist."""
-    response = _client.list_watchlist()
+    try:
+        response = _client.list_watchlist()
+    except DataServiceError as exc:
+        raise ToolError(str(exc)) from exc
     return cast(ListWatchlistResult, {"items": response})

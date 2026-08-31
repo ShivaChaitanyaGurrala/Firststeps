@@ -1,9 +1,17 @@
-"""Rating tool — thin 1:1 wrapper around the ratings endpoint."""
+"""Rating tool — thin 1:1 wrapper around the ratings endpoint.
+
+M3 TODO(you): rate_title is the other write http_client.py's docstring
+calls out as safe to retry (upsert-by-title_id at the service layer). Once
+that retry lands there, catch errors.DataServiceError here and re-raise as
+mcp.server.mcpserver.exceptions.ToolError(str(exc)) — see errors.py.
+"""
 
 from typing import Annotated, TypedDict, cast
 from pydantic import Field
 from mcp_instance import mcp
 from http_client import DataServiceClient
+from mcp.server.mcpserver.exceptions import ToolError
+from errors import DataServiceError
 
 _client = DataServiceClient()
 
@@ -31,5 +39,8 @@ def rate_title(
     rather than creating a duplicate (the backend enforces one rating per title).
 
     """
-    response = _client.rate_title(title_id, score, review)
+    try:
+        response = _client.rate_title(title_id, score, review)
+    except DataServiceError as exc:
+        raise ToolError(str(exc)) from exc
     return cast(RateTitleResult, response)

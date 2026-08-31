@@ -47,6 +47,20 @@ def db_session(test_engine):
         connection.close()
 
 
+@pytest.fixture(autouse=True)
+def _reset_rate_limiter():
+    """data_service.main's rate limiter is a module-level singleton shared
+    across the whole test session (not per-test) — without resetting it,
+    request counts accumulate across unrelated tests within the same
+    sliding window and can trip a spurious 429 on a test that isn't even
+    about rate limiting. Autouse so every test starts with a clean budget.
+    """
+    from data_service.main import _rate_limiter
+
+    _rate_limiter._requests.clear()
+    yield
+
+
 @pytest.fixture()
 def client(db_session):
     def _override_get_db():

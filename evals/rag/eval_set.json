@@ -1,0 +1,10 @@
+{
+  "_comment": "TODO(you): fixed (question, ground_truth) pairs for RAGAS scoring — M4's acceptance bar, later reused/extended by M10's full-agent evals. Each entry: `question` is what gets sent through search_reviews; `ground_truth` is what a correct answer should say, used to score context_recall/answer relevancy against. `title_id` is optional (omit to search the whole corpus, matching search_reviews' own title_id=None behavior) — scope a question to one movie once you know real review content for it. This file only has ONE placeholder entry using a known-seeded id (movie 27205 = Inception, referenced in the M0 plan as the manual-verification example) — replace `ground_truth` with something grounded in a REAL review already fetched by fetch_reviews.py before running the eval; don't leave the placeholder text in a real scoring run. Add 5-10 more pairs covering a spread of movies once the pipeline works, so the eval isn't scored against a single question.",
+  "cases": [
+    {
+      "question": "What do reviewers say about Inception's ending?",
+      "title_id": 27205,
+      "ground_truth": "TODO(you): replace with a claim you can actually verify against a real fetched review's content — e.g. quote or closely paraphrase what an actual review in your `reviews` table says about the ending, once fetch_reviews.py has run for this title."
+    }
+  ]
+}

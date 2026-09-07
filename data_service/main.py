@@ -2,7 +2,15 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from data_service.rate_limit import RateLimiter
-from data_service.routers import lists, people, ratings, sync, titles, watchlist
+from data_service.routers import (
+    lists,
+    people,
+    ratings,
+    sync,
+    titles,
+    watchlist,
+    reviews,
+)
 from data_service.services.exceptions import NotFoundError
 
 app = FastAPI(title="TMDB Local Data Service", version="0.1.0")
@@ -36,6 +44,12 @@ app.include_router(watchlist.router)
 app.include_router(ratings.router)
 app.include_router(lists.router)
 app.include_router(sync.router)
+app.include_router(reviews.router)
+
+# Note this router only lists reviews now — retrieval/search lives in the
+# separate rag_service (see rag_service/README in its config.py docstring),
+# which calls THIS endpoint over HTTP to pull review content to embed,
+# the same way mcp_server calls data_service for everything else.
 
 
 @app.get("/health")

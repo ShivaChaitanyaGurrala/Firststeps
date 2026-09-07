@@ -1,4 +1,5 @@
-"""Normalized error types for the MCP tool layer.
+"""Normalized error types for the RAG service's DataServiceClient.
+The goal is to never let raw httpx
 
 data_service.main already turns any domain NotFoundError into a clean
 `{"detail": "<message>"}` JSON body on a 404 — see
@@ -23,22 +24,13 @@ TODO(you):
    catch `httpx.HTTPStatusError` and `raise from_httpx_error(exc) from exc`.
    Decide whether that belongs in every method individually or behind one
    shared request helper (see the TODO at the top of http_client.py).
-4. In each tools/*.py module, catch these exceptions and re-raise as
-   `mcp.server.mcpserver.exceptions.ToolError(str(exc))` — the SDK's own
-   error type (.venv/Lib/site-packages/mcp/server/mcpserver/exceptions.py),
-   which the SDK turns into a clean `is_error: True` tool result instead of
-   an unhandled-exception traceback reaching the client.
 """
 
 import httpx
 
 
 class DataServiceError(Exception):
-    """Base for every normalized error a backend HTTP call can raise.
-
-    Name predates M4's rag_service split — kept as-is rather than renamed,
-    since RagServiceClient (rag_client.py) reuses this same hierarchy for
-    rag_service errors too (same normalization shape, different backend)."""
+    """Base for every normalized error a backend HTTP call can raise."""
 
 
 class NotFoundError(DataServiceError):

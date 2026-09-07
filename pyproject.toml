@@ -9,8 +9,25 @@ dependencies = [
     "sqlalchemy>=2.0",
     "pydantic-settings>=2.6",
     "httpx>=0.27",
-    "mcp[cli]>=2.0.0,<3",  # M2 depends on the SEP-2577 InputRequiredResult/Resolve API introduced in 2.0.0 — pin the major.
+    "mcp[cli]>=2.0.0,<3", # M2 depends on the SEP-2577 InputRequiredResult/Resolve API introduced in 2.0.0 — pin the major.
     "psycopg2-binary>=2.9.12",
+    # M4 rag_service — a separate backend service from data_service (see
+    # rag_service/config.py), still installed from this single shared
+    # pyproject.toml for now (splitting dependency management per-service
+    # is M6/M8 territory, per the original plan; this split is a code/
+    # runtime boundary, not yet a packaging one). langchain-voyageai is NOT
+    # listed — rag_service/embeddings.py's docstring leaves that as an
+    # explicit choice (LangChain adapter vs a hand-rolled wrapper over the
+    # raw voyageai SDK); add it yourself only if you pick the adapter
+    # route. Similarly, `ragas` and whatever LLM wrapper it needs (see
+    # evals/rag/run_ragas_eval.py) aren't listed here since that script is
+    # a standalone eval tool, not part of either app.
+    "langchain-text-splitters>=0.3",
+    "langchain-chroma>=0.2",
+    "chromadb>=0.5",
+    "voyageai>=0.3",
+    "cohere>=5.13",
+    "langchain-voyageai",
 ]
 
 [dependency-groups]

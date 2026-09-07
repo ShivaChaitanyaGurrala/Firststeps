@@ -18,6 +18,11 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     data_service_base_url: str = "http://127.0.0.1:8000"
+    # M4: rag_service is a separate backend service (owns Chroma/Voyage/
+    # Cohere), not part of data_service — see rag_service/config.py's
+    # docstring for why. rag_tools.py's search_reviews tool calls this one
+    # instead of data_service_base_url.
+    rag_service_base_url: str = "http://127.0.0.1:8020"
 
     # M2: which transport __main__ starts with. stdio stays the default so
     # `mcp dev server.py` / `mcp run server.py` behave exactly as in M1;

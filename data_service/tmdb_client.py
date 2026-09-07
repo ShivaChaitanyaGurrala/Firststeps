@@ -117,6 +117,15 @@ class TmdbClient:
     async def get_person_details(self, person_id: int) -> dict[str, Any]:
         return await self._get(f"{API_BASE}/person/{person_id}", {"language": "en-US"})
 
+    async def get_movie_reviews(self, movie_id: int, page: int = 1) -> dict[str, Any]:
+        """GET /movie/{id}/reviews -> {id, page, results: [...], total_pages, total_results}.
+        results[].id is TMDB's opaque hex review id (see models/reviews.py's
+        docstring on why Review.id is a String, not an Integer)."""
+        return await self._get(
+            f"{API_BASE}/movie/{movie_id}/reviews",
+            {"language": "en-US", "page": page},
+        )
+
     async def get_changes(
         self, entity_type: str, start_date: date, end_date: date, page: int = 1
     ) -> dict[str, Any]:

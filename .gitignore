@@ -17,3 +17,7 @@ venv/
 
 # uv
 .python-version
+
+# evals/rag: regenerated on every run, not source of truth
+evals/rag/batch_input.jsonl
+evals/rag/results.json

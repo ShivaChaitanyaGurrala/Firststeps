@@ -1,4 +1,4 @@
-"""One test per MCP tool (11 total) — run this after any tool/backend change
+"""One test per MCP tool (12 total) — run this after any tool/backend change
 to confirm nothing regressed. Uses the mcp_client fixture from conftest.py,
 so it never touches a real running data_service or a real TMDB call.
 
@@ -102,6 +102,38 @@ async def test_sync_status(mcp_client):
         result = await connected.call_tool("sync_status", {})
     assert not result.is_error
     assert result.structured_content["runs"] == []
+
+
+async def test_search_reviews(mcp_client, monkeypatch):
+    import tools.rag_tools as rag_tools
+
+    canned = {
+        "query": "pacing",
+        "results": [
+            {
+                "review_id": "abc123",
+                "title_id": 27205,
+                "title": "Inception",
+                "chunk_text": "The pacing drags in the second act.",
+                "author": "critic1",
+                "rating": 7.5,
+                "score": 0.91,
+            }
+        ],
+    }
+
+    def fake_search_reviews(query, title_id=None, limit=5):
+        return canned
+
+    monkeypatch.setattr(rag_tools._client, "search_reviews", fake_search_reviews)
+
+    async with mcp_client as connected:
+        result = await connected.call_tool("search_reviews", {"query": "pacing"})
+    assert not result.is_error
+    body = result.structured_content
+    assert body["query"] == "pacing"
+    assert body["results"][0]["title"] == "Inception"
+    assert body["results"][0]["score"] == 0.91
 
 
 async def test_trigger_sync(mcp_client, monkeypatch):

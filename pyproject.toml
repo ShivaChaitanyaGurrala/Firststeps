@@ -15,19 +15,41 @@ dependencies = [
     # rag_service/config.py), still installed from this single shared
     # pyproject.toml for now (splitting dependency management per-service
     # is M6/M8 territory, per the original plan; this split is a code/
-    # runtime boundary, not yet a packaging one). langchain-voyageai is NOT
-    # listed — rag_service/embeddings.py's docstring leaves that as an
-    # explicit choice (LangChain adapter vs a hand-rolled wrapper over the
-    # raw voyageai SDK); add it yourself only if you pick the adapter
-    # route. Similarly, `ragas` and whatever LLM wrapper it needs (see
-    # evals/rag/run_ragas_eval.py) aren't listed here since that script is
-    # a standalone eval tool, not part of either app.
+    # runtime boundary, not yet a packaging one). embeddings.py's open
+    # "adapter vs hand-rolled" choice was resolved as the LangChain adapter
+    # — hence langchain-voyageai below.
     "langchain-text-splitters>=0.3",
     "langchain-chroma>=0.2",
     "chromadb>=0.5",
     "voyageai>=0.3",
     "cohere>=5.13",
     "langchain-voyageai",
+    # evals/rag/run_ragas_eval.py's LLM (see that file's docstring + .env's
+    # OPENAI_API_KEY/OPENAI_MODEL comment): OpenAI gpt-4o-mini plays both
+    # the eval's answer-generator and RAGAS's internal judge role.
+    # ragas==0.4.3 pinned: unpinned resolves fine on paper but its
+    # ragas.llms.base module eagerly imports langchain_community's
+    # ChatVertexAI at import time regardless of which LLM you actually use
+    # — that class was removed from langchain-community's default install
+    # in 0.4.x (moved to a standalone langchain-google-vertexai package),
+    # so `import ragas` raises ModuleNotFoundError there unless
+    # langchain-community is also pinned back below 0.4. Both pins are
+    # upstream compatibility workarounds, not a version we actually need
+    # features from — safe to try dropping them on a future ragas release
+    # that fixes the eager import.
+    "ragas==0.4.3",
+    "langchain-community<0.4",
+    "openai>=1.0.0",
+    "datasets",
+    # Imported directly in run_ragas_eval.py (LangchainLLMWrapper/
+    # LangchainEmbeddingsWrapper need real langchain ChatOpenAI/
+    # OpenAIEmbeddings objects to wrap — ragas's own modern llm_factory/
+    # embedding_factory objects aren't compatible with the legacy
+    # ragas.metrics classes evaluate() requires, see that file's comment).
+    # Was already resolving transitively via ragas's own dependency on it;
+    # declared explicitly since we import it ourselves, not just through
+    # ragas's internals.
+    "langchain-openai",
 ]
 
 [dependency-groups]

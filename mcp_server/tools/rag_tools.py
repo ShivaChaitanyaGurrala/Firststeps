@@ -52,26 +52,39 @@ class SearchReviewsResult(TypedDict):
 def search_reviews(
     query: Annotated[
         str,
-        Field(description="TODO(you): write a description an LLM can use to "
-              "tell this apart from search_titles — see this file's module "
-              "docstring."),
+        Field(
+            description=(
+                "Free-text description of an OPINION, sentiment, or theme to "
+                "look for in what viewers wrote about a movie (e.g. 'criticism "
+                "of the pacing', 'comparisons to the book', 'thoughts on the "
+                "ending'). Matched by semantic similarity against real review "
+                "text, not exact keywords. Use this to find what people SAID "
+                "about a movie; use search_titles instead to find WHICH movie "
+                "matches a title."
+            )
+        ),
     ],
     title_id: Annotated[
         int | None,
-        Field(default=None, description="TODO(you): describe the scoping behavior."),
+        Field(
+            default=None,
+            description=(
+                "Restrict results to reviews of this one movie (its TMDB id, "
+                "e.g. from search_titles/get_title_details). Omit to search "
+                "review text across the whole catalog."
+            ),
+        ),
     ] = None,
     limit: Annotated[
         int, Field(default=5, ge=1, le=20, description="Max review chunks to return.")
     ] = 5,
 ) -> SearchReviewsResult:
-    """TODO(you): write the tool docstring (this is also LLM-visible, same
-    as the Field descriptions above).
-
-    Body TODO(you) — identical shape to search_titles in catalog_tools.py:
-        try:
-            response = _client.search_reviews(query, title_id, limit)
-        except DataServiceError as exc:
-            raise ToolError(str(exc)) from exc
-        return cast(SearchReviewsResult, response)
+    """Semantically search real viewer review text for opinions, sentiment, or
+    themes — not a title/catalog lookup. Use search_titles to find a movie by
+    name; use this to find what viewers said about one.
     """
-    raise NotImplementedError
+    try:
+        response = _client.search_reviews(query, title_id, limit)
+    except DataServiceError as exc:
+        raise ToolError(str(exc)) from exc
+    return cast(SearchReviewsResult, response)

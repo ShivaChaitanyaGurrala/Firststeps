@@ -1,10 +1,546 @@
 {
-  "_comment": "TODO(you): fixed (question, ground_truth) pairs for RAGAS scoring — M4's acceptance bar, later reused/extended by M10's full-agent evals. Each entry: `question` is what gets sent through search_reviews; `ground_truth` is what a correct answer should say, used to score context_recall/answer relevancy against. `title_id` is optional (omit to search the whole corpus, matching search_reviews' own title_id=None behavior) — scope a question to one movie once you know real review content for it. This file only has ONE placeholder entry using a known-seeded id (movie 27205 = Inception, referenced in the M0 plan as the manual-verification example) — replace `ground_truth` with something grounded in a REAL review already fetched by fetch_reviews.py before running the eval; don't leave the placeholder text in a real scoring run. Add 5-10 more pairs covering a spread of movies once the pipeline works, so the eval isn't scored against a single question.",
+  "_comment": "(question, ground_truth) pairs for RAGAS scoring - M4's acceptance bar, later reused/extended by M10's full-agent evals. `question` is what gets sent through search_reviews; `ground_truth` is what a correct answer should say, used to score context_recall/answer_relevancy against; `title_id` is optional (omit to search the whole corpus). Every case draws on 2-3 real reviews of the SAME movie (source_review_ids) rather than one isolated opinion, so ground_truth can genuinely synthesize agreement/disagreement across reviewers - context_recall then tests whether the retriever surfaces enough of the relevant chunks (often from different reviews) to support a claim that spans more than one source, not just whether it finds a single matching sentence. `category` marks what's being tested (agreement / disagreement / comparison / element_critique / ending_analysis / catalog_wide) for grouping a per-row RAGAS breakdown by failure type. 54 cases across 52 movies, hand-written against real review content per the '100 well-crafted > 1000 repetitive, but crafted from 2+ reviews per movie' brief for this eval set.",
   "cases": [
     {
-      "question": "What do reviewers say about Inception's ending?",
-      "title_id": 27205,
-      "ground_truth": "TODO(you): replace with a claim you can actually verify against a real fetched review's content — e.g. quote or closely paraphrase what an actual review in your `reviews` table says about the ending, once fetch_reviews.py has run for this title."
+      "question": "Do reviewers agree on the quality of 28 Years Later, or is opinion split?",
+      "title_id": 1100988,
+      "ground_truth": "Opinion is sharply split: two reviewers rate it very low, calling it a hollow cash grab with bad CGI, out-of-place music, and a betrayal of the original franchise, while a third reviewer, though disappointed by an overly artsy tone and a ridiculous 'kung fu' sequence, still calls it a good movie worth watching.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "688f839217ad5cc979a466f1",
+        "6a6bdc68e628b5f3c3cbf265",
+        "685c17c6a47d910a32e4308c"
+      ]
+    },
+    {
+      "question": "How do reviewers rate Ghostbusters: Afterlife compared to the 2016 reboot?",
+      "title_id": 425909,
+      "ground_truth": "Two reviewers say they prefer Afterlife to the 2016 all-female reboot, with one calling it the 'true sequel' to the original films and another calling the 2016 film 'that mistake' by comparison, while a third reviewer found it only narrowly better than the franchise's other entries despite enjoying the young cast.",
+      "category": "comparison",
+      "source_review_ids": [
+        "65c428f0a5046e0149b5c5ba",
+        "62dfa2cbe18e3f004e320ed8",
+        "6201f308d55c3d00a0c06c6d"
+      ]
+    },
+    {
+      "question": "What do multiple reviewers agree makes Captain America: The Winter Soldier stand out within the MCU?",
+      "title_id": 100402,
+      "ground_truth": "Multiple reviewers agree the film's darker spy-thriller tone set it apart from earlier, lighter MCU films, with one calling it one of their favorite action films period and another saying the new tone perfectly fit Captain America's story, ranking it among the franchise's best.",
+      "category": "agreement",
+      "source_review_ids": [
+        "5c842694c3a3684e8cdacb97",
+        "63e70a181277780081a30d0d",
+        "624216d2fea0d7005c88d28a"
+      ]
+    },
+    {
+      "question": "Do any reviewers defend Transformers: The Last Knight, or is the consensus entirely negative?",
+      "title_id": 335988,
+      "ground_truth": "All three reviewers are negative, but to varying degrees - one calls it 'soulless garbage' with jokes that fall flat, another says it's at least as bad as the franchise's worst entry and arguably worse, while a third gives it a mild pass as 'minutely better' than Dark of the Moon while still calling it disappointing.",
+      "category": "agreement",
+      "source_review_ids": [
+        "6790fef5fb609d926828bb5c",
+        "5a92b386c3a368250201d898",
+        "59c0e2fec3a368044a00f6aa"
+      ]
+    },
+    {
+      "question": "What common thread do multiple reviewers highlight as Ready Player One's biggest strength?",
+      "title_id": 333339,
+      "ground_truth": "Multiple reviewers highlight nostalgia and pop-culture references as the film's biggest strength - one calls it 'honest Nostalgia Candy' distinct from forced Hollywood reboots, and another says the biggest treat is counting pop culture references alongside the killer 80s soundtrack.",
+      "category": "agreement",
+      "source_review_ids": [
+        "5bf85fc00e0a2626740fe0ed",
+        "63bf8875df857c00bc20dd4a",
+        "66d73fef4a4ad40e369dad60"
+      ]
+    },
+    {
+      "question": "What do reviewers say about Ryan Reynolds' casting in IF?",
+      "title_id": 639720,
+      "ground_truth": "One reviewer says Ryan Reynolds feels miscast, not doing enough to warrant that type of actor despite enjoying seeing him play against type, while another reviewer felt the film overall came across as forced and overly sentimental despite Reynolds seeming to enjoy his role.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "6775e6dedd179c5b35927c27",
+        "667534d57d6453155a6c7253"
+      ]
+    },
+    {
+      "question": "How does a reviewer rank the original Naked Gun against Airplane!?",
+      "title_id": 37136,
+      "ground_truth": "A reviewer says they prefer The Naked Gun to Airplane!, saying it has better humor and a better accompanying story, describing its comedy as dry slapstick with gags scattered throughout without being overtly pointed out.",
+      "category": "comparison",
+      "source_review_ids": [
+        "666590efe40a63e747f9bc66",
+        "62ca913d595a5612ba104b8a"
+      ]
+    },
+    {
+      "question": "Do reviewers agree on the quality of Red Skull as a villain in Captain America: The First Avenger?",
+      "title_id": 1771,
+      "ground_truth": "Opinions differ: one reviewer calls Red Skull one of the better MCU villains because of Hugo Weaving's performance, while another says the heavy prosthetics made him look silly, calling him one of the MCU's many weak villains.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "5c84271d92514127691f7aeb",
+        "5ed3248c1b157d001f53be6b"
+      ]
+    },
+    {
+      "question": "What common criticism do multiple reviewers share about Joker: Folie à Deux's pacing and payoff?",
+      "title_id": 889737,
+      "ground_truth": "Multiple reviewers say the expected explosion of chaos and violence never comes - one says the underlying tension never erupts, leaving a comparatively subdued courtroom drama, and another says the execution is too lengthy with too many singing scenes and not enough action.",
+      "category": "agreement",
+      "source_review_ids": [
+        "67de7cea5f977836ab7aa631",
+        "69d46c4a17a9feb6d56adfec"
+      ]
+    },
+    {
+      "question": "What connection does a reviewer draw between Tangled and Frozen?",
+      "title_id": 38757,
+      "ground_truth": "A reviewer says Tangled sets a lot of the foundations that 2013's Frozen later uses, with a fair amount of similarities between the two films.",
+      "category": "comparison",
+      "source_review_ids": [
+        "5f3d60b2e295b40033a3a307"
+      ]
+    },
+    {
+      "question": "Do reviewers find Shutter Island's twist genuinely surprising?",
+      "title_id": 11324,
+      "ground_truth": "One reviewer says the twist was a bit obvious but still fun to watch unfold, while another calls it a 'paradox plot' they loved through and through, both still rating the film highly as a Scorsese masterpiece.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "698792e615593504948fca39",
+        "5f7ca6b90e597b0035b1852a"
+      ]
+    },
+    {
+      "question": "What other films does a reviewer compare The Martian to?",
+      "title_id": 286217,
+      "ground_truth": "A reviewer compares The Martian to Armageddon, Mission to Mars, Gravity, and 2001: A Space Odyssey, and even the first acts of the Planet of the Apes films, though without their fantastical elements.",
+      "category": "comparison",
+      "source_review_ids": [
+        "5cd1cf339251417df726b940"
+      ]
+    },
+    {
+      "question": "Do reviewers think The Mummy Returns' special effects hold up as well as the original film's?",
+      "title_id": 1734,
+      "ground_truth": "A reviewer who previously noted the original film's effects aged badly says they're worse here, singling out the Scorpion King's effects toward the conclusion as looking particularly poor, while another reviewer says the sequel is every bit as good as 'its daddy'.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "67b343a5317838d2949fb8db",
+        "64f2eb0674507d00adc1442f"
+      ]
+    },
+    {
+      "question": "Why do reviewers disagree so strongly about Bohemian Rhapsody?",
+      "title_id": 424694,
+      "ground_truth": "Opinions diverge sharply: one reviewer calls it bland and choppy beyond Rami Malek's performance, another calls Malek and Tom Hollander magnificent in a captivating retrospective, and a third praises the cast's authenticity but says the film has 'no meat on it' because the trailer already showed the entire movie.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "5c444e27c3a3681a1124553c",
+        "66576b294bb459d4545efaf9",
+        "63c1ffb6a5743d00891090b3"
+      ]
+    },
+    {
+      "question": "How do multiple reviewers compare Colony to Train to Busan?",
+      "title_id": 1375646,
+      "ground_truth": "Multiple reviewers compare Colony favorably to Train to Busan, with one calling director Yeon Sang-ho 'the George Romero of this generation' and saying Colony is almost as good as that earlier masterpiece, praising both for doing something different with the zombie genre rather than repeating tropes.",
+      "category": "agreement",
+      "source_review_ids": [
+        "6a72517b7c5e6313de46bb6f",
+        "6a979e527605e37a768eaf3f",
+        "6a6756c036e92805703d96b5"
+      ]
+    },
+    {
+      "question": "Do reviewers think Ready or Not: Here I Come lives up to the original Ready or Not?",
+      "title_id": 1266127,
+      "ground_truth": "A reviewer says the sequel pales in comparison to the first film, particularly because the original's fantastic final-five-minutes twist isn't matched here and the writing is weaker, though they were still entertained overall.",
+      "category": "comparison",
+      "source_review_ids": [
+        "69c07cb0c4fed9405ad34a87"
+      ]
+    },
+    {
+      "question": "How does a reviewer rate the 1986 version of The Fly against the original 1958 film?",
+      "title_id": 9426,
+      "ground_truth": "A reviewer says the 1986 remake offers a fitting, gory, and amusing sci-fi horror conclusion that is nearly, but not quite, as good as the 1958 version.",
+      "category": "comparison",
+      "source_review_ids": [
+        "62c7f93958361b005fd30f67"
+      ]
+    },
+    {
+      "question": "What theme do multiple reviewers agree A Silent Voice: The Movie explores most powerfully?",
+      "title_id": 378064,
+      "ground_truth": "Multiple reviewers agree the film's central strength is its exploration of empathy and human communication, with two reviewers independently describing how it changed their understanding of the importance of listening to others and praising a soundtrack designed to simulate the sensory experience of a deaf character.",
+      "category": "agreement",
+      "source_review_ids": [
+        "6868ea21d024939ec2cedb60",
+        "66e4a60928048d92def9a5c2"
+      ]
+    },
+    {
+      "question": "Do reviewers agree on Rihanna's voice performance in Home?",
+      "title_id": 228161,
+      "ground_truth": "Reviewers disagree on the film overall: one calls it decent though not as strong as Disney/Pixar work, while another calls it utterly average and specifically says Rihanna is not an actress, criticizing her voice performance.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "55de10a19251411c3e000274",
+        "6131b1fb2cde980062cf4d65"
+      ]
+    },
+    {
+      "question": "Is there a consensus among reviewers about the realism of the military characters in The Predator?",
+      "title_id": 346910,
+      "ground_truth": "One reviewer, who served in the U.S. Army, praises the character interplay among the military characters as highly realistic and enjoyed the film overall, while other reviewers call it a complete waste of opportunity with intrusive music and badly lit scenes, saying it falls short of its predecessors.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "5c527fd0c3a368576a98b772",
+        "5b9d9aa40e0a2675650093ff"
+      ]
+    },
+    {
+      "question": "What do multiple reviewers say about Liam Neeson's performance in the 2025 Naked Gun reboot?",
+      "title_id": 1035259,
+      "ground_truth": "Multiple reviewers praise Liam Neeson as perfect for the role, capturing the original Police Squad style while being laugh-out-loud ridiculous, with one calling him 'in rare form' and another saying he's ideal for a nostalgic yet original comedic revival.",
+      "category": "agreement",
+      "source_review_ids": [
+        "68eaf45a7c29f805a81a25f6",
+        "691651e8a896a8bb22a0df86"
+      ]
+    },
+    {
+      "question": "What musical contribution do reviewers praise in Disney's Tarzan (1999)?",
+      "title_id": 37135,
+      "ground_truth": "Both reviewers praise Phil Collins' music, with one specifically highlighting the song 'Son of Man' as working very well with a training montage and adding a lot to the film.",
+      "category": "agreement",
+      "source_review_ids": [
+        "5f03cd705545ca0038d833b9",
+        "64ec73611feac100c46fed0e"
+      ]
+    },
+    {
+      "question": "Do reviewers think San Andreas measures up to classic disaster films like The Poseidon Adventure?",
+      "title_id": 254128,
+      "ground_truth": "A reviewer says the film doesn't measure up to The Poseidon Adventure or The Towering Inferno, though they still found it entertaining thanks to Dwayne Johnson's charisma and decent effects.",
+      "category": "comparison",
+      "source_review_ids": [
+        "5f430a646eecee0035550d47"
+      ]
+    },
+    {
+      "question": "What do reviewers say makes The Prestige's storytelling structure distinctive?",
+      "title_id": 1124,
+      "ground_truth": "Reviewers praise the nonlinear storytelling and unexpected twists, with one calling it one of the most mind-blowing mysteries they've watched in recent years and noting how the plot structure itself corresponds to an epic magic show.",
+      "category": "agreement",
+      "source_review_ids": [
+        "6a55c676c3df84af11ae7b6e",
+        "5a5b08c5c3a36867e401affe"
+      ]
+    },
+    {
+      "question": "How does a critical reviewer describe the ending of The Idea of You?",
+      "title_id": 843527,
+      "ground_truth": "A reviewer says the movie fails to justify a frustratingly incoherent ending, criticizing the film's lack of narrative innovation despite blameless performances from Anne Hathaway and Nicholas Galitzine.",
+      "category": "element_critique",
+      "source_review_ids": [
+        "66352c8099d5c30123578431"
+      ]
+    },
+    {
+      "question": "Do reviewers agree that Beetlejuice is equally strong in its first and second halves?",
+      "title_id": 4011,
+      "ground_truth": "One reviewer says the first half is hilarious entertainment with interesting insights on the afterlife, but the second half isn't as compelling and finds the title character more annoying than amusing, while another reviewer praises Michael Keaton's performance and the film's visual imagination without raising that complaint.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "5aa6c1309251415e3f00cf41",
+        "665911ad5d22bc30f02d3912"
+      ]
+    },
+    {
+      "question": "What do reviewers say about the ending of The Hobbit: The Desolation of Smaug?",
+      "title_id": 57158,
+      "ground_truth": "A reviewer says the ending affects the film the most, going on too long while also coming out of nowhere, though they still call the film very good overall and enjoyed the Esgaroth scenes and score.",
+      "category": "ending_analysis",
+      "source_review_ids": [
+        "6031cef0a6e2d20040083e3b"
+      ]
+    },
+    {
+      "question": "What do multiple reviewers agree is the standout element of Black Widow (2021)?",
+      "title_id": 497698,
+      "ground_truth": "Multiple reviewers agree Florence Pugh is the standout, with one saying they liked the movie 'because of Florence only' and another saying Pugh comes close to stealing the spotlight from Scarlett Johansson with an absolutely phenomenal performance.",
+      "category": "agreement",
+      "source_review_ids": [
+        "60efa51fa44d09002d44c33a",
+        "60e74284b76cbb0073e80020"
+      ]
+    },
+    {
+      "question": "Why are reviewers' reactions to the 2025 War of the Worlds so different from each other?",
+      "title_id": 755898,
+      "ground_truth": "Reactions vary widely: one reviewer finds the film charming despite calling it ridiculous and stupid, another is outraged by reports that it blended real disaster footage with alien-invasion CGI, and a third calls it a simple but watchable sci-fi experience let down only by passable special effects.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "68a6310b410b9983f0d5504b",
+        "68f1cc6d91c2020a290e476b",
+        "688b04a2e6ed8e883ab5b289"
+      ]
+    },
+    {
+      "question": "Do all reviewers rate Coco among Pixar's best, or are opinions mixed?",
+      "title_id": 354912,
+      "ground_truth": "Opinions are mixed: one reviewer says Coco didn't personally appeal to them despite being colourful and sweet, rating it low for a Pixar film, while another calls it straight into their top five Disney animations and a third praises its depiction of Mexican culture and heartfelt family message.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "5a5881500e0a2634f1006a6b",
+        "5f56619790dde00034ec6967",
+        "5b0a82e99251411e6a004bc1"
+      ]
+    },
+    {
+      "question": "Do reviewers agree that Flow's environmental message lands effectively?",
+      "title_id": 823219,
+      "ground_truth": "Reviewers disagree: one calls it a potent reminder of the consequences of human actions on the environment with a profound universal message, while another says the film's message doesn't teach anything new and leaves the experience feeling shallow, like a video game walkthrough.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "6740b91bae12bafff5756e85",
+        "6767c037b67e4547255e4ff0"
+      ]
+    },
+    {
+      "question": "What do multiple reviewers say has gone wrong with later Ice Age sequels like Collision Course?",
+      "title_id": 278154,
+      "ground_truth": "Multiple reviewers say the franchise has grown tired - one calls Scrat 'just plain annoying' by this point and the writing lacking sharpness, while another calls it 'definitely the worst one', though both note kids may still enjoy it more than adults.",
+      "category": "agreement",
+      "source_review_ids": [
+        "67fff21d61b1c4bb3299bb1c",
+        "6a945671349c06957ae064f0"
+      ]
+    },
+    {
+      "question": "Do reviewers agree that closely following the video games helped or hurt Resident Evil: Welcome to Raccoon City?",
+      "title_id": 460458,
+      "ground_truth": "Reviewers agree the film sticks close to the original games in look and feel, but say this closeness works against it - one calls the overcrowded story a detriment despite faithful sets and Easter eggs, and another says the reboot's fidelity to the games' story came 'to its detriment'.",
+      "category": "agreement",
+      "source_review_ids": [
+        "630a5fbdb042280082eb2171",
+        "6a63f5ce11e262a13ce8aa73"
+      ]
+    },
+    {
+      "question": "How does a reviewer rank Annabelle Comes Home within the Conjuring franchise?",
+      "title_id": 521029,
+      "ground_truth": "A reviewer says Annabelle Comes Home is, surprisingly, the closest thing the franchise has to a second good entry after Conjuring 2, even though they consider the first Annabelle a disaster and rate most of the franchise as ranging from 'alright' to 'dumpster fire'.",
+      "category": "comparison",
+      "source_review_ids": [
+        "5d9c8de26b5fc2001ed8b96f"
+      ]
+    },
+    {
+      "question": "Do reviewers agree on the pacing of X (2022)'s first act?",
+      "title_id": 760104,
+      "ground_truth": "Two reviewers separately note pacing issues in the first act - one says it feels stretched out with an unclear transition into the second act, and another says the film takes too long to get going - though both still found the film worthwhile once it picked up, while a third reviewer rated it a masterpiece without raising pacing complaints.",
+      "category": "agreement",
+      "source_review_ids": [
+        "6779e3746d7ca00e78729d76",
+        "624afff38c7b0f006379aa44"
+      ]
+    },
+    {
+      "question": "What do multiple reviewers agree about Reese Witherspoon's performance in Legally Blonde?",
+      "title_id": 8835,
+      "ground_truth": "Multiple reviewers agree Reese Witherspoon's performance elevates predictable or cheesy material, with one saying she is impressive despite a story you can see coming from the start, and another saying her performance evokes something detestable about the character effectively even while finding the plot too predictable.",
+      "category": "agreement",
+      "source_review_ids": [
+        "678683c88c2309ceafbb826d",
+        "64f2e5531f331900ad4717ef"
+      ]
+    },
+    {
+      "question": "What do reviewers criticize about The End of Oak Street's tone and originality?",
+      "title_id": 1101383,
+      "ground_truth": "One reviewer says the film's biggest obstacle is its own indecision about what it wants to be, with emotional stakes layered onto popcorn thrills that show visible seams, while another calls it a fossilized production leaning on 80s nostalgia with predictable dinosaur action and a dash of time-travel nonsense.",
+      "category": "agreement",
+      "source_review_ids": [
+        "6a805fb183ec8b8ad3b33213",
+        "6a8023b5243b82bb097932fc"
+      ]
+    },
+    {
+      "question": "What common weakness do multiple reviewers identify in Thor: Love and Thunder despite enjoying it?",
+      "title_id": 616037,
+      "ground_truth": "Multiple reviewers note the film doesn't fully deliver despite good elements - one says the ending felt sudden and left them unsatisfied, and another says the comedy denies further exploration and removes emotional value from the third act, even while both praise Christian Bale's villain performance.",
+      "category": "agreement",
+      "source_review_ids": [
+        "63001c6496e30b007a812c49",
+        "62c8912b13a320004c6c0a70"
+      ]
+    },
+    {
+      "question": "Do reviewers agree that Mission: Impossible II is weaker than the first film?",
+      "title_id": 955,
+      "ground_truth": "Reviewers agree it's a weak entry - one calls it 'a lousy piece of crap' compared to the entertaining first film, and another says it's 'not a patch on the first film', criticizing an underdeveloped story and a villain who isn't menacing enough.",
+      "category": "agreement",
+      "source_review_ids": [
+        "5e9120963679a10018375490",
+        "62bf2a4a28723c004c808206"
+      ]
+    },
+    {
+      "question": "What do reviewers say about Zendaya's performance in The Drama, and how balanced do they find the film's perspective?",
+      "title_id": 1325734,
+      "ground_truth": "Reviewers praise Zendaya's performance - one calls it impressive and better than her other roles - while a more detailed review says the film occasionally focuses too much on the groom's panic rather than letting the bride fully explain her story, even while calling the film emotionally honest and thought-provoking overall.",
+      "category": "element_critique",
+      "source_review_ids": [
+        "6a1c984276ce8df5f54a633c",
+        "6a391b6e41339a2906b922ae"
+      ]
+    },
+    {
+      "question": "Do reviewers agree that The Nun II is an improvement over the original Nun film?",
+      "title_id": 968051,
+      "ground_truth": "Reviewers partly agree it's a slight improvement but still weak - one says it surpasses its predecessor with better acting and effects despite a messy third act, and another says it's better than the first only in the sense that it's 'not saying much', calling it emotionally empty and hard to follow.",
+      "category": "agreement",
+      "source_review_ids": [
+        "65631d36b234b9011c863d1f",
+        "6551b2750816c700abbab004"
+      ]
+    },
+    {
+      "question": "Do reviewers agree that the ending of It Ends with Us succeeds?",
+      "title_id": 1079091,
+      "ground_truth": "One reviewer says the ending makes them question how they feel about the film despite otherwise stellar performances, and another reviewer says the resolution felt overly neat, leaving them questioning the film's message about healing and forgiveness.",
+      "category": "ending_analysis",
+      "source_review_ids": [
+        "66be84a32b63cbefe2559103",
+        "672f262159036d2bcf08e2c2"
+      ]
+    },
+    {
+      "question": "What do multiple reviewers say carries Bugonia despite its narrative shortcomings?",
+      "title_id": 701387,
+      "ground_truth": "Multiple reviewers say the performances carry the film - one says it functions primarily as a stage for the memorable performances of Jesse Plemons and Emma Stone despite themes that feel discursive and predictable, and another says they've come to really appreciate Plemons' acting after this film.",
+      "category": "agreement",
+      "source_review_ids": [
+        "68e96e5ace48270ee4b7b490",
+        "69f79dbaced48174a83e4941"
+      ]
+    },
+    {
+      "question": "What weakness does a reviewer point out in how Rocky (1976) develops Apollo Creed?",
+      "title_id": 1366,
+      "ground_truth": "A reviewer says Apollo Creed felt underdeveloped in the original Rocky, more of a faceless nemesis without real depth, though they note the sequels later gave him more development.",
+      "category": "element_critique",
+      "source_review_ids": [
+        "63bf6e0f8efe730087a7d689"
+      ]
+    },
+    {
+      "question": "Do reviewers think Battleship is worth watching despite its flaws?",
+      "title_id": 44833,
+      "ground_truth": "Both reviewers acknowledge major flaws - one calls it 'cash infused metallic porn' with vacuous, Transformers-style effects work, while another admits the effects and acting were bad but still calls it an entertaining movie if you shut your brain off and embrace the nonsensical action.",
+      "category": "agreement",
+      "source_review_ids": [
+        "5662823bc3a3682be9002a22",
+        "63c5ced112c60400db24f930"
+      ]
+    },
+    {
+      "question": "What does a reviewer say was misleading about how Ford v Ferrari was marketed?",
+      "title_id": 359724,
+      "ground_truth": "A reviewer says the film was marketed inaccurately, implying it would be a rivalry between Bale's and Damon's characters or between Ford and Ferrari, when it's actually mostly about the friendship and partnership between the two leads - and that Ferrari barely features in the movie at all.",
+      "category": "element_critique",
+      "source_review_ids": [
+        "5e434d630c27100015829287"
+      ]
+    },
+    {
+      "question": "Do reviewers agree that La La Land's ending works?",
+      "title_id": 313369,
+      "ground_truth": "One reviewer says the reality-driven ending crushed their enjoyment a little despite understanding the director's choice, while another calls the film style over substance overall, wanting more depth to the plot beyond a song every few minutes.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "6469fa49d185720120814c8f",
+        "5fe7f8f64d0e8d003f7ae43e"
+      ]
+    },
+    {
+      "question": "Did a reviewer's opinion of The Proposal change on a second viewing?",
+      "title_id": 18240,
+      "ground_truth": "A reviewer says they weren't impressed the first time they saw The Proposal in theaters, but after rewatching it they couldn't remember what they hadn't liked, ultimately calling it a top-shelf rom-com.",
+      "category": "comparison",
+      "source_review_ids": [
+        "63899b75f3b49a00842dff5d"
+      ]
+    },
+    {
+      "question": "How does a reviewer compare The Departed to its source material, Infernal Affairs?",
+      "title_id": 1422,
+      "ground_truth": "A reviewer says they usually hate American remakes of international films but considers The Departed a sterling exception, calling it easily one of Scorsese's finest works despite loving the original Infernal Affairs trilogy.",
+      "category": "comparison",
+      "source_review_ids": [
+        "579155ee9251415aab002740"
+      ]
+    },
+    {
+      "question": "What do reviewers say about how The Lego Batman Movie compares to other recent Batman films?",
+      "title_id": 324849,
+      "ground_truth": "A reviewer says they're frustrated it took five years and the LEGO franchise to get another great Batman movie, but confirms Lego Batman is genuinely great and recommends it especially to Batman fans for its references.",
+      "category": "comparison",
+      "source_review_ids": [
+        "58e3b75892514127f00211ac"
+      ]
+    },
+    {
+      "question": "Do reviewers agree on the quality of Maleficent: Mistress of Evil compared to typical Disney live-action remakes?",
+      "title_id": 420809,
+      "ground_truth": "Opinions vary: one reviewer calls it style over substance with a weak storyline that fails to make Maleficent properly evil, while another calls it a surprising, enjoyable follow-up and the only 2019 live-action Disney film they actually sat through and liked, both agreeing Michelle Pfeiffer stands out.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "6658b76d68635a7fb174e840",
+        "5da5cf4b97fdec001875084a"
+      ]
+    },
+    {
+      "question": "Do reviewers agree on Glen Powell's performance in Anyone but You?",
+      "title_id": 1072790,
+      "ground_truth": "Reviewers disagree sharply: one praises the chemistry between Sydney Sweeney and Glen Powell as a highlight of the film, while another says there's nothing to offset an off-putting Glen Powell vibe and couldn't get through the film's Australia section.",
+      "category": "disagreement",
+      "source_review_ids": [
+        "65b3f8ad9ba86a0183304de0",
+        "67811e17601acfe7bd4ec149"
+      ]
+    },
+    {
+      "question": "Do reviewers think Demon Slayer: Mugen Train can win over viewers unfamiliar with the franchise?",
+      "title_id": 635302,
+      "ground_truth": "A reviewer says the film won't make you a fan of the franchise if you aren't already, but will absolutely strengthen your love for it if you're already an established fan, praising its action sequences and emotional character development.",
+      "category": "comparison",
+      "source_review_ids": [
+        "615d8f4669eb90002a2dce44"
+      ]
+    },
+    {
+      "question": "Find a review that criticizes a movie for using real disaster or conflict footage blended into its special effects.",
+      "ground_truth": "A review of the 2025 War of the Worlds alleges the film uses clips from real disasters and conflict zones blended with alien-invasion CGI, calling it 'seriously messed up' to profit off real suffering.",
+      "category": "catalog_wide",
+      "source_review_ids": [
+        "68f1cc6d91c2020a290e476b"
+      ]
+    },
+    {
+      "question": "Find a review comparing a modern zombie film favorably to Train to Busan.",
+      "ground_truth": "A review of Colony (2026) calls director Yeon Sang-ho 'the George Romero of this generation,' saying the film is almost as good as his earlier masterpiece Train to Busan.",
+      "category": "catalog_wide",
+      "source_review_ids": [
+        "6a979e527605e37a768eaf3f"
+      ]
     }
   ]
 }

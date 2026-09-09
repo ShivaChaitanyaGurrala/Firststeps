@@ -12,6 +12,7 @@ import errors
 import schemas
 
 from config import settings
+from http_client import _validate_model
 
 import httpx
 
@@ -25,21 +26,15 @@ class RagServiceClient:
     ) -> dict[str, Any]:
         """GET /search?query=&title_id=&limit= -> ReviewSearchResponse
         (rag_service/main.py). Same error-normalization/response-validation
-        shape as DataServiceClient's methods in http_client.py.
-
-        TODO(you):
-            params: dict[str, Any] = {"query": query, "limit": limit}
-            if title_id is not None:
-                params["title_id"] = title_id
-            response = self._client.get("/search", params=params)
-            try:
-                response.raise_for_status()
-            except httpx.HTTPStatusError as exc:
-                raise errors.from_httpx_error(exc) from exc
-            return _validate_model(schemas.ReviewSearchResponse, response.json())
-        (_validate_model is the same helper defined in http_client.py —
-        either import it from there, or decide this file should have its
-        own copy; both are reasonable, but don't silently duplicate the
-        error-normalization logic itself without deciding which.)
+        shape as DataServiceClient's methods in http_client.py — reuses its
+        _validate_model helper rather than duplicating it.
         """
-        raise NotImplementedError
+        params: dict[str, Any] = {"query": query, "limit": limit}
+        if title_id is not None:
+            params["title_id"] = title_id
+        response = self._client.get("/search", params=params)
+        try:
+            response.raise_for_status()
+        except httpx.HTTPStatusError as exc:
+            raise errors.from_httpx_error(exc) from exc
+        return _validate_model(schemas.ReviewSearchResponse, response.json())

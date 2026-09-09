@@ -49,9 +49,7 @@ import tools.sampling_tools
 import resources.catalog_resources
 import prompts.catalog_prompts
 
-# TODO(you): M4 — once tools/rag_tools.py's search_reviews body is filled
-# in, register it the same way as every tool module above:
-#   import tools.rag_tools
+import tools.rag_tools
 
 if __name__ == "__main__":
 

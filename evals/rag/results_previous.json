@@ -1,0 +1,1000 @@
+{
+  "aggregate": {
+    "faithfulness": 0.7461930998294634,
+    "answer_relevancy": 0.6883530594673025,
+    "context_precision": 0.7523484848116876,
+    "context_recall": 0.6742424242424243
+  },
+  "rows": [
+    {
+      "user_input": "Do reviewers agree on the quality of 28 Years Later, or is opinion split?",
+      "retrieved_contexts": [
+        "<em>'28 Years Later'</em> delivers a very good flick, I wouldn't rank it too far behind the (albeit superior) original in actuality. I admittedly did think it was going to be more in-your-face unsettling based on a trailer I saw, what with that terrifying (but great!) usage of Rudyard Kipling's \"Boots\".",
+        "FULL SPOILER-FREE REVIEW @ https://talkingfilms.net/28-years-later-review-ambitious-and-beautiful-but-struggles-with-narrative-overload/\r\n\r\n\"28 Years Later is an imperfect but undeniably bold movie - a worthy addition to the saga.",
+        "28 Years Later is another tired franchise revival that ruined its respective franchise. The film was akin to a hollow, uninspired cash grab, with zero respect for the original story. It started out good, but didn't know what it wanted to be, and the choices made by the characters were just too ridiculous to lead anyone to believe they survived for up to 28 years. It's dull, disappointing, and",
+        "\"28 Years Later\" is a very different film to its predecessors. \r\n\r\nThis is humanist tale of what it means to inherit a world that's changed but at its core, remains unchanged. Remember, we all live and we all must die.",
+        "What I will say about this movie is it's not all bad. This first half was really good, with an opening that was reminiscent of 28 Weeks Later. Afterwards though, it cuts to completely different characters for basically the rest of the film. Which would be fine and all, just showing a snippet of how the infection was 28 years before the start of the movie, but it does a weird call back in the"
+      ],
+      "response": "Opinion is split among reviewers on the quality of 28 Years Later. Some consider it a worthy addition to the saga, while others view it as a tired franchise revival that undermines the original story.",
+      "reference": "Opinion is sharply split: two reviewers rate it very low, calling it a hollow cash grab with bad CGI, out-of-place music, and a betrayal of the original franchise, while a third reviewer, though disappointed by an overly artsy tone and a ridiculous 'kung fu' sequence, still calls it a good movie worth watching.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.3333333333,
+      "context_recall": 0.5,
+      "custom_id": "case_000",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "How do reviewers rate Ghostbusters: Afterlife compared to the 2016 reboot?",
+      "retrieved_contexts": [
+        "I will say that even with that being the case, I still didn't overly enjoy it. I'm not sure what it is exactly, but this franchise just never truly delivers for me personally; I don't rate the original two films, the 2016 reboot is one I found to be better but still not good. The whole concept simply doesn't do anything for me, for some reason.",
+        "More than a little heavy in the nostalgia department (not complaining as I got to see the OG there at the end), but as these sequels go I liked it enough, especially the young cast that weren't terribly obnoxious. I will admit that I almost got a tear in my eye when... I heard the Ecto-1 siren go. Not kidding. And CGI Egon wasn't bad either. Definitely better than that 2016 mistake. Chalk it up to",
+        "kidding. And CGI Egon wasn't bad either. Definitely better than that 2016 mistake. Chalk it up to a nightmare alternate universe. **3.5/5**",
+        "While a successful video game and merchandise line kept the franchise alive; the 2016 reboot with an all-female team failed to capture the magic at the box office and again put the franchise\u2019s cinematic future in question.",
+        "Looking back at my review of that movie I am actually surprised that I gave it any stars at all but in 2016 the lefts wokeness had not yet reached the psychopath levels that is has today so I guess it didn\u2019t strike me as hard. Anyway, when it was announced that this new movie would ignore previously mentioned atrocity and be a sequel to the original(s) it, of course, became a must watch for me."
+      ],
+      "response": "Reviewers generally rate \"Ghostbusters: Afterlife\" more favorably compared to the 2016 reboot. The reviewer expresses enjoyment of \"Afterlife,\" noting positive aspects such as the young cast and emotional moments, providing it with a score of 3.5/5. In contrast, they describe the 2016 reboot as a failure that did not capture the franchise's magic and express a sense of surprise that they rated it at all, suggesting a much lower regard for it. Overall, \"Afterlife\" is seen as a significant improvement over the 2016 film.",
+      "reference": "Two reviewers say they prefer Afterlife to the 2016 all-female reboot, with one calling it the 'true sequel' to the original films and another calling the 2016 film 'that mistake' by comparison, while a third reviewer found it only narrowly better than the franchise's other entries despite enjoying the young cast.",
+      "faithfulness": 0.7777777777777778,
+      "answer_relevancy": 0.9885848941009536,
+      "context_precision": 0.6791666666496875,
+      "context_recall": 0.0,
+      "custom_id": "case_001",
+      "category": "comparison"
+    },
+    {
+      "user_input": "What do multiple reviewers agree makes Captain America: The Winter Soldier stand out within the MCU?",
+      "retrieved_contexts": [
+        "\"Captain America: The Winter Soldier\" is deservedly one of the most beloved and well-regarded movies in the MCU, a film I also count among the franchise's very finest. It distinguishes itself by successfully operating as a 70s-style paranoid political thriller, which is a mature, intelligent, and unexpected tonal shift that helps it avoid the standard superhero formula. The movie is riveting,",
+        "Entertaining!\r\n\r\n<em>'Captain America: The Winter Soldier'</em> makes for an enjoyable flick. Chris Evans does great work as the lead character, while Scarlett Johansson gives her most fun to watch performance in the MCU up until this point; it would've been great if she had such a role pre-<em>'The Avengers'</em>, so she wouldn't have felt so out of place to me in that.",
+        "The Winter Soldier broke new ground for Marvel. The Russo Brothers took Captain America and immersed him in a dangerous world filled with subterfuge, spies, and betrayal. This was the first MCU film that didn\u2019t feel as bright and light-hearted as its predecessors, and this new tone fit Cap\u2019s story perfectly. The action was incredible. The plot twists kept piling up. Forcing Cap to question his",
+        "These things are of course a matter of opinion, and I'd like to watch _Winter Soldier_ at least once more (particularly in 2D... God do I ever hate 3D) before committing to any particular ranking. But even without that, I feel confident in saying it's the best MCU Phase 2 film to date. We must await _Guardians of The Galaxy_ and _Age of Ultron_ before cementing that little award, but I'd say that",
+        "The film's greatness is anchored by its exceptional cast and character development. Chris Evans is excellent, but the supporting players are equally fantastic, giving us the long-awaited development for Natasha Romanoff and Nick Fury. We're also introduced to Sam Wilson, who becomes Cap's new right-hand man. The central arcs are profound: Steve learns to prioritize his own conscience over"
+      ],
+      "response": "Multiple reviewers agree that \"Captain America: The Winter Soldier\" stands out within the MCU due to its successful operation as a 70s-style paranoid political thriller, which brings a mature and intelligent tonal shift away from the standard superhero formula. They highlight the film's darker and less light-hearted tone, exceptional action sequences, compelling plot twists, and strong character development, particularly for characters like Natasha Romanoff and Nick Fury. These elements contribute to its distinction as a well-regarded film in the franchise.",
+      "reference": "Multiple reviewers agree the film's darker spy-thriller tone set it apart from earlier, lighter MCU films, with one calling it one of their favorite action films period and another saying the new tone perfectly fit Captain America's story, ranking it among the franchise's best.",
+      "faithfulness": 0.4444444444444444,
+      "answer_relevancy": 0.9406633714863729,
+      "context_precision": 0.8333333332916666,
+      "context_recall": 0.5,
+      "custom_id": "case_002",
+      "category": "agreement"
+    },
+    {
+      "user_input": "Do any reviewers defend Transformers: The Last Knight, or is the consensus entirely negative?",
+      "retrieved_contexts": [
+        "_Transformers: The Last Knight_, is at least that bad again.\r\n\r\nArguably worse.\r\n\r\nI guess it didn't dedicate an entire character to being a justification for paedophilia, so it has that up on its predecessor.\r\n\r\n_Final rating:\u00bd - So bad it\u2019s offensive. I may never fully recover._",
+        "<em>'Transformers: The Last Knight'</em> is normal service resumed. I shockingly loved watching the prior <em>'Transformers: Age of Extinction'</em>, no idea how but I truly did. This sequel, however, is more akin to those other movies in the franchise, it's minutely better than - but still as bad as - series worst <em>'Transformers: Dark of the Moon'</em>.",
+        "Maybe all those detractors of this movie are missing the bimbo with two and a half brain cells (yes I am being generous now) that used to be the lead female character in the Transformers movies but personally I quite liked that the leads in this movie was much more mature and actually showed some evidence of intelligence.",
+        "The _Transformers_ franchise has never been good. Some say that the series is \"Dumb fun with good action and cool explosions. To me, that could maybe be used to describe only the third movie. The first one is promising and has a certain \"child-like-wonder\" appeal. But neither of them are truly **good**. The second _Transformers_ is meaningless garbage.",
+        "Personally I quite enjoyed this movie. Well, enjoyed in the context of watching a Transformers movie that is. I enjoyed the special effects, the robots, even the lousy jokes.\n\nI did enjoy the tie in to the Pendragon myth and I thought the somewhat bizarre Sir Edmund Burton and his even more bizarre robot butler was great fun."
+      ],
+      "response": "There are reviewers who express some level of enjoyment in _Transformers: The Last Knight_, indicating that it was appreciated in the context of watching a Transformers movie. One reviewer notes that they liked the more mature leads and enjoyed the special effects, robots, and even the jokes. However, the overall tone of the reviews suggests a largely negative consensus, with many critiques highlighting the film's flaws and comparing it unfavorably to other entries in the franchise.",
+      "reference": "Opinion splits: three reviewers are negative to varying degrees - one calls it 'soulless garbage' with jokes that fall flat, another says it's at least as bad as the franchise's worst entry and arguably worse, and a third gives it a mild pass as 'minutely better' than Dark of the Moon while still calling it disappointing - but other reviewers do defend it, with one enjoying the special effects, robots, and the Pendragon-myth tie-in, and another pushing back on 'detractors' by praising the more mature-seeming leads.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.6791666666496875,
+      "context_recall": 1.0,
+      "custom_id": "case_003",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "What common thread do multiple reviewers highlight as Ready Player One's biggest strength?",
+      "retrieved_contexts": [
+        "Despite facing mixed reviews, \"Ready Player One\" has become a cherished favorite in my family, drawing us back for regular viewings. The concept of being pulled into a video game and encountering iconic characters like Chucky adds to the film's appeal and keeps us hooked. While I wish the franchise had continued to develop, I remain hopeful for its future and eagerly anticipate any new",
+        "**Ready Player One is the pinnacle of video game films with extremely high replay value!**",
+        "and Olivia Cooke were delightful in their lead roles with classic bad guy Ben Mendelsohn in hot pursuit. Ready Player One felt like a familiar classic, even in its first viewing. Even with a unique plot and a fresh story, all the references to iconic franchises, both new and old, give the film nostalgic vibes that transport me back to find memories and the fun of my childhood. Spielberg creates a",
+        "The film \"Ready Player One\" offers a nostalgic journey with a fresh twist, set within a video game database where audiences embark on an exhilarating adventure to solve puzzles and unravel mysteries in a virtual reality world. This unique take on gaming stands out from the usual character reenactments, introducing a captivating storyline reminiscent of the classic board game Jumanji.",
+        "Ready Player One is a visual feast. See it on the biggest screen you can find. Preferably in Imax. Especially during the race you\u2019ll be blown away."
+      ],
+      "response": "Multiple reviewers highlight the nostalgic appeal and the incorporation of iconic characters and franchises as \"Ready Player One's\" biggest strength. The references to both new and old franchises transport viewers back to fond memories and contribute to the film's charm and replay value.",
+      "reference": "Multiple reviewers highlight nostalgia and pop-culture references as the film's biggest strength - one calls it 'honest Nostalgia Candy' distinct from forced Hollywood reboots, and another says the biggest treat is counting pop culture references alongside the killer 80s soundtrack. A few reviewers instead point to the film's visual spectacle as its standout quality, recommending it be seen on the biggest screen possible, especially during the race sequence.",
+      "faithfulness": 0.4,
+      "answer_relevancy": 0.9547538673235355,
+      "context_precision": 0.3333333333,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_004",
+      "category": "agreement"
+    },
+    {
+      "user_input": "What do reviewers say about Ryan Reynolds' casting in IF?",
+      "retrieved_contexts": [
+        "\"If\" is a whimsical and heartwarming film directed by John Krasinski. Starring an ensemble cast including Ryan Reynolds, Phoebe Waller-Bridge, and Fiona Shaw, the movie takes viewers on a fantastical journey into the world of imagination. Krasinski's direction brings a perfect blend of humor, charm, and emotional depth, making it a delightful watch for audiences of all ages. The narrative is both",
+        "Overall, \"IF\" is a good movie\u2014entertaining, sweet, and funny\u2014but it left me wanting more. It\u2019s worth a watch, especially if you\u2019re in the mood for something light and family-friendly, but don\u2019t expect it to go beyond that.",
+        "Overall, IF is a movie that misses the mark. Its reliance on celebrity cameos and superficial emotional appeals results in a lackluster film. To improve, the filmmakers should have focused more on developing a strong, cohesive narrative that allows the characters' stories to resonate deeply with the audience. Without this foundation, the film feels hollow and fails to leave a lasting impression.",
+        "\"IF is a delightful surprise that exceeds personal expectations. The skillful blend of 3D animation and live-action brings creativity to a layered, profoundly moving narrative, which explores sensitive themes in a truly genuine, reflective manner while successfully conveying a crucial message about the importance of never forgetting the child within us. Cailey Fleming delivers the best young",
+        "and emotional depth, making it a delightful watch for audiences of all ages. The narrative is both engaging and thought-provoking, exploring themes of childhood wonder and the power of belief. With its stellar performances and enchanting story, \"If\" is a cinematic treat that leaves a lasting impression."
+      ],
+      "response": "The provided context does not specifically mention any opinions or reviews regarding Ryan Reynolds' casting in \"If.\"",
+      "reference": "One reviewer says Ryan Reynolds feels miscast, not doing enough to warrant that type of actor despite enjoying seeing him play against type, while another reviewer felt the film overall came across as forced and overly sentimental despite Reynolds seeming to enjoy his role.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.0,
+      "context_recall": 0.0,
+      "custom_id": "case_005",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "How does a reviewer rank the original Naked Gun against Airplane!?",
+      "retrieved_contexts": [
+        "\"The Naked Gun: From the Files of Police Squad!\" continues the tradition established by the enormously successful \"Airplane!\" (1980) and it is a fast paced comedy where the unceasing stream of wacky and off-beat humour works a treat. The filmmakers have turned their attention to cop movies for inspiration this time around and instead of lampooning such films the ridiculous set-piece sequences on",
+        "I do like this sorta dry slapstick comedy, where the gags are constantly scattered throughout without being overtly pointed out by those onscreen. I also prefer this to \"ZAZ\"'s work from eight years prior in <em>'Airplane!'</em>, I'd say this one has better humour and a better story to accompany it.\r\n\r\nI hope the sequels were as good!",
+        "you never really have much of an opportunity to analyse whether they hit the intended target or not and a second viewing confirms they really do.",
+        "<em>'The Naked Gun: From the Files of Police Squad!'</em> is very well done. Amusing viewing!",
+        "this time around and instead of lampooning such films the ridiculous set-piece sequences on offer here are broader in nature and they don't really reference any film releases of the period at all, but this doesn't particularly matter because the vast array of visual and verbal gags come at such a rate you never really have much of an opportunity to analyse whether they hit the intended target or"
+      ],
+      "response": "The reviewer expresses a preference for \"The Naked Gun: From the Files of Police Squad!\" over \"Airplane!\" by stating that it has better humour and a better story to accompany it.",
+      "reference": "A reviewer says they prefer The Naked Gun to Airplane!, saying it has better humor and a better accompanying story, describing its comedy as dry slapstick with gags scattered throughout without being overtly pointed out.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.89333014781394,
+      "context_precision": 0.49999999995,
+      "context_recall": 1.0,
+      "custom_id": "case_006",
+      "category": "comparison"
+    },
+    {
+      "user_input": "Do reviewers agree on the quality of Red Skull as a villain in Captain America: The First Avenger?",
+      "retrieved_contexts": [
+        "Definitely the most underrated of all the MCU films, Captain America: The First Avenger is a great war film done comic book style about a little guy making a big difference. Red Skull is one of the better villains simply because of how fantastic Hugo Weaving is. Peggy Carter is a great heroine and Hayley Atwell's performance is an absolute joy. Also, Tommy Lee Jones and Stanley Tucci light up the",
+        "**This is a long form review initially published in 2011:**\r\n\r\nThough it ran at over two hours, I did feel that it had plenty of room to go further than it did. I honestly felt like Red Skull could have had a film all to himself, and actually kind of suffered for making him as intriguing as he was.",
+        "Probably only my third time viewing and first in at least 8 years and while it's not great, I did find it to be pretty entertaining and Chris Evans embodies the role so well. Red Skull and the heavy prosthetic they placed on Hugo Weaving still was pretty silly looking, however, making him one of many weak villains in the MCU. **3.25/5**",
+        "ALLIES, but still, it's annoying. I also was disappointed there wasn't a lot more on Red Skull. His history, his abilities, other pursuits, all of it was left basically unreferenced. Sure, some of it shows up elsewhere in the Marvel universe, but a bit more crosswalk would have been nice. I felt he really wasn't that well-fleshed out as the uber villain he could have been.",
+        "The challenge with a lot of American movies of the war is that it is as if they are the only actors in the war, no allies, just them, and that level of nationalistic narrowmindedness is a bit grating. That may be a small gripe when the show is called CAPTAIN AMERICA, not CAPTAIN OF WORKING WITH ALLIES, but still, it's annoying. I also was disappointed there wasn't a lot more on Red Skull. His"
+      ],
+      "response": "Reviewers have mixed opinions on the quality of Red Skull as a villain in Captain America: The First Avenger. One reviewer appreciates him as one of the better villains due to Hugo Weaving's performance, while another finds him to be poorly developed, lacking depth and a more fleshed-out backstory. Therefore, it's clear that there is not a consensus on Red Skull's effectiveness as a villain.",
+      "reference": "Opinions differ: one reviewer calls Red Skull one of the better MCU villains because of Hugo Weaving's performance, while another says the heavy prosthetics made him look silly, calling him one of the MCU's many weak villains.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.99999999998,
+      "context_recall": 1.0,
+      "custom_id": "case_007",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "What common criticism do multiple reviewers share about Joker: Folie \u00c3\u00a0 Deux's pacing and payoff?",
+      "retrieved_contexts": [
+        "FULL SPOILER-FREE REVIEW @ https://talkingfilms.net/joker-folie-a-deux-review-an-ambitious-musical-failure/\r\n\r\n\"Joker: Folie \u00e0 Deux holds immense technical and artistic merit, but it fails to replicate the success and impact of the original.",
+        "are a few too many selections). But these strengths by themselves aren\u2019t enough to make a good picture overall; what\u2019s stuck in between these elements feels more like filler than substance, and that\u2019s where the movie falls apart. In my view, \u201cJoker: Folie \u00e0 Deux\u201d isn\u2019t as resoundingly awful as many reviewers have made it out to be in light of its artistic and aesthetic accomplishments, but that",
+        "The second Joker movie had a lot to live up to. There was always an underlying tension, which was expected to erupt into chaos and violence at any time. But sadly that moment never came. What was left was the sad story of a mentally ill criminal going through his trial and gaining some hope when falling in love. \r\n\r\n**Beware: spoilers ahead**",
+        "I think the main idea behind the movie is interesting and engaging, but the execution is way too lengthy. It lacks an action part where the Joker and Harley Quinn drown the city in chaos. The singing scenes were too numerous and his mentally illness may have been expressed better while wrecking the city.",
+        "Great title, great movie.\r\n\r\nI had heard tiny bits about <em>'Joker: Folie \u00e0 Deux'</em> falling below expectations since its release, though they weren't substantial enough to know if the film was any good or not. I have to say, I really enjoyed watching it all play out. It admittedly isn't on the same level as the phenomenal predecessor, but that's OK - I wasn't expecting it to be."
+      ],
+      "response": "Multiple reviewers share the criticism that \"Joker: Folie \u00e0 Deux\" suffers from pacing issues, specifically noting that the execution feels too lengthy and lacks significant action or a climactic moment where chaos erupts. They feel that the movie contains filler elements rather than substantial content, leading to a disappointing payoff.",
+      "reference": "Multiple reviewers say the expected explosion of chaos and violence never comes - one says the underlying tension never erupts, leaving a comparatively subdued courtroom drama, and another says the execution is too lengthy with too many singing scenes and not enough action. A third reviewer pushes back on the harsh consensus, saying the film isn't as resoundingly awful as many reviewers made it out to be, citing its artistic and aesthetic merit even while agreeing the middle stretch feels more like filler than substance.",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.9540507666501381,
+      "context_precision": 0.6388888888675925,
+      "context_recall": 1.0,
+      "custom_id": "case_008",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "What connection does a reviewer draw between Tangled and Frozen?",
+      "retrieved_contexts": [
+        "An enjoyable tale about Rapunzel.\r\n\r\n<em>'Tangled'</em> kicks off Disney's animated releases for the 2010s in very strong fashion. It's nicely created, with fun characters and a hearty storyline. It actually sets a lot of the foundations that 2013's <em>'Frozen'</em> uses, there's a fair amount of similarities between the two.",
+        "Tangled main characters really remember Aladdin's. The chameleon character could have been more juicy and it also repeats with stubborn determination Disney's intent of making any other animal to behave like dogs.",
+        "It's still very much the usual fairytale/princess thing, but it manages to add a lively turn to proceedings which keeps it entertaining.",
+        "Might be my favorite Disney movie. My girls love it, and the hidden relationship metaphors are fun for adults to figure out.",
+        "I wasn't disappointed. I really like this movie. It was like a classic Disney movie: a Princess, her prince charming, animal sidekick, and the best of all, MUSIC! I liked how the Princess was not the typical Disney princess. Rapunzel was strong and active. She wasn't very timid and proper like the usual Disney princess that I grew up watching. Flynn Rider was really cute which was a big plus. He"
+      ],
+      "response": "The reviewer suggests that \"Tangled\" sets a lot of the foundations that \"Frozen\" uses, indicating there are fair similarities between the two films.",
+      "reference": "A reviewer says Tangled sets a lot of the foundations that 2013's Frozen later uses, with a fair amount of similarities between the two films.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9606863593433488,
+      "context_precision": 0.9999999999,
+      "context_recall": 1.0,
+      "custom_id": "case_009",
+      "category": "comparison"
+    },
+    {
+      "user_input": "Do reviewers find Shutter Island's twist genuinely surprising?",
+      "retrieved_contexts": [
+        "What sets Shutter Island apart, though, is the narrative. It\u2019s a layered puzzle that keeps you second-guessing everything you see. The twists and revelations are not just there for shock value; they\u2019re carefully woven into the story, making the rewatch value sky-high. That final line, \u201cWhich would be worse: to live as a monster, or to die as a good man?\u201d, absolutely gut-wrenching.",
+        "From the off we saw reams of amateur reviewers dissecting the film and searching for other worldly cinematic meanings. The truth is, is that they don't exist, it is just a great story pinging with psychological twisters. Lehane himself said he felt it was a book he kind of knocked out while in his flow (he undersells himself mind). Scorsese, clearly loving the source to be sure, has crammed too",
+        "Thematically, the film explores trauma, guilt, and the fragile nature of reality. It\u2019s a deep dive into the human mind and the lengths we go to protect ourselves from the truth. Whether you see the ending as a tragedy or a twisted form of redemption, Shutter Island challenges you to confront the darker corners of your own understanding.",
+        "It's always tricky when great directors are involved, so unsurprisingly we witnessed at the start a difference of opinion with the critics as to how good Shutter Island is? What most agreed on was that the film fluctuates in quality and should have been, given the talent behind and in front of the camera, a much better picture. There's also no getting away from the fact that if you have read the",
+        "The first three quarters are quite good as a slow-burn eerie investigation with the milieu of post-WW2 America and interesting flashbacks to Dachau Concentration Camp. Unfortunately, the last quarter ruins the movie for me. Don\u2019t get me wrong, the \u2018twist\u2019 could\u2019ve been done in a compelling, streamlined way, such as in \u201cThe Sixth Sense,\u201d but instead everything\u2019s unnecessarily drawn out. For"
+      ],
+      "response": "Reviewers have mixed opinions about the twist in Shutter Island. While some appreciate the carefully woven narrative and view the twists as integral to the story, others feel that the last quarter of the film undermines the overall experience and could have been executed more compellingly. Therefore, it's evident that not all reviewers find the twist genuinely surprising or effective.",
+      "reference": "One reviewer says the twist was a bit obvious but still fun to watch unfold, while another calls it a 'paradox plot' they loved through and through, both still rating the film highly as a Scorsese masterpiece.",
+      "faithfulness": 0.7142857142857143,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.32499999998375,
+      "context_recall": 0.0,
+      "custom_id": "case_010",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "What other films do reviewers compare The Martian to?",
+      "retrieved_contexts": [
+        "block in their memory banks some of Scott\u2019s mediocre misses (anyone care to recall the monumental mishaps in the form of the flimsy \u2018The Counselor\u2019 or the unintentional laughfest that was \u2018Exodus: Gods And Kings\u2019?). Rightfully so, \u2018The Martian\u2019 shares its crafty crater of similarities with other space-place spectacles that resonated with the imagination and innovation such as the Academy",
+        "'The Martian\u2019 is definitely in the creative wheelhouse of filmmaker Ridley Scott whose Science Fiction sensibilities are grounded in colorful futuristic fantasies that tiptoe in grand whimsy.  The veteran auteur responsible for such pop cultural high-minded spectacles in \u2018Alien\u2019, \u2018Blade Runner\u2019 and even the mixed bag reception of \u2018Prometheus\u2019 certainly brings a sophisticated and thought-provoking",
+        "even the mixed bag reception of \u2018Prometheus\u2019 certainly brings a sophisticated and thought-provoking vibe to the probing aura of \u2018The Martian\u2019. As with other Scott-helmed productions, \u2018The Martian\u2019 settles nicely in its majestic scope that taps into visual wonderment, humanistic curiosities, technical impishness and the surreal spryness of the SF experience.",
+        "\u2018The Martian\u2019 is the film adaptation of Andy Weir\u2019s best-selling tome. Scott\u2019s disciplined direction and screenwriter Drew Goddard\u2019s ambitious vision of Weir\u2019s compelling written material seemingly gels in convincing, cerebral fashion. The premise is not wildly original as it revisits the familiar foundation of a lost soul in survival mode trying to take on the treacherous surroundings with",
+        "The Martian (2015)\r\n\r\n20th Century Fox\r\n\r\n2 hrs. 35 mins.\r\n\r\nStarring: Matt Damon, Jessica Chastain, Jeff Daniels, Kristen Wiig, Michael Pena, Sean Bean, Chiwetel Ejiofor, Kate Mara, Sebastian Stan, Donald Glover and Benedict Wong\r\n\r\nDirected by: Ridley Scott\r\n\r\nMPAA Rating: PG-13\r\n\r\nGenre: Science Fiction/Space Adventure/Science and Fantasy\r\n\r\nCritic\u2019s rating: *** 1/2 stars (out of 4 stars)"
+      ],
+      "response": "Reviewers compare 'The Martian' to other space-place spectacles that resonate with imagination and innovation, notably mentioning Ridley Scott's previous films such as 'Alien', 'Blade Runner', and 'Prometheus'.",
+      "reference": "Reviewers draw multiple comparisons: one lists Armageddon, Mission to Mars, Gravity, and 2001: A Space Odyssey, and even the first acts of the Planet of the Apes films, though without their fantastical elements, while another situates it within director Ridley Scott's own filmography, comparing it to his earlier Alien, Blade Runner, and Prometheus.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9583640067787722,
+      "context_precision": 0.9999999999,
+      "context_recall": 0.5,
+      "custom_id": "case_011",
+      "category": "comparison"
+    },
+    {
+      "user_input": "Do reviewers think The Mummy Returns' special effects hold up as well as the original film's?",
+      "retrieved_contexts": [
+        "<em>'The Mummy Returns'</em> feels to me to be a downgrade on the original, though I still gained the desired entertainment from it. There is an absolute barrage of special effects used in this though, I said in my previous review about it aging badly - it's worse here.",
+        "romance have been put in to beef it up, while some Zombie Pygmies are around to add extra monster factor, but yes! It's a re-tread only with more money spent, more effects (and better effects apart from Scorpion King) and more noise. This actually is OK for those who enjoyed the first film immensely, because \"Returns\" is every bit as enjoyable as family blockbuster entertainment. The Worldwide",
+        "When the second sequel, \"The Mummy: Tomb of the Dragon Emperor\" (2008), was released, Brendan Fraser went on record as saying that for \"The Mummy Returns\" they basically remade the film they had already made in 1999! This is absolutely true, some new characters and an expansion on the O'Connell romance have been put in to beef it up, while some Zombie Pygmies are around to add extra monster",
+        "So yes, it's a bit of a cheat, but much like the film before it, it gets away with it because the makers do everything they can to entertain the action/adventure loving crowd. With legions of Anubis warriors, those awesome Pygmies and the all round funny by-play between a cast comfortable with the material (again), \"The Mummy Returns\" delivers exactly what can reasonably be expected of it. 7/10",
+        "\"The Mummy Returns\" has a lot going for it: A great cast, locations, costumes, cinematography, F/X, etc. (although some of the CGI is woefully cartoony, like the Scorpion King at the close). It has great Indiana Jones appeal. Unfortunately it all adds up to a forgettable piece of cinematic dung. What went wrong? Simply put, no substance. \"The Mummy Returns\" abandons the characters while the plot"
+      ],
+      "response": "Reviewers express that the special effects in \"The Mummy Returns\" are more abundant and better in some aspects compared to the original, though there are criticisms regarding some CGI elements, particularly mentioning the Scorpion King as being \"woefully cartoony.\" Overall, while the effects are noted to have improved, they also suggest that the film may not age well.",
+      "reference": "A reviewer who previously noted the original film's effects aged badly says they're worse here, singling out the Scorpion King's effects toward the conclusion as looking particularly poor, while another reviewer says the sequel is every bit as good as 'its daddy'.",
+      "faithfulness": 0.8,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.8666666666377778,
+      "context_recall": 0.5,
+      "custom_id": "case_012",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "Why do reviewers disagree so strongly about Bohemian Rhapsody?",
+      "retrieved_contexts": [
+        "If _Bohemian Rhapsody_ is so great, why was the best part of it Tom Hollander saying a single word? Don't get me wrong, Rami Malek deserves props for the role, that much is true (less perhaps than he's been getting, but still, props). But beyond that, _Bohemian Rhapsody_ is bland, choppy, arguably even offensive. There **might** be some value in one of those sing-along type deals if you can get",
+        "If _Bohemian Rhapsody_ is so great, why was the best part of it Tom Hollander saying a single word? Don't get me wrong, Rami Malek deserves props for the role, that much is true (less perhaps than he's been getting, but still, props). But beyond that, _Bohemian Rhapsody_ is bland, choppy, arguably even offensive. There **might** be some value in one of those sing-along type deals if you can get",
+        "So why the single star? Honestly, it's because of the trailer. As in, if you saw the trailer you pretty much have already seen the movie. Not just the highlights, but the entire movie.\r\n\r\nQueen was an epic band. Bohemian Rhapsody was an epic song. But Bohemian Rhapsody the movie has absolutely no meat on it.",
+        "Bohemian Rhapsody is not a biography of Freddie Mercury, nor a biopic of Queen. It's a story based on a selection of key events occurring between the formation of the band and their appearance at Live Aid.\r\nAs a Queen fan I found this film utterly engrossing and enjoyable. The acting brilliantly invokes the characters in the band and the music provides a thumping rhythm to carry the story along.",
+        "In fact, in addition to the good songs and good script, the film offers us one of the best performances by Rami Malek, an actor who couldn't be better suited for the role of Freddie Mercury. In addition to all the physical similarities that he took advantage of to embody the character, he managed to interpret him in a dignified and respectful way, without transforming \u201chis\u201d Freddie into a kind of"
+      ],
+      "response": "Reviewers disagree strongly about _Bohemian Rhapsody_ due to differing opinions on its narrative depth and execution. Some critics argue that the film is bland, choppy, and lacks substance, viewing it as merely a collection of key events rather than a true portrayal of Freddie Mercury or Queen. They feel that the movie offers little new insight, as the trailer seems to encapsulate the entire film. On the other hand, fans and some reviewers appreciate the film for its engaging performances, particularly by Rami Malek, and the musical elements that resonate with the band\u2019s legacy. This dichotomy between expectations of a biographical depth and enjoyment of the performances and music contributes to the polarized views.",
+      "reference": "Opinions diverge sharply: one reviewer calls it bland and choppy beyond Rami Malek's performance, another calls Malek and Tom Hollander magnificent in a captivating retrospective, and a third praises the cast's authenticity but says the film has 'no meat on it' because the trailer already showed the entire movie.",
+      "faithfulness": 0.6,
+      "answer_relevancy": 0.9239782763304341,
+      "context_precision": 0.9999999999666667,
+      "context_recall": 1.0,
+      "custom_id": "case_013",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "How do multiple reviewers compare Colony to Train to Busan?",
+      "retrieved_contexts": [
+        "Yeon Sang-ho does it again! After a relatively weak \"Peninsula\" he is establishing himself as the George Romero of this generation with a zombie movie almost as good as his masterpiece \"Train to Busan\". Perhaps lacking a bit on the dialogs and missing a superb acting job like Gong Yoo's or Ma Dong-Seok's , Colony still keeps you on the edge of the seat for two hours of FAST zombie chase sequences.",
+        "This is another great example of how Koreans understand zombie movies. Just like with Train to Busan this movie does something interesting with the concept rather than just repeat the tropes we have already seen. There is a great deal of urgency in this movie and the actors and directors pull this off very well. The effects are very high class and the overall presentation is highly proficient. I",
+        "In summary. Colony isn't doing anything overly new, but its script offers enough interest and excitement to make this film a worthwhile watch.",
+        "*Colony* is so smart and exhilarating, with breathtaking cinematography by Byun Bong-sun. The fact that an outbreak film is doing something different rather than rehashing everything that came before it is enough to warrant a watch. But it\u2019s such a clever spin on the genre, it ends up clawing and biting its way to being one of the best films of the year.\r\n\r\n<https://bit.ly/Colony26>",
+        "Colony is a marginal departure from your classic zombie flick. While intelligently written, there's not a lot on offer here, aside from a zombie hive mind proposition, that distinguishes this outbreak zombie horror disaster drama from others in the genre. That's not to say it's not worth a look if you like this kind of thing. The acting is excellent; the characters have a genuine depth, offering"
+      ],
+      "response": "Multiple reviewers compare \"Colony\" to \"Train to Busan\" by highlighting that while it may not reach the same level of excellence, it still delivers an engaging and fresh take on the zombie genre. They note that \"Colony\" lacks some of the strong dialogue and standout performances present in \"Train to Busan,\" but it maintains a sense of urgency and excitement, keeping viewers on the edge of their seats with its fast-paced sequences. Overall, while \"Colony\" might not introduce overly new concepts, its unique spin on the genre and intelligent writing make it a worthwhile watch, similar to the appeal of \"Train to Busan.\"",
+      "reference": "Multiple reviewers compare Colony favorably to Train to Busan, with one calling director Yeon Sang-ho 'the George Romero of this generation' and saying Colony is almost as good as that earlier masterpiece, praising both for doing something different with the zombie genre rather than repeating tropes.",
+      "faithfulness": 0.8181818181818182,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.99999999995,
+      "context_recall": 1.0,
+      "custom_id": "case_014",
+      "category": "agreement"
+    },
+    {
+      "user_input": "Do reviewers think Ready or Not: Here I Come lives up to the original Ready or Not?",
+      "retrieved_contexts": [
+        "READY OR NOT 2: HERE I COME is a blast. It avoids the typical lazy sequel traps, expanding its demonic lore naturally with a genuine desire to entertain. The action is delightfully bloody, the dark humor is on-point \u2014 especially during a hilarious ballroom brawl \u2014 and Samara Weaving proves once again she was born for this. The novelty is gone, and Kathryn Newton's frustratingly bland performance",
+        "Check out my full review @ https://www.manuelsbento.com/ready-or-not-2-here-i-come-2026-a-blood-soaked-return-to-the-hunting-grounds-that-proves-its-demonic-worth/\r\n\r\nRating: B-",
+        "Ultimately, Ready or Not: The Widow stumbles on its own ambition to be bigger and louder. It definitely delivers the promised bloodbath, but at the cost of what made the original so special. Without genuine fear and vulnerability, it just becomes a predictable rollercoaster ride.",
+        "You can tell directors Matt Bettinelli-Olpin and Tyler Gillett got a bigger budget this time around. They use it to amp up the gore with some awesome, old-school practical effects that don't rely on cheap CGI. But they kind of trip over their own ambition. The action scenes become a frantic, dimly lit mess, and the movie constantly struggles to balance its tone. Forced jokes keep interrupting the",
+        "luster and the writing was weaker. Yet still I was entertained and some of the fight scenes were great. It's also nice seeing Sarah Michelle Gellar in a prominent role. **3.5/5**"
+      ],
+      "response": "Reviewers have mixed feelings about whether \"Ready or Not: Here I Come\" lives up to the original. One reviewer praises the sequel for expanding its lore and being entertaining, despite noting that the novelty is gone and mentioning a bland performance from Kathryn Newton. Another reviewer feels that the sequel stumbles on its ambition and lacks the genuine fear and vulnerability that made the original special, suggesting it becomes a predictable experience despite delivering on the bloodbath. Overall, while there are elements of enjoyment, the consensus indicates that it may not fully reach the same heights as the original.",
+      "reference": "A reviewer says the sequel pales in comparison to the first film, particularly because the original's fantastic final-five-minutes twist isn't matched here and the writing is weaker, though they were still entertained overall.",
+      "faithfulness": 0.6666666666666666,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.8333333332916666,
+      "context_recall": 1.0,
+      "custom_id": "case_015",
+      "category": "comparison"
+    },
+    {
+      "user_input": "How does a reviewer rate the 1986 version of The Fly against the original 1958 film?",
+      "retrieved_contexts": [
+        "\"The Fly\" (1986) has a lot of devotees presumably because of director/writer David Cronenberg, but I found it less effective compared to the 1958 version with Vincent Price. Despite the gory state-of-the-art effects, it\u2019s just not as compelling or horrifying (especially that final scene in the original). The one-dimensional locations are also a turn-off: Excluding the great bar scene the whole",
+        "career defining performances. The visual and make-up effects - especially towards the end - offer a fitting denouement to this gory and frequently amusing sci-fi horror film that is nearly, but not quite, as good as the version from 1958. Certainly worth watching on a big screen if you can - somehow it just looks so much better there.",
+        "David Cronenberg\u2019s The Fly is a grotesque, tragic, and strangely beautiful descent into body horror. What begins as a high-concept sci-fi romance slowly mutates much like its protagonist into something far more disturbing and unforgettable. One of my favorite movies!",
+        "An eccentric scientist living in a warehouse laboratory in a big city in the Northeast (Jeff Goldblum) discovers how to teleport objects, which draws the attention of a journalist (Geena Davis). Everything is going fine until he foolishly uses his invention on himself and a pesky fly inadvertently teleports with him. John Getz is on hand as the woman\u2019s editor while Joy Boushel has a notable small",
+        "The Fly is so good. Successful futurism. Seems the Fallout games benefitted. \r\n\r\nThe physical effects are amazing and fun. Do not watch if gore sensitive."
+      ],
+      "response": "The reviewer finds the 1986 version of The Fly to be less effective compared to the original 1958 film. They appreciate the gory effects and recognize the film's merits, but ultimately consider it not as compelling or horrifying as the original, especially noting the effectiveness of the final scene in the 1958 version.",
+      "reference": "A reviewer says the 1986 remake offers a fitting, gory, and amusing sci-fi horror conclusion that is nearly, but not quite, as good as the 1958 version.",
+      "faithfulness": 0.6666666666666666,
+      "answer_relevancy": 0.9835028780681251,
+      "context_precision": 0.49999999995,
+      "context_recall": 1.0,
+      "custom_id": "case_016",
+      "category": "comparison"
+    },
+    {
+      "user_input": "What theme do multiple reviewers agree A Silent Voice: The Movie explores most powerfully?",
+      "retrieved_contexts": [
+        "A Silent Voice is a powerful animated film that explores bullying, guilt, and emotional healing from both the victim's and the perpetrator's perspectives. Through strong character development and emotional storytelling, the film delivers a deep and relatable message, enhanced by beautiful animation and fitting music. Though animated, its mature themes make it more suitable for older audiences.",
+        "**A film that changed my vision of the life**\r\n\r\n\"A Silent Voice\" is a film that has changed my vision of the life, understanding better the importance of the human communications. Including profound reflections related to empathy, self-esteem, redemption, self-improvement, and the importance of understanding and listening to others.",
+        "\"A Silent Voice\" is a film that has changed my vision of the life, understanding better the importance of the human communications. Including profound reflections related to empathy, self-esteem, redemption, self-improvement, and the importance of understanding and listening to others.\r\n\r\nThis film was truly made with love. Because it has a",
+        "A Silent Voice: The Movie (2016) is an absolute gem! \ud83c\udf1f This beautifully crafted anime film takes you on an emotional rollercoaster, touching your heart and leaving you with a sense of hope and understanding. The characters are so well-developed, and the animation is simply breathtaking. Prepare to be moved and inspired by this poignant story of redemption, forgiveness, and the power of empathy.",
+        "but there's no other way to describe its theme. It was like before romance, that mean before committing to a relationship and after you had started to like someone while fixing the mistakes made in the past."
+      ],
+      "response": "Multiple reviewers agree that \"A Silent Voice: The Movie\" explores the themes of redemption and empathy most powerfully.",
+      "reference": "Multiple reviewers agree the film's central strength is its exploration of empathy and human communication, with two reviewers independently describing how it changed their understanding of the importance of listening to others and praising a soundtrack designed to simulate the sensory experience of a deaf character.",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.9424273528609057,
+      "context_precision": 0.6388888888675925,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_017",
+      "category": "agreement"
+    },
+    {
+      "user_input": "Do reviewers agree on Rihanna's voice performance in Home?",
+      "retrieved_contexts": [
+        "Utterly average film that was rightly overlooked by the critics. There is nothing much apart from pretty colours. Rihanna is not an actress, and when you can't see her pretty face you seriously notice that. I wouldn't bother with this one, there are leagues better out there.",
+        "For a change, the lead girl character was different and voice rendered by Rihanna. I said it many times that my first ever 3D animation was 'Ants', despite 'Toy Story' was the first feature length. And this film has been the best work of the director to till date since his first flick 'Antz'. As usual like any animated movie, it was targeted for children, but I enjoyed watching it. There won't be",
+        "6.5/10",
+        "> A little girl and her unexpected adventure with an unlikely friend.",
+        "are not strong enough. Comedies were awesome, and so the dialogues, the innovation in narration falls short with the same old cliche in the alien theme. The soundtracks were good though, especially that one used for the promotion, 'feel the light'."
+      ],
+      "response": "Reviewers seem to have mixed opinions on Rihanna's voice performance in \"Home.\" While one reviewer notes that the lead girl character was different and praises the film as the best work of the director to date, another critic suggests that Rihanna is not an actress and highlights that her absence from the screen makes a notable difference. Overall, the feedback on her performance appears to be not entirely positive.",
+      "reference": "Reviewers disagree on the film overall: one calls it decent though not as strong as Disney/Pixar work, while another calls it utterly average and specifically says Rihanna is not an actress, criticizing her voice performance.",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.99999999995,
+      "context_recall": 1.0,
+      "custom_id": "case_018",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "Is there a consensus among reviewers about the realism of the military characters in The Predator?",
+      "retrieved_contexts": [
+        "OK, I have to disagree with the other reviewers, to date, of this movie.  I totally enjoyed this movie and gave it an 8.  Once you figured it out, I thought the story line made complete sense.  I loved all the new characters, and thought the camaraderie of the main military characters was great and rather realistic.  I don't know about the other reviewers, but I did serve in the U. S. Army and",
+        "rather realistic.  I don't know about the other reviewers, but I did serve in the U. S. Army and found the character interplay highly realistic.  I am disappointed with the interplay between the \"good guys\" and our government; however, these days you come to expect that.  I don't believe that part would be realistic, but I don't think it distracted that much from the movie, and everyone came",
+        "Get it? Because Arnold called the original Predator an \u201cugly motherfucker,\u201d and The Predator is determined to be the opposite: a prettified Predator movie with stylized CGI visual effects and sterile sets such as a sleek laboratory with immaculate white walls so they really bring out the blood when it splashes on them \u2014 which of course only succeeds in highlighting how fake-fake the blood is (as",
+        "The best parts of _The Predator_ are when there is an eponymous Predator on screen. So you might think, \"Oh it's not a good movie, but it's a good _Predator_ movie\", and fair enough a conclusion to draw, but no. Part of the problem is, this movie really could have been pulled off with any aliens at all. Take out the Yautja and replace them with... I dunno, the blue skinned pogo-stick people of",
+        "And that's really my experience on _The Predator_ overall, and the reason for a stalemate \"2.5 outta 5\" review: It wasn't as good as it should have been, it wasn't as bad as it could have been. Unfortunately, when the movie I'm writing in my head alongside watching it is better than what's actually on screen, when you take into account that I'm an unimaginative, talentless hack, really doesn't"
+      ],
+      "response": "No, there is no consensus among reviewers about the realism of the military characters in The Predator. One reviewer found the character interplay to be highly realistic based on their own military experience, while another reviewer criticized the film overall and did not express a similar sentiment about realism.",
+      "reference": "One reviewer, who served in the U.S. Army, praises the character interplay among the military characters as highly realistic and enjoyed the film overall, while other reviewers call it a complete waste of opportunity with intrusive music and badly lit scenes, saying it falls short of its predecessors.",
+      "faithfulness": 0.25,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.99999999995,
+      "context_recall": 0.5,
+      "custom_id": "case_019",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "What do multiple reviewers say about Liam Neeson's performance in the 2025 Naked Gun reboot?",
+      "retrieved_contexts": [
+        "Director Akiva Schaffer\u2019s The Naked Gun (2025) revives the iconic spoof franchise with Liam Neeson stepping into the oversized shoes of Frank Drebin Jr., son of Leslie Nielsen\u2019s legendary bumbling detective. While the film captures the absurd spirit of the ZAZ (Zucker-Abrahams-Zucker) classics, it\u2019s a mixed bag of inspired gags and missed opportunities, earning its place as a fun\u2014if",
+        "Liam Neeson is the one bright spot in director Akiva Schaffer\u2018s otherwise disappointing reboot of \u201cThe Naked Gun.\u201d His deadpan delivery and complete commitment to absurdity prove he was the right actor to inherit the legacy of Leslie Nielsen\u2019s iconic Lt. Frank Drebin, but even he can\u2019t carry the film all by himself. With a script peppered with unfunny Millennial pop culture references and mostly",
+        "**Review: The Naked Gun (2025) \u2013 A Goofball Reboot That Delivers Laughs, But Lacks the Original's Bite**",
+        "Pretty fun and plenty of the gags in the same vein as the original. Not a great comedy but fun nevertheless and Liam Neeson was a great choice with his deadpan delivery. **3.0/5**",
+        "Kudos also go out to the fine ensemble, performers who absolutely rose to the occasion when needed, vanquishing the doubt that many may have held about them before the picture\u2019s release. In fact, that could be said about \u201cThe Naked Gun\u201d as a whole: I\u2019ll admit to having my doubts about whether the cast and crew would be able to pull this off, but they did \u2013 and skillfully at that. It\u2019s a genuine"
+      ],
+      "response": "Multiple reviewers praise Liam Neeson's performance in the 2025 Naked Gun reboot, highlighting his deadpan delivery and commitment to absurdity as key strengths. They note that he was a great choice to take on the legacy of Leslie Nielsen's iconic character, Frank Drebin Jr. However, some reviews suggest that even with Neeson's notable performance, he cannot fully carry the film, indicating that his talent shines amidst the film's overall mixed response.",
+      "reference": "Multiple reviewers praise Liam Neeson as perfect for the role, capturing the original Police Squad style while being laugh-out-loud ridiculous, with one calling him 'in rare form' and another saying he's ideal for a nostalgic yet original comedic revival.",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.9869077074364222,
+      "context_precision": 0.0,
+      "context_recall": 0.5,
+      "custom_id": "case_020",
+      "category": "agreement"
+    },
+    {
+      "user_input": "What musical contribution do reviewers praise in Disney's Tarzan (1999)?",
+      "retrieved_contexts": [
+        "It does feature things you've seen from earlier jungle based films, like 1967's <em>'The Jungle Book'</em> and, as expected yet still amusingly, 1997's <em>'George of the Jungle'</em>. The early scenes in-particular, which rely firmly on Collins' music - from the midway point it's more level, whilst also taking its own route with this type of story.",
+        "holds minimal foundations. The montages of Tarzan growing up also lacked narrative heft, providing nothing more than visual delights. Goldwyn, Close and O\u2019Donnell had insufficient power within their voice roles. Although Driver and Blessed were delightful. And, as much as I adore the song, the repetitious reprises of \u201cTwo Worlds\u201d throughout minimised lyrical diversity.",
+        "preventing the characters from singing and turning into another unnecessary musical. As I said, subjectively I refuse to liken Tarzan to just another animation from the \u201cHouse of Mouse\u201d. It was my first cinema endeavour after all.",
+        "The entire story is told faster than a shotgun firing, but I refuse to shake my undying adoration for this feature. Tarzan was the film that made me the cinephile that I am today. If I hadn\u2019t received that euphoric pleasure from the cinema back in \u201899, well, these amateur reviews probably would never have been written. Ever. So for that, Tarzan and Disney have my eternal gratitude.",
+        "colonising an uncharted jungle whilst the emphatic voice of Phil Collins powered the narrative. A leopard savaging a baby gorilla, then brutally slaying the English couple, leaving only their infant son crying. His sorrowful echoes reverberating through the rainforest, until a female gorilla acquires him. Adopting a human child. Tarzan. The four-year old, naive to the cruelty of nature, was"
+      ],
+      "response": "Reviewers praise Phil Collins' music for its ability to power the narrative, particularly highlighting the song \"Two Worlds.\" However, they also note that the repetitious reprises of the song minimized lyrical diversity. Overall, Collins' contributions are seen as a significant aspect of the film, despite some critiques about the narrative and voice performances.",
+      "reference": "Both reviewers praise Phil Collins' music - one specifically highlights the song 'Son of Man' as working very well with a training montage and adding a lot to the film, while another praises the emphatic power of Collins' voice throughout, though finds the repeated reprises of 'Two Worlds' minimize lyrical diversity by the end.",
+      "faithfulness": 0.4,
+      "answer_relevancy": 0.8536811344665072,
+      "context_precision": 0.99999999995,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_021",
+      "category": "agreement"
+    },
+    {
+      "user_input": "Do reviewers think San Andreas measures up to classic disaster films like The Poseidon Adventure?",
+      "retrieved_contexts": [
+        "these disaster movies and while it doesn't measure up to The Poseidon Adventure or The Towering Inferno, but entertaining nonetheless. **3.5/5**",
+        "Solid enough, if not overly long, disaster movie. Dwayne Johnson is... well Dwayne Johnson but has more than enough charisma to carry this and never a bad thing having BOTH Carla Gugino and Alexandra Daddario either. Some of the effects were pretty good, others a bit iffy however. Still, I enjoy these disaster movies and while it doesn't measure up to The Poseidon Adventure or The Towering",
+        "Disaster films are easy to kick because very rarely they are nothing more than candy carnage with a trite screenplay and cheese laden dialogue. Such is the case with San Andreas. In essence this is a remake of Roland Emmerich's 2012, only this is the shorter version with the time span that 2012 should have had. This does exactly what the marketing department promised it would, namely lots of",
+        "I have never been a fan of the Disaster genre, I don't seem to be able to take much more away from it than visual noise. I was hoping that the combined might of Alexandra Daddario and The Rock would be enough to turn me around on _San Andreas_, alas, it was not to be.\r\n\r\n_Final rating:\u2605\u2605 - Had some things that appeal to me, but a poor finished product._",
+        "> Film San Andreas nice but to be honest I do not like the plot, why? because in the story of this movie seem monotonous and selfish. Many victims around but why Ray and Emma only focused to rescue his daughter (Blake) alone, but Ray is living as rescuers, the film tends to be lacking in the delivery of its humanitarian message."
+      ],
+      "response": "No, reviewers generally do not think San Andreas measures up to classic disaster films like The Poseidon Adventure or The Towering Inferno.",
+      "reference": "A reviewer says the film doesn't measure up to The Poseidon Adventure or The Towering Inferno, though they still found it entertaining thanks to Dwayne Johnson's charisma and decent effects.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9682200422752553,
+      "context_precision": 0.9999999999666667,
+      "context_recall": 0.5,
+      "custom_id": "case_022",
+      "category": "comparison"
+    },
+    {
+      "user_input": "What do reviewers say makes The Prestige's storytelling structure distinctive?",
+      "retrieved_contexts": [
+        "The Prestige is a gripping mystery drama that follows the intense rivalry between two magicians whose obsession with creating the perfect illusion drives them to sacrifice everything. Christopher Nolan weaves together nonlinear storytelling, compelling performances, and unexpected twists into a film that rewards close attention and repeated viewings. Beyond its clever plot, the film explores the",
+        "Perplexed by the storyline at the beginning, deeply attracted to the narratives of the intense rivalry between two actors in the main body of the show, and finally shocked by the revealed truth, or *The Prestige* in the end. This is one of the most mind-blowing mysteries that I've watched in recent years.",
+        "<em>'The Prestige'</em> is tremendous!\r\n\r\nAn expertly made movie about magic, one that lasts just over two hours but it is most definitely 120mins+ well spent. I was sold by the whole vibe of it from the very beginning, sometimes you can just tell you're going to absolutely enjoy something from the opening minutes and this, for me, was one of those films.",
+        "There is great entertainment in seeing the two fellow-rivals battling each other, but it is only after the final twist that the viewer realises the entire film is a magic trick, a prestige, itself.\r\n\r\n10/10",
+        "that rewards close attention and repeated viewings. Beyond its clever plot, the film explores the dangerous cost of unchecked ambition while celebrating creativity, perseverance, and the pursuit of mastery."
+      ],
+      "response": "Reviewers highlight that The Prestige features nonlinear storytelling, which contributes to its distinctiveness. This structure, combined with compelling performances and unexpected twists, enhances the viewing experience and rewards close attention and repeated viewings.",
+      "reference": "Reviewers praise the nonlinear storytelling and unexpected twists, with one calling it one of the most mind-blowing mysteries they've watched in recent years and noting how the plot structure itself corresponds to an epic magic show.",
+      "faithfulness": 0.7142857142857143,
+      "answer_relevancy": 0.9303445206788397,
+      "context_precision": 0.9166666666361111,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_023",
+      "category": "agreement"
+    },
+    {
+      "user_input": "How does a critical reviewer describe the ending of The Idea of You?",
+      "retrieved_contexts": [
+        "FULL SPOILER-FREE REVIEW @ https://movieswetextedabout.com/the-idea-of-you-movie-review-a-formulaic-rom-com-that-struggles-to-stand-out/\r\n\r\n\"The Idea of You\u00a0can't\u00a0seem to\u00a0find enough standout elements to compensate for the lack of narrative innovation, thematic depth, or compelling execution.",
+        "When the love sparks, it does not see age, and \u2018The Idea of You\u2019 film portrays the same. The film follows Sol\u00e8ne, a 40-year-old single mom who fell in love with a 24-year-old Hayes Campbell, the lead singer of the August Moon band. Directed by Michael Showalter, the movie stars Anne Hathaway and Nicholas Galitzine. \r\nRead full review at\r\nhttps://hotplix.com/the-idea-of-you/",
+        "When the love sparks, it does not see age, and \u2018The Idea of You\u2019 film portrays the same. The film follows Sol\u00e8ne, a 40-year-old single mom who fell in love with a 24-year-old Hayes Campbell, the lead singer of the August Moon band. Directed by Michael Showalter, the movie stars Anne Hathaway and Nicholas Galitzine. Read full article at \r\nhttps://hotplix.com/the-idea-of-you/",
+        "FULL SPOILER-FREE REVIEW @ https://leakedcinema.com/en/movie/843527/TheIdeaofYou\r\n\r\nthe fantasy here isn't about getting to fuck Harry Styles, it's more about having money to own a house/car in Los Angeles and being able to fly to New York on a whim so you can go fuck Harry Styles\r\n\r\ni think it's actually awesome that nicholas galitzine is only allowed to have men or milfs as love interests",
+        "Michael Showalter gets lost in the shallowness of the genre's countless formulas, the excessive fluffiness of the dialogues, and the dull clich\u00e9s that fill a\u00a0very familiar premise, failing to justify a frustratingly incoherent ending. While Anne Hathaway and Nicholas Galitzine's performances are blameless, the movie leaves much to be desired in terms of\u00a0emotional impact.\r\n\r\nDisappointing...\""
+      ],
+      "response": "A critical reviewer describes the ending of The Idea of You as \"frustratingly incoherent,\" suggesting that it fails to provide a satisfactory or clear conclusion to the film's narrative.",
+      "reference": "A reviewer says the movie fails to justify a frustratingly incoherent ending, criticizing the film's lack of narrative innovation despite blameless performances from Anne Hathaway and Nicholas Galitzine.",
+      "faithfulness": 0.6666666666666666,
+      "answer_relevancy": 1.0000000000000009,
+      "context_precision": 0.699999999965,
+      "context_recall": 1.0,
+      "custom_id": "case_024",
+      "category": "element_critique"
+    },
+    {
+      "user_input": "Do reviewers agree that Beetlejuice is equally strong in its first and second halves?",
+      "retrieved_contexts": [
+        "The film expertly balances the realms of the supernatural and the mundane, drawing viewers in without going too far into the fantastical. Beetlejuice's lasting impact is evident in the annual Halloween costumes and themed events, building anticipation for the upcoming sequel. It's safe to say, we all have a soft spot for Beetlejuice.",
+        "No better time to get this logged given the sequel is out now. I did enjoy <em>'Beetlejuice'</em>, hopefully the same can be said about <em>'Beetlejuice Beetlejuice'</em>.",
+        "RELEASED IN 1988 and directed by Tim Burton, \u201cBeetlejuice\u201d chronicles the story of a couple (Alec Baldwin & Geena Davis) who accidently perish after moving to a quaint Connecticut town. They find themselves sentenced to \u201chaunting\u201d their former house where they try to scare the new wannabe swank couple out (Jeffrey Jones & Catherine O'Hara), but they find that their Goth daughter is more curious",
+        "Beetlejuice is a beloved cult classic that captivates viewers with its mix of cheesy comedy and thrilling moments, all brought to life by the genius of Tim Burton. Michael Keaton steals the show with his phenomenal portrayal of the titular character, leaving you tempted to chant \u201cBeetlejuice, Beetlejuice, Beetlejuice\u201d for a taste of his creepy yet humorous presence.",
+        "This was Burton\u2019s debut on the silver screen and the first half is hilarious entertainment mixed with some interesting insights on the afterlife. The movie puts its best foot forward, but the second half isn\u2019t as compelling and I think the title character is more annoying than amusing."
+      ],
+      "response": "No, reviewers do not agree that Beetlejuice is equally strong in its first and second halves. The context suggests that while the first half is seen as hilarious and entertaining, the second half is not as compelling, with some reviewers finding the title character more annoying than amusing.",
+      "reference": "One reviewer says the first half is hilarious entertainment with interesting insights on the afterlife, but the second half isn't as compelling and finds the title character more annoying than amusing, while another reviewer praises Michael Keaton's performance and the film's visual imagination without raising that complaint.",
+      "faithfulness": 0.75,
+      "answer_relevancy": 1.0000000000000007,
+      "context_precision": 0.19999999998,
+      "context_recall": 0.5,
+      "custom_id": "case_025",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "What do reviewers say about the ending of The Hobbit: The Desolation of Smaug?",
+      "retrieved_contexts": [
+        "The conclusion is what affects it the most, in my opinion. It isn't anything bad, but it goes on for too long - yet the ending itself comes out of nowhere a little. It's iffily crafted, with the entertainment value not enough to cover it up. Again, nothing anywhere near terrible... just not as great as I wanted/expected.",
+        "Our troop of adventurers continues to make their way to the Lonely Mountain. Along the way, they encounter a wearbear, giant spiders, elves, including the introduction of Legalos, and the town folk of Laketown before the fateful confrontation with Smaug. Meanwhile, Gandalf the wizard discovers the return of the evil one and it doesn't go well. The conversations between Bilbo and Smaug are",
+        "I'm afraid I still really struggled with the lightweight casting here, but once I'd convinced myself to get over that, I found this to be a far more characterful and entertaining adventure. With the dragon \"Smaug\" now safely in possession of the gold, it falls to \"Thorin\" (Richard Armitage) and his band of dwarves to make their way - via the misty mountains and the realm of the elves - to the",
+        "the return of the evil one and it doesn't go well. The conversations between Bilbo and Smaug are wonderful and the sequences involving the Mirkwood spiders, the dwarves escaping down a river and them trying to destroy Smaug are awesome. Watch the Extended version. So much story is lost in the Theatrical version. -- DrNostromo.com",
+        "it's all enjoyable and engaging to watch on the big screen. Maybe I could have been doing without the romantic interludes (yuk!) but for the most part this is a great looking and visionary interpretation that just happens to have a cast that really should have been so much better. A good, not a great, watch that tees us up nicely for the finale."
+      ],
+      "response": "Reviewers mention that the ending of The Hobbit: The Desolation of Smaug comes out of nowhere a little and is crafted in an iffy manner, with the entertainment value not enough to cover up its shortcomings. The conclusion is viewed as extending for too long, leading to a perception that it does not meet the expectations set by the rest of the film. Overall, while not terrible, the ending does not leave a strong impression.",
+      "reference": "A reviewer says the ending affects the film the most, going on too long while also coming out of nowhere, though they still call the film very good overall and enjoyed the Esgaroth scenes and score.",
+      "faithfulness": 0.8571428571428571,
+      "answer_relevancy": 0.9910419776142593,
+      "context_precision": 0.9999999999,
+      "context_recall": 0.3333333333333333,
+      "custom_id": "case_026",
+      "category": "ending_analysis"
+    },
+    {
+      "user_input": "What do multiple reviewers agree is the standout element of Black Widow (2021)?",
+      "retrieved_contexts": [
+        "journey. The effects and action were decent. The villain was forgettable. The big defining Budapest incident was passed by with hardly any impact or emotional weight. Black Widow gets lost in all of the chaos of the film. The best part of the movie by far was the new characters played by Florence Pugh and David Harbor. They were highly entertaining, funny, and endearing. I hope to see Florence",
+        "\"Black Widow beautifully honors the iconic Natasha Romanoff, who finally receives the respectful, worthy solo film that her unforgettable legacy always deserved. Cate Shortland and Eric Pearson put together an MCU installment that doesn't really compare to any of the other origin flicks, profoundly examining the protagonist's dark past and her complex \"family\" through distinctly compelling",
+        "The first half of black widow was very strong and emotional. Florence Pugh was stellar in this movie. She was brilliant in action sequences and I like the fun elements in her character. Yelena and Natasha's chemistry was too good. David Harbour also performed very well.",
+        "Black Widow is worth seeing for Florence Pugh, the free-fall action sequence, and anything involving Taskmaster before it\u2019s revealed who is under the mask. Everything else about Black Widow feels like it was done better by the films it was supposedly influenced by and mostly feels like a diluted imitation of Captain America: The Winter Soldier. It\u2019s fantastic that women are getting more",
+        "examining the protagonist's dark past and her complex \"family\" through distinctly compelling storytelling. Scarlett Johansson shines one last time, interpreting the most impactful role of her career, but Florence Pugh comes close to stealing the spotlight by giving an absolutely phenomenal display. Boasting highly entertaining, mostly well-filmed action sequences, the main narrative follows a"
+      ],
+      "response": "Multiple reviewers agree that Florence Pugh's performance is the standout element of Black Widow (2021). They highlight her character's entertaining, funny, and endearing qualities, as well as her strong action sequences and chemistry with Natasha Romanoff.",
+      "reference": "Multiple reviewers agree Florence Pugh is the standout, with one saying they liked the movie 'because of Florence only' and another saying Pugh comes close to stealing the spotlight from Scarlett Johansson with an absolutely phenomenal performance.",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.8886356731475198,
+      "context_precision": 0.8041666666465626,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_027",
+      "category": "agreement"
+    },
+    {
+      "user_input": "Why are reviewers' reactions to the 2025 War of the Worlds so different from each other?",
+      "retrieved_contexts": [
+        "\"War of the Worlds\" draws inspiration from both \"Independence Day\" (1996) and \"Open Windows\" (2014) amongst others to create this current interpretation of H.G. Wells's classic 1898 novel. The fundemental message of the book - humans are in reality nothing more than a vulnerable race even now in the 21st century despite our overwhelming dependence on the technology-driven infrastructure we use",
+        "<em>'War of the Worlds'</em>... boy oh boy. I've been out of the film loop recently, but word of this disaster even reached me. I had to check it out for myself to get it watched before I got spoiled. Sometimes the internet piles in to jointly overhate a movie... this is not one of those times.",
+        "feeds and the deceased are merely a list of numbers on a screen. The resulting film only manages to scrape the surface of the characters and the devastating invasion itself to create the illusion of reality without the necessary emotional depth required which only genuine characterisation can provide for it to truly resonate with an audience.",
+        "The notion of the whole alien invasion playing out from the control room of a US NSA surveillance agent, is novel, as is the manner in which everything is nicely brought together. The acting  is decent too, so no complaints there, either.",
+        "Reports allege that the movie uses clips from real disasters and Middle East conflict zones (bombings, wildfires, military crashes) blended or overlaid with alien\u2011invasion CGI.\r\n\r\nThis is seriously fuc%ed up!\r\nWhat some humans will do to make money from the suffering of others."
+      ],
+      "response": "Reviewers' reactions to the 2025 War of the Worlds differ due to varying expectations and interpretations of the film's execution. Some viewers appreciate the novelty of its concept, such as the perspective of a US NSA surveillance agent and the decent acting. In contrast, others criticize the film for lacking emotional depth and genuine character development, leading to a disconnection from the storyline. Additionally, the controversial use of real disaster footage blended with CGI may provoke strong moral reactions, influencing reviews based on personal values and sensitivities regarding the representation of real suffering in the context of entertainment. As a result, individual experiences and interpretations of the film contribute to the mixed reactions.",
+      "reference": "Reactions vary widely: one reviewer finds the film charming despite calling it ridiculous and stupid, another is outraged by reports that it blended real disaster footage with alien-invasion CGI, a third calls it a simple but watchable sci-fi experience let down only by passable special effects, and a fourth appreciates the novel choice of framing the invasion through a surveillance agent's control room, raising no complaints about the acting.",
+      "faithfulness": 0.5454545454545454,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.5333333333155555,
+      "context_recall": 0.0,
+      "custom_id": "case_028",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "Do all reviewers rate Coco among Pixar's best, or are opinions mixed?",
+      "retrieved_contexts": [
+        "Sensational! <em>'Coco'</em> is straight into my top five of Disney animations.",
+        "One thing I personally loved was the depiction of Mexican culture.  Although I really enjoyed _Moana_, I thought it was a little bit too much of a pastiche of multiple Pacific cultures when it should have just picked one (Maori) and stuck with it.  _Coco_ celebrates Mexican culture, and depicts it well.  The only thing missing for me was more Mexican cuisine.",
+        "Spectacularly colourful with a sweet, (albeit predictable) path. Certainly not a misfire from Pixar, but also did not appeal to me personally in the way that many of their other films have.\r\n\r\n_Final rating:\u2605\u2605\u00bd - Not quite for me, but I definitely get the appeal._",
+        "family are also on his trail bent on returning him home without his music. To be honest, I found the underlying tale of loyalty and family to be just a bit overly-sentimental at times, but the quality and vivacity of the animation is a class apart - huge great eyes and smiles that tell the story so much better than words ever could. The story marries the musical with the dastardly and mysterious",
+        "This film has real heart, with great messages about what family can and should do for each other.  Great voice acting, great songs without having the burden of exposition via song that you find in the more musical ventures by Disney.  I loved that you could see genuine guitar chords being played, so often in live action films the playing of musical instruments, especially guitar are poorly faked."
+      ],
+      "response": "Opinions are mixed. One reviewer expresses a deep appreciation for _Coco_ and its depiction of Mexican culture, while another notes that it did not appeal to them personally in the same way as other Pixar films. This indicates that not all reviewers rate it among Pixar's best.",
+      "reference": "Opinions are mixed: one reviewer says Coco didn't personally appeal to them despite being colourful and sweet, rating it low for a Pixar film, while another calls it straight into their top five Disney animations and a third praises its depiction of Mexican culture and heartfelt family message.",
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.5833333333041666,
+      "context_recall": 1.0,
+      "custom_id": "case_029",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "Do reviewers agree that Flow's environmental message lands effectively?",
+      "retrieved_contexts": [
+        "By combining impressive visuals, heartfelt storytelling, and a powerful environmental message, \u201cFlow\u201d is as enchanting as it is thought-provoking. I was deeply moved by the film\u2019s themes and captivated by not only the beauty of the animation, but also its overall spirit.\r\n\r\nBy: Louisa Moore / SCREEN ZEALOTS",
+        "FULL SPOILER-FREE REVIEW @ https://movieswetextedabout.com/flow-review-a-dialogue-free-tale-that-speaks-volumes/\r\n\r\n\"Flow is a celebration of resilience and collective spirit in times of adversity, as well as a potent reminder of the consequences of human actions on the environment.",
+        "At its heart, \u201cFlow\u201d is a film about survival, trust, and community. Its narrative may be simple, but it\u2019s filled with profound emotional depth. Whether you\u2019re an animal lover or someone who enjoys a thoughtful ecological tale, this film offers something for everyone. It\u2019s a beautifully crafted adventure that doesn\u2019t shy away from difficult topics, but it also fills you with a sense of wonder and",
+        "rather thriving in their new aquatic environment. Initials suspicions and reticence starts to morph into something more friendly and the animals convey a message that better together might be their route to survival. Sometimes those choices cause conflict, or require leaps of faith and that is the message that is delivered quite effectively as their amiable escapades unfold. I didn\u2019t find the",
+        "spot on in conveying the picture\u2019s myriad insights, crafted in a way that shows more than tells and successfully avoids the temptation to spoon-feed audiences. \u201cFlow\u201d may be animated, but it\u2019s by no means a cartoon, an accomplishment to which more films in this genre should attempt to aspire. This Golden Globe Award winner and Oscar nominee for best animated feature is a true gem, one from which"
+      ],
+      "response": "Yes, reviewers agree that \"Flow's\" environmental message lands effectively. The film is described as a powerful reminder of the consequences of human actions on the environment and successfully conveys its themes without spoon-feeding the audience.",
+      "reference": "Reviewers disagree: one calls it a potent reminder of the consequences of human actions on the environment with a profound universal message, while another says the film's message doesn't teach anything new and leaves the experience feeling shallow, like a video game walkthrough.",
+      "faithfulness": 0.6666666666666666,
+      "answer_relevancy": 0.9456966267925565,
+      "context_precision": 0.6999999999766667,
+      "context_recall": 0.5,
+      "custom_id": "case_030",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "What do multiple reviewers say has gone wrong with later Ice Age sequels like Collision Course?",
+      "retrieved_contexts": [
+        "What is it about these Ice Age movies that don't seem quite right? I think I just don't like the sound of any of the voice actors... its like some kind of torture having them all in the same place and the same time. Of course, the kids don't mind, and like all the other Ice Age movies, this one is quite watchable and entertaining for them. The weasel never fails to amuse and I look forward to his",
+        "I think these worked fine with the simple dynamic as an eclectic bunch of beasties tried to bond trying to survive an impending exceedingly heavy frost. Now we have decided to let \u201cScrat\u201d - who has now become just plain annoying, to chase his ever elusive acorn into outer space. Oh, if only he had been stranded there but no he manages to set in train a globally existential threat when he plays",
+        "It was handed over to the two new directors and the result is not so good. This is a most simplest film in the 'Ice Age' series. For the first time, the franchise is in real trouble. Though it managed well at the box office, which is a below par compared to the previous installments. It looks like a short film or it should have been a short film. From the adventures to the locations, everything",
+        "If you are an 'Ice Age' series fan or not, it does not matter, you will be slightly get disappointed for sure. Now it has overtaken the 'Shrek' franchise with this fifth film and they are already thinking about the sixth. This is not that bad, just a watchable average film and you need to be updated if you want to continue the series in the future. So that's the reason I suggest to watch this.",
+        "Another hilarious Ice Age. These are definitely my favorite animation series. I normally hate animation movies. With the exception of Beavis & Butthead."
+      ],
+      "response": "Multiple reviewers indicate that later Ice Age sequels, such as Collision Course, suffer from a decline in quality and originality. Some specific criticisms include the voice acting being unappealing, the introduction of new elements (like Scrat's storyline taking place in outer space) being annoying or tedious, and the overall film feeling simplistic or more like a short film rather than a fully developed feature. Additionally, there are concerns about the franchise being in trouble due to a lack of compelling storytelling and innovation, despite achieving box office success. Overall, reviewers suggest that fans may feel disappointed with the direction the series has taken.",
+      "reference": "Multiple reviewers say the franchise has grown tired - one calls Scrat 'just plain annoying' by this point and the writing lacking sharpness, while another calls it 'definitely the worst one', though both note kids may still enjoy it more than adults.",
+      "faithfulness": 0.7142857142857143,
+      "answer_relevancy": 0.919779159507789,
+      "context_precision": 0.5833333333041666,
+      "context_recall": 1.0,
+      "custom_id": "case_031",
+      "category": "agreement"
+    },
+    {
+      "user_input": "Do reviewers agree that closely following the video games helped or hurt Resident Evil: Welcome to Raccoon City?",
+      "retrieved_contexts": [
+        "Welcome to Raccoon City marks the first live-action Resident Evil adaptation to stick close to the original games in story and feel. Character costumes looked like they were plucked right from the games. Sets and locations were identical to levels I spent hours playing. Easter eggs and nods throughout the film celebrated hardcore fans. Unfortunately, its flaws overshadow its victories. An",
+        "it gets close, the themes are there, the cheesy, but undeniably cool scenes are present, and the overall plot follows that of the games much more closely. Having said that, the movie lacked the courage to fully abandon the core formula of the previous movies completely, creating a weird clashing mishmash of ideas. Welcome to Raccoon city wanted to have a wide cast of important characters, and to",
+        "and a bit of cheesiness, and lovers of the movies will be looking forward to big set pieces, pumped action scenes, and a wide cast of characters. Resident Evil: Welcome to Raccon City is clearly trying to bridge the gap by offering an experience closer to that of the games, but in movie form, and it gets close, the themes are there, the cheesy, but undeniably cool scenes are present, and the",
+        "I love all the films in the original movie franchise so I was looking forward to this one. This is a reboot that is supposed to follow the first two installments of the video games much more closely ...to its detriment, me thinks. It could have been a great film as it has some really good bones but many of them were broken with some awfully ludicrous decisions; the Police Chief's behavior was",
+        "of ideas. Welcome to Raccoon city wanted to have a wide cast of important characters, and to do so it decided to borrow from 3 games at once, and in its attempt to convert 3 isolated storylines into one a lot was left on the cutting room floor, characters were poorly developed, many events were barely explained, and overall the movie lacked cohesion. It's painful to see how many good ideas were"
+      ],
+      "response": "Reviewers seem to agree that closely following the video games hurt Resident Evil: Welcome to Raccoon City. While the film attempts to celebrate the original games and includes familiar themes and Easter eggs, it ultimately suffers from a lack of cohesion, poorly developed characters, and a mishmash of ideas that detracts from its overall execution.",
+      "reference": "Reviewers agree the film sticks close to the original games in look and feel, but say this closeness works against it - one calls the overcrowded story a detriment despite faithful sets and Easter eggs, and another says the reboot's fidelity to the games' story came 'to its detriment'.",
+      "faithfulness": 0.7142857142857143,
+      "answer_relevancy": 0.9212698092967462,
+      "context_precision": 0.99999999998,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_032",
+      "category": "agreement"
+    },
+    {
+      "user_input": "How does a reviewer rank Annabelle Comes Home within the Conjuring franchise?",
+      "retrieved_contexts": [
+        "In the end, Annabelle Comes Home is as poor or worse than The Nun. I can\u2019t really decide which one I would watch instead of the other because I truly don\u2019t want to watch any of these ever again. A brilliant cast might save this movie from a completely negative review, but it\u2019s still an atrociously cheap addition to the horror genre. Everyone knows why this film doesn\u2019t work: continuously",
+        "the first _Conjuring_ movie isn't even really that good. The only entry I've given a favourable review (\"favourable\" here meaning \"more than a 5 outta 10\") iissss *dramatic pause* THIS O- no I'm kidding it's _Conjuring 2. Conjuring 2_ is the good one and everything else ranges from \"alright\" to \"dumpster fire\", and the first _Annabelle_ is firmly at the bottom of that dumpster fire. What's the",
+        "I went to this movie not expecting much, but it never crossed my mind that I would be watching a film as bad or worse than The Nun. Honestly, going back, I was too easy on the latter since I didn\u2019t exactly give it a massively negative review, which it surely deserves. However, Annabelle Comes Home really tries its best to be even worse. I hate it. I truly do. The horror genre has been",
+        "Comes Home really tries its best to be even worse. I hate it. I truly do. The horror genre has been exponentially growing, and it\u2019s one of the two most popular genres right now (comic-book movies are the other), but this cheap, bland, cliche, predictable, and forgettable class of horror films is genuinely starting to annoy and frustrate me. The Conjuring Universe became just a set of silly",
+        "a film that genuinely give it their all every time. But Annabelle Comes Home feels so much like a pure cash grab, and I hate writing these words because every movie ever is ultimately an attempt to win money for the studios. However, this sequel never feels like it\u2019s actually serving any purpose for the expansion or improvement of the universe it represents. It\u2019s a horror flick filmed in just one"
+      ],
+      "response": "The reviewer ranks Annabelle Comes Home very poorly within the Conjuring franchise, stating that it is as poor or worse than The Nun and identifying it as an atrociously cheap addition to the horror genre. The reviewer expresses strong disdain for the film, indicating it feels like a cash grab and does not serve a meaningful purpose in the franchise. Overall, they place it at the bottom of their rankings, with the first Annabelle firmly in the \"dumpster fire\" category. The reviewer considers The Conjuring 2 to be the only entry they've given a favorable review, while everything else ranges from \"alright\" to worse.",
+      "reference": "A reviewer says Annabelle Comes Home is, surprisingly, the closest thing the franchise has to a second good entry after Conjuring 2, even though they consider the first Annabelle a disaster and rate most of the franchise as ranging from 'alright' to 'dumpster fire'.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9971254618601701,
+      "context_precision": 0.5833333333041666,
+      "context_recall": 0.5,
+      "custom_id": "case_033",
+      "category": "comparison"
+    },
+    {
+      "user_input": "Do reviewers agree on the pacing of X (2022)'s first act?",
+      "retrieved_contexts": [
+        "The plot itself is very straightforward and easy to follow, but it takes a bit too long to get going. The first act feels stretched out, with not much happening until later, and it\u2019s a little unclear when the first act transitions into the second. That pacing could\u2019ve been tighter, but once the story picks up, things really start moving, and the payoff is worth it.",
+        "MORE REVIEWS @ https://www.msbreviews.com/\r\n\r\n\"X pays homage to 70/80s classic slashers while simultaneously tackling important themes related to sexual pleasure/freedom, age, and self-acceptance in a deeper and more intelligent screenplay than meets the eye.",
+        "X by Ti West is definitely a unique take on the slasher genre. The story feels fresh and unlike anything I\u2019ve seen before, making it a solid introduction to something new. The acting by all the characters was good, not perfect, but strong enough to carry the film. It didn\u2019t blow me away, but it worked well with the story.",
+        "Let's start with \"X,\" a movie that I found to be absolutely terrible. The film revolves around pornography rather than a cohesive storyline, resulting in a disjointed and atrocious viewing experience. The cinematography, acting, storytelling, and writing were all subpar, yet critics inexplicably praised it.",
+        "Visually, the film nails the 1970s vibe with gritty yet polished cinematography that draws you in. An interesting choice is the use of the 1.37:1 and the 1.90:1 aspect ratio, which enhances the viewing experience. Overall, it\u2019s a solid horror movie with a unique spin, even if it has its pacing flaws. It\u2019s definitely worth a watch if you\u2019re into stylish, slow-burn horror."
+      ],
+      "response": "Yes, reviewers agree that the pacing of X (2022)'s first act feels stretched out and takes too long to get going.",
+      "reference": "Two reviewers separately note pacing issues in the first act - one says it feels stretched out with an unclear transition into the second act, and another says the film takes too long to get going - though both still found the film worthwhile once it picked up, while a third reviewer rated it a masterpiece without raising pacing complaints.",
+      "faithfulness": 0.6666666666666666,
+      "answer_relevancy": 0.9811690410550272,
+      "context_precision": 0.699999999965,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_034",
+      "category": "agreement"
+    },
+    {
+      "user_input": "What do multiple reviewers agree about Reese Witherspoon's performance in Legally Blonde?",
+      "retrieved_contexts": [
+        "<em>'Legally Blonde'</em> is good. There is plenty of cheese and you can see where the story is heading from basically the get-go, though it is all brought to life by an impressive Reese Witherspoon performance. There are amusing moments, plus it has a pleasantly short run time. Overall, I did find it enjoyable.",
+        "Surprisingly funny and good. I was expecting this to be a dumb movie honestly. They did a good job. Yeah she was a blonde and acted like blonde, but she was legally smart at being an attorney.",
+        "Reese Witherspoon (\"Elle\") is the archetypal sorority success. Gorgeous, glamorous, clever and dating the most handsome man at her school \"Warner\" (Matthew Davis). Then, all of a sudden he decamps to law school and leaves his naturally blonde girlfriend behind. She's having none of that, follows him to Harvard determined to win him back from his new sweetheart \"Vivian\" (Selma Blair) and the battle",
+        "An entertaining movie that with the title alone alerts you that it is brazenly silly, though Reese Witherspoon's character Elle Woods has challenges that make you cheer for her. Awkward social situations are well handled by the character and credit to the writers and director for resolving these with good morals. All of the major cast roles are well done.",
+        "the road. There is comedy, but it is pretty puerile and one only hopes Harvard has since beefed up it's entrance exams. Witherspoon is good - she evokes well something I found detestable about the character she portrays; but I'm afraid I just found it all just a bit too predictable. By no means the worst from the spate of rom-coms that started off this new millennium, but that doesn't make it"
+      ],
+      "response": "Multiple reviewers agree that Reese Witherspoon's performance in *Legally Blonde* is impressive and well-executed. They highlight her ability to bring the character Elle Woods to life, showcasing her charm, cleverness, and ability to evoke a range of emotions, which contributes significantly to the enjoyment of the film.",
+      "reference": "Multiple reviewers agree Reese Witherspoon's performance elevates predictable or cheesy material, with one saying she is impressive despite a story you can see coming from the start, and another saying her performance evokes something detestable about the character effectively even while finding the plot too predictable.",
+      "faithfulness": 0.25,
+      "answer_relevancy": 0.9637641806348749,
+      "context_precision": 0.6999999999766667,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_035",
+      "category": "agreement"
+    },
+    {
+      "user_input": "What do reviewers criticize about The End of Oak Street's tone and originality?",
+      "retrieved_contexts": [
+        "\"The End of Oak Street\" is yet another fossilized production from an entertainment industry out of fresh ideas. This is essentially Jurassic Park in 1980's US suburbia. The lead in is overlong, rather boring, more than a little cliched, leaning heavily on 80's nostalgia to carry it. Beyond that, it's predictable dinosaur action hi-jinks, a basic family adventure,  with a dash of time travel",
+        "Check out my full review @ https://movieswetextedabout.com/the-end-of-oak-street-movie-review-a-stylish-amblin-style-spectacle-undone-by-tonal-indecision/\r\n\r\nRating: B-",
+        "choice. So what\u2019s it going to be? Given the dearth of good, entertaining pictures at this time of year, in my view, \u201cThe End of Oak Street\u201d is genuinely a welcome breath of fresh air in an otherwise-stale room, a late summer release that\u2019s truly \u201cdino-mite.\u201d",
+        "THE END OF OAK STREET is a well-built summer blockbuster whose biggest obstacle is its own indecision about what it wants to be. The dinosaur spectacle is thrilling, Anne Hathaway anchors it with real gravity, Michael Giacchino\u2019s score elevates nearly every set piece, and the Amblin-inspired craft on display is a genuine pleasure to watch unfold \u2014 but the moment the film tries to layer real",
+        "flow of the narrative and are sufficiently wrapped up by the time the credits roll. But perhaps the biggest surprise here is the film\u2019s integration of subtle but effective themes one might not anticipate from a production like this, such as messages related to second chances, redemption and forgiveness, which are skillfully incorporated without beating viewers over the head (credit the expertly"
+      ],
+      "response": "Reviewers criticize \"The End of Oak Street\" for its tonal indecision and lack of originality, describing it as predictable and cliched, with a heavy reliance on 80's nostalgia. They point out that the film feels fossilized and compares it to \"Jurassic Park,\" indicating a lack of fresh ideas. Additionally, there are comments about the overlong and boring lead-in, suggesting it fails to effectively engage the audience.",
+      "reference": "One reviewer says the film's biggest obstacle is its own indecision about what it wants to be, with emotional stakes layered onto popcorn thrills that show visible seams, while another calls it a fossilized production leaning on 80s nostalgia with predictable dinosaur action and a dash of time-travel nonsense.",
+      "faithfulness": 0.8,
+      "answer_relevancy": 0.9345838967138711,
+      "context_precision": 0.7499999999625,
+      "context_recall": 0.0,
+      "custom_id": "case_036",
+      "category": "agreement"
+    },
+    {
+      "user_input": "What common weakness do multiple reviewers identify in Thor: Love and Thunder despite enjoying it?",
+      "retrieved_contexts": [
+        "I was looking forward to this movie. I loved Taika Waititi's direction in Ragnarok, and the cast is amazing. I was hoping for another fun, fast-paced, and humorous film like its predecessor. But unfortunately, Thor: Love and Thunder falls flat. The story is convoluted and slow-moving, and there are too many characters for any of them to get enough development. The humour is forced, and it",
+        "This is a tough movie to explain. I can\u2019t say there was a part of Thor: Love & Thunder I didn\u2019t enjoy, but I also left the theater feeling unsatisfied. There were great parts! The space goats and Thor\u2019s jealous battle ax were highlights. There was a big fight scene with some of the best special effects in a Marvel movie to date. But the ending felt sudden and disappointed me, while the movie",
+        "If they were actually going for more of a comedy movie than an actual Thor movie they failed miserably. The \u201cjokes\u201d where unfunny, unintelligent and just bad. Superhero slapstick at best.",
+        "I was disappointed in **Thor: Love and Thunder**. If you're a die-hard Marvel fan, you might enjoy it, but if you're looking for another fun and exciting Thor film, I think you'll be disappointed, too.",
+        "Bad humor, characters teleporting all over the place, terrible plot. A thing capable of altering the universe happens to exist, you don't even need infinity stones *facepalm* I can't believe there is a worse Thor movie than The Dark World."
+      ],
+      "response": "Multiple reviewers identify the movie's humor as a common weakness, describing it as forced, unfunny, and poorly executed. Additionally, they mention issues with character development and a convoluted plot that detracts from the overall experience, despite enjoying certain aspects of the film.",
+      "reference": "Multiple reviewers note the film doesn't fully deliver despite good elements - one says the ending felt sudden and left them unsatisfied, and another says the comedy denies further exploration and removes emotional value from the third act, even while both praise Christian Bale's villain performance.",
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.826401174650842,
+      "context_precision": 0.94999999997625,
+      "context_recall": 0.75,
+      "custom_id": "case_037",
+      "category": "agreement"
+    },
+    {
+      "user_input": "Do reviewers agree that Mission: Impossible II is weaker than the first film?",
+      "retrieved_contexts": [
+        "just doesn't ever really get into gear and at over two hours, it's a pretty weak and insipid outing for just about everyone. Not a patch on the first film.",
+        "Even setting it in predominantly Australia was enough to grab my attention, and that's saying something cause I'm pretty biased when it comes to that. I hear tell that _Mission: Impossible II_ is the low point in the series, and that at least is encouraging, because if anything afterwards is much worse than this one, I don't know if I'll be able to make it through to Rogue Nation.",
+        "After quite entertainign Mission Impossible I the second installment turned out ... terrible. As if the screenwriters didn't know how to fill the 2 hrs with action the overuse of heroic slow motion scenes is horrible. You almost might need a barf bag if you can't stand slo-mo every five seconds... for 15 seconds. I am amazed they did decide to push on with more M:I movies after this one, then",
+        "As with the first movie if it would not have been labelled Mission Impossible I would probably have given it a higher rating since it is a decent enough, mostly braindead though, Hollywood action movie. However, I have higher expectations from a movie labelled Mission Impossible.",
+        "Ethan Hunt must stop a deadly new virus from falling into the wrong hands. The directing styles from Brian De Palma (1st film) to John Woo is pretty stark making this far less an M:I movie and far more a James Bond action flick. Not a lot of time is spent on the depth of the characters focusing almost exclusively on Ethan and the villain and the romantic scenes just felt awkward. But the film is"
+      ],
+      "response": "Yes, reviewers agree that Mission: Impossible II is weaker than the first film.",
+      "reference": "Reviewers agree it's a weak entry - one calls it 'a lousy piece of crap' compared to the entertaining first film, and another says it's 'not a patch on the first film', criticizing an underdeveloped story and a villain who isn't menacing enough.",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.9670585428931942,
+      "context_precision": 0.94999999997625,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_038",
+      "category": "agreement"
+    },
+    {
+      "user_input": "What do reviewers say about Zendaya's performance in The Drama, and how balanced do they find the film's perspective?",
+      "retrieved_contexts": [
+        "THE DRAMA is a gripping, nerve-wracking look at relational trust and societal judgment. Zendaya and Robert Pattinson give spectacular, deeply vulnerable performances, perfectly matched by an uneasy score and brilliant sound design. While the triggering subject matter occasionally focuses too much on the groom's panic rather than allowing the bride to fully explain her story, its critique of",
+        "For me, Zendaya\u2019s performance is hands down one of the absolute highlights of the movie. I watched her build such a restrained Emma, leaning heavily into silences and micro-expressions of pure anguish. Humanizing a character with such repulsive baggage isn't for everyone, and she delivered incredibly authentic reactions without ever having to resort to screaming matches. Even though I disapproved",
+        "Days before walking down the aisle, what was supposed to be the making of a modern fairy tale turned into a psychological minefield for me. I went into The Drama expecting a quirky romance and got a punch in the gut disguised as social satire. The premise revolves around a shocking confession that completely challenged my views on morality, empathy, and how fragile appearances are in our era of",
+        "Ultimately, The Drama definitely didn't try to be my new favorite weekend movie. It hit the mark by delivering complex debates backed by absurdly good performances from its main stars, but it fell into its own traps of pacing and pretension. If you have the stomach for excessive cynicism and, like me on certain days, enjoy those tough watches that leave ethical loose ends scattered all over the",
+        "I thought they nailed it together during the scenes of social fakeness. That pre-wedding photoshoot sequence is already iconic. Watching Zendaya and Pattinson forcing those cheesy, commercial-ready smiles while their internal worlds were collapsing gave me some good, nervous laughs. The unforgivable structural flaw I noticed, though, was the total lack of prior affection on screen. The story"
+      ],
+      "response": "Reviewers highlight Zendaya's performance in The Drama as one of the standout aspects of the film, noting her ability to portray a restrained character named Emma with deep authenticity. They mention her use of silences and micro-expressions to convey anguish, which added depth to her character despite her having to navigate complex and challenging themes.\n\nHowever, the reviewers also point out that the film's perspective is somewhat unbalanced, as it tends to focus more on the groom's panic rather than allowing the bride to fully explain her story. This critique suggests that while the performances, particularly Zendaya's, are commendable, the film itself may not provide a comprehensive view of the relationship dynamics at play.",
+      "reference": "Reviewers praise Zendaya's performance - one calls it impressive and better than her other roles - while a more detailed review says the film occasionally focuses too much on the groom's panic rather than letting the bride fully explain her story, even while calling the film emotionally honest and thought-provoking overall.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9623616940269241,
+      "context_precision": 0.8874999999778125,
+      "context_recall": 0.3333333333333333,
+      "custom_id": "case_039",
+      "category": "element_critique"
+    },
+    {
+      "user_input": "Do reviewers agree that The Nun II is an improvement over the original Nun film?",
+      "retrieved_contexts": [
+        "MORE SPOILER-FREE MINI-REVIEWS @ https://www.msbreviews.com/movie-reviews/mini-reviews-2023-edition\r\n\r\nTHE NUN II surpasses its predecessor with commendable acting, improved practical effects, and impressive imagery, making it a surprisingly decent horror blockbuster. Michael Chaves effectively utilizes his budget, showcasing well-directed, suspenseful sequences.",
+        "I mainly dislike The Nun character, both in terms of how it looks visually and how it is portrayed audibly - just such a disappointment, <em>'The Curse of La Llorona'</em> did it greater... not that many would agree with me, admittedly. The human side of all this isn't much better either.",
+        "Five years on from her first outing, Taissa Farmiga dons her holy robes to return as the nun who is a dab hand at facing down satanic apparitions. It's France in the 1950s and a priest is seized in his own church and brutally killed. Not by a person though - and that's where \"Sister Irene\" comes in. Fairly quickly her investigations take her to a girl's school where a previous tragedy has left a",
+        "Despite having such a strong central character on its poster with a great back story, 'The Nun 2' spends more time on the pauses and long dialogue scenes than on the scares. 'Nun the less', watch it if you are invested in the 'Conjuring' universe.",
+        "<em>'The Nun II'</em> concludes this franchise, at least for the time being, in typical fashion - that being rather dull. I haven't got much new to add, anything I could say I've said much before for most of the other entries; most notably for the original 2018 film."
+      ],
+      "response": "Yes, reviewers generally agree that The Nun II is an improvement over the original Nun film, highlighting commendable acting, improved practical effects, and impressive imagery.",
+      "reference": "Reviewers partly agree it's a slight improvement but still weak - one says it surpasses its predecessor with better acting and effects despite a messy third act, and another says it's better than the first only in the sense that it's 'not saying much', calling it emotionally empty and hard to follow.",
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.9801097062107225,
+      "context_precision": 0.7499999999625,
+      "context_recall": 0.5,
+      "custom_id": "case_040",
+      "category": "agreement"
+    },
+    {
+      "user_input": "Do reviewers agree that the ending of It Ends with Us succeeds?",
+      "retrieved_contexts": [
+        "While I appreciated the film\u2019s attempt to address serious themes, the resolution felt overly neat and left me questioning its message about healing and forgiveness. Overall, It Ends With Us left me with mixed feelings; it was visually engaging and thought-provoking but ultimately fell short of delivering a satisfying emotional payoff.",
+        "I found <em>'It Ends with Us'</em> to be largely great, though the way it ends does make me question how I feel about it.",
+        "FULL SPOILER-FREE REVIEW @ https://talkingfilms.net/it-ends-with-us-review-balancing-love-trauma-and-abuse/\r\n\r\n\"It Ends With Us tries to balance heavy drama and conventional romance with some difficulties, but it manages to offer a minimally thought-provoking reflection on generational trauma and relationship abuse.",
+        "Pace-wise the movie jumps along nicely, all the other major elements like editing, music and whatever are all well done and are only plus points. However, the conclusion disappoints a bit. I do think it just about regains its footing to produce a positive ending, though how it gets there by wrapping up the relationship between Lively's Lily and Baldoni's Atlas left me feeling a bit uneasy. As did",
+        "Watching It Ends With Us was both impactful and frustrating. The cinematography was beautiful, and Lively delivered a nuanced performance that conveyed Lily's internal struggles effectively. However, I felt the film struggled with pacing and often leaned too heavily on melodrama, which detracted from its emotional weight. The portrayal of domestic violence was raw and unsettling, but at times it"
+      ],
+      "response": "No, reviewers expressed mixed feelings about the ending of *It Ends With Us*, with some stating it disappoints and leaves them questioning its message. While some found the film's overall execution strong, the resolution felt overly neat to others.",
+      "reference": "One reviewer says the ending makes them question how they feel about the film despite otherwise stellar performances, and another reviewer says the resolution felt overly neat, leaving them questioning the film's message about healing and forgiveness.",
+      "faithfulness": 0.8,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.8041666666465626,
+      "context_recall": 0.5,
+      "custom_id": "case_041",
+      "category": "ending_analysis"
+    },
+    {
+      "user_input": "What do multiple reviewers say carries Bugonia despite its narrative shortcomings?",
+      "retrieved_contexts": [
+        "FULL SPOILER-FREE REVIEW @ https://fandomwire.com/bugonia-review/\r\n\r\n\"Bugonia functions primarily as a stage for the memorable performances of Jesse Plemons and Emma Stone, who carry the movie with intensity and charisma.",
+        "incidents of graphic violence may be more than what sensitive viewers can handle. But, those minor considerations aside, \u201cBugonia\u201d is the first stellar awards season release to appear in this year\u2019s movie marketplace and yet another brilliant work from Lanthimos, arguably one of the hottest directors in the business these days. This decidedly quirky offering probably won\u2019t appeal to everyone, and",
+        "The South Koreans currently own the world when it comes to dark cinema, and Save the Green Planet deserves its 10/10 for sheer creativity, audacity, and tonal control. It's a film that shouldn't work, that juggles too many genres, too many tones, and yet it becomes something wholly original. Bugonia follows closely at 9/10, and honestly, it's gutsy as hell for a Western production. In an era when",
+        "### The Verdict\r\n\r\n**5 out of 10 \u2013 A Tale of Two Movies**\r\n\r\n*Bugonia 2025* is a frustrating paradox: a film that demonstrates a profound understanding of mood and character in its first half, only to abandon that subtlety for a climax of bafflingly poor execution. The final act doesn't feel like a payoff; it feels like a betrayal of the intelligent, atmospheric story that came before it.",
+        "> *Bugonia* means a ritual or belief about bees coming out of carcasses of dead animals translates, literally into 'Ox Birth' -- an ancient Greek belief that killing an Ox would engender honey bees to emerge from the ritualistically sacrificed [animal.In](http://animal.In) other words, new life emerging from a decaying one -- an idea more in harmony with our ecosystem's life cycle."
+      ],
+      "response": "Multiple reviewers highlight the memorable performances of Jesse Plemons and Emma Stone as the factors that carry \"Bugonia\" despite its narrative shortcomings. Their intensity and charisma are noted as key strengths of the film.",
+      "reference": "Multiple reviewers say the performances carry the film - one says it functions primarily as a stage for the memorable performances of Jesse Plemons and Emma Stone despite themes that feel discursive and predictable, and another says they've come to really appreciate Plemons' acting after this film.",
+      "faithfulness": 0.6666666666666666,
+      "answer_relevancy": 0.9086771841530195,
+      "context_precision": 0.9999999999666667,
+      "context_recall": 0.5,
+      "custom_id": "case_042",
+      "category": "agreement"
+    },
+    {
+      "user_input": "What weakness does a reviewer point out in how Rocky (1976) develops Apollo Creed?",
+      "retrieved_contexts": [
+        "The down side was Creed, he was a little under-developed in this wasn't he? They make up for it in Rocky II, III, and IV, but in Rocky he felt like a faceless nemesis didn't he? He was Mohamed Ali without real depth in this and the story could have used to develop him a little more in the first one.\r\n\r\nBut... we got it in the sequels.",
+        "As I said before, the dialogue is very inconsistent, especially in the scene at Rocky's house with Adrian. It was very unsettling to watch because she is written as if she does not want to be there, but then the next second she is in love with him. It was very weird and creepy. On the other hand, in some scenes, the dialogue is written very well, which lends itself to boosting the actors'",
+        "Sylvester Stallone is \"Rocky\", an enforcer for a small-time Philadelphia mobster who works out in Burgess Meredith's gym (\"Mickey's\") and is keen on the sister of his friend \"Paulie\" (Burt Young), the shy and retiring \"Adrian\" (Talia Shire). Meantime, World Heavyweight Champion \"Apollo Creed\" (Carl Weathers) finds his impeding tilte defence kybsoshed by an injured challenger. At this point",
+        "I do have to say, the movie has a rocky beginning, as the dialogue is pretty clunky and awkward at times. But after about twenty minutes, the movie really gets into its groove and had me locked in till the end. My favorite aspect of this film is the humanity it has; it takes a look at a big and intimidating fighter in Rocky and explores his emotions and insecurities. My favorite scene is when he",
+        "Rocky is an inspiring story about an ordinary man who takes advantage of a once-in-a-lifetime opportunity."
+      ],
+      "response": "The reviewer points out that Apollo Creed is under-developed in \"Rocky\" and feels like a faceless nemesis, lacking depth and character compared to more developed portrayals in the sequels.",
+      "reference": "A reviewer says Apollo Creed felt underdeveloped in the original Rocky, more of a faceless nemesis without real depth, though they note the sequels later gave him more development.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9255306010266507,
+      "context_precision": 0.9999999999,
+      "context_recall": 1.0,
+      "custom_id": "case_043",
+      "category": "element_critique"
+    },
+    {
+      "user_input": "Do reviewers think Battleship is worth watching despite its flaws?",
+      "retrieved_contexts": [
+        "based on the board game where you blindly guess where your opponent's boats are on a grid wasn't a mega-hit. There wasn't much there, to begin with, but sprinkling an alien menace on top makes everything better, right? Sadly, it did not. The effects weren't quite there, and some of the acting and characters were outrageously bad. But even with all that being said, Battleship, with the right",
+        "and characters were outrageously bad. But even with all that being said, Battleship, with the right expectations, is still an entertaining movie! Taylor Kitsch is a fun actor. Rihanna makes a feature film debut. Liam Neeson pops up. Aliens are blown up. Shut your brain off and embrace the nonsensical goofy action.",
+        "**Battleship might have sunk at the box office, but it's still an entertaining disaster to enjoy if you have some time to spare and nothing else to do.**",
+        "However, the enjoyment brought by this movie was almost purely one of visual effects. Well, I generally like Liam Neeson as well but not much else in this movie was of any higher standards. The story is the usual Hollywood stuff. The holes in the logic are big enough to drive, well, a battleship through. For instance, the aliens can come from far away, navigate between the stars, but they cannot",
+        "I literally watched this movie in theaters on my honeymoon - not the greatest choice for the first movie as a married couple, but thankfully she stuck with me \ud83d\ude02. Battleship swung for the fences in hopes of being the next Transformers and struck out. I can't say that it was a surprise that a movie based on the board game where you blindly guess where your opponent's boats are on a grid wasn't a"
+      ],
+      "response": "Yes, reviewers think Battleship is worth watching despite its flaws. They describe it as an entertaining movie if you have the right expectations and are looking for some nonsensical goofy action.",
+      "reference": "Both reviewers acknowledge major flaws - one calls it 'cash infused metallic porn' with vacuous, Transformers-style effects work, while another admits the effects and acting were bad but still calls it an entertaining movie if you shut your brain off and embrace the nonsensical action.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9435500585921247,
+      "context_precision": 0.99999999998,
+      "context_recall": 0.5,
+      "custom_id": "case_044",
+      "category": "agreement"
+    },
+    {
+      "user_input": "What does a reviewer say was misleading about how Ford v Ferrari was marketed?",
+      "retrieved_contexts": [
+        "I think _Ford v Ferrari_ suffers from mismarketing. I don't mean that it was poorly marketed, and that the trailers made it look bad or anything. Just that it was marketed inaccurately. When I was keeping myself abreast of this project, it seemed very much that the insinuation was that the movie would be a battle between Bale's and Damon's respective characters. That this would essentially be the",
+        "of those two characters. An occasionally rugged, and one occasion even violent friendship, but a friendship nonetheless. Even the title is misleading. I suppose Ford does v Ferrari at a couple of points over the movie's runtime, but it's not what _Ford v Ferrari_ is **about**. In fact, Ferrari barely features in the movie at all. Here's the kicker though: I actually liked what this thing ended up",
+        "be a battle between Bale's and Damon's respective characters. That this would essentially be the run-through of the whole film, and the climax would feature one emerging victorious over the other. In actual fact, the opposite is true. _Ford v Ferrari_ is largely about the friendship and partnership of those two characters. An occasionally rugged, and one occasion even violent friendship, but a",
+        "Click here for a video version of this review: https://youtu.be/IByQpyGV9Lg\r\n\r\nDespite not being a big fan of track car racing - I\u2019m more of a rally man - the chance to see Matt Damon and Christian Bale lead in a true life story attracted me to _Ford v Ferrari_. It\u2019s a very good movie that tells the tale of the development of Ford\u2019s race program to topple Ferrari as the champions of Le Mans.",
+        "**Overall : The captivating story of Ford v Ferrari is incredible unto itself, but powerful performance and outstanding directing elevate its rich story to masterful heights.**"
+      ],
+      "response": "The reviewer claims that _Ford v Ferrari_ was misleadingly marketed as a battle between Bale's and Damon's characters, suggesting that their relationship would be competitive and culminate in one character emerging victorious over the other. In reality, the film focuses more on the friendship and partnership between the two characters rather than a rivalry. Additionally, the reviewer notes that Ferrari barely features in the movie, making the title misleading as well.",
+      "reference": "A reviewer says the film was marketed inaccurately, implying it would be a rivalry between Bale's and Damon's characters or between Ford and Ferrari, when it's actually mostly about the friendship and partnership between the two leads - and that Ferrari barely features in the movie at all.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9333529307838413,
+      "context_precision": 0.9999999999666667,
+      "context_recall": 1.0,
+      "custom_id": "case_045",
+      "category": "element_critique"
+    },
+    {
+      "user_input": "Do reviewers agree that La La Land's ending works?",
+      "retrieved_contexts": [
+        "with the magic felt throughout the rest of the film. It's like having a very beautiful dream, where anything is possible with some effort and serious work, and ending up seeing that dream trampled by a heavy, raw and often unfair reality. And it must be said, although the characters seem likeable, they are selfish and only think about themselves and their interests. They seem to stick together",
+        "\"To me, _La La Land_ is like religion. I see the appeal, and I would never take it away from anyone. But I would also never stand in line for it.\" \r\n- Jeff WInger, probably.\r\n\r\n_Final rating:\u2605\u2605\u00bd - Not quite for me, but I definitely get the appeal._",
+        "A fully-fledged musical of the likes we haven't seen on the big screen in decades. This move is almost perfect in every respect. It will draw a laugh, it will draw a tear and it will definitely get your foot tapping. I have to admit the reality ending crushed my enjoyment a little. I understand why the director did it but that doesn't mean I have to like it.",
+        "musical genre he loves, and which he feels is slowly being lost. It is their mutual passion that makes them not give up on their respective dreams, but it will also end up dictating that both follow their own paths. And indeed, the film's bittersweet and slightly too realistic ending shockingly clashes with the magic felt throughout the rest of the film. It's like having a very beautiful dream,",
+        "<em>'La La Land'</em> is an absolutely gorgeous-looking film, from the costumes to the cinematography to the choreography. The musical numbers are pleasant too. It is a little light on story, not that it isn't entertaining - it is. They were, evidently to me, going for an artsy film and they nailed that. I just personally wanted more depth to the plot, rather than a song every few minutes."
+      ],
+      "response": "No, reviewers express mixed feelings about La La Land's ending. While some acknowledge the director's intention behind it, they also mention that it crushed their enjoyment and clashes with the film's earlier magic.",
+      "reference": "One reviewer says the reality-driven ending crushed their enjoyment a little despite understanding the director's choice, while another calls the film style over substance overall, wanting more depth to the plot beyond a song every few minutes.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9649837052314799,
+      "context_precision": 0.6791666666496875,
+      "context_recall": 1.0,
+      "custom_id": "case_046",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "Did a reviewer's opinion of The Proposal change on a second viewing?",
+      "retrieved_contexts": [
+        "**Had to see it a second time to be convinced, but The Proposal is a top-shelf rom-com!**",
+        "I'm pretty sure I've watched <em>'The Proposal'</em> before many, many years ago as I semi recognised a couple of scenes and knew where the story was going from basically pressing play, though the second half of the film didn't feel like something I had previously seen... so who knows! Either way, that didn't affect my enjoyment at all.",
+        "When I first saw this movie in theaters back when it came out, I was not impressed. But after rewatching it, I'm still trying to remember what I didn't like! I was laughing out loud and feeling my heartstrings pulled the entire time. The dog and eagle scene had me rolling! Sandra Bullock and Ryan Reynolds are both romantic comedy veterans that prove their skills with the genre in this film.",
+        "Reynolds are both romantic comedy veterans that prove their skills with the genre in this film. Reynold's quick wit and Bullock's physical comedy perfectly complement each other. The supporting cast and unique twist on the awkwardly forced marriage concept elevate this movie a little further, making The Proposal one of the best of its genre.",
+        "Having only seen Ryan Reynolds in his present day comedy machine it is so odd seeing him act less jokey and more serious, even if you can still spot the quintessential Reynolds comedic delivery in there every now and then. It takes a little bit to get over that but eventually a strong performance is clearly visible. Sandra Bullock fits this realm comfortably and is also very good throughout."
+      ],
+      "response": "Yes, the reviewer's opinion of *The Proposal* changed on a second viewing. Initially unimpressed when they saw it in theaters, they found themselves laughing and enjoying the film during the rewatch, expressing that they were trying to remember what they didn't like about it.",
+      "reference": "A reviewer says they weren't impressed the first time they saw The Proposal in theaters, but after rewatching it they couldn't remember what they hadn't liked, ultimately calling it a top-shelf rom-com.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9869661066788958,
+      "context_precision": 0.9999999999666667,
+      "context_recall": 1.0,
+      "custom_id": "case_047",
+      "category": "comparison"
+    },
+    {
+      "user_input": "How does a reviewer compare The Departed to its source material, Infernal Affairs?",
+      "retrieved_contexts": [
+        "I decided to celebrate the Summer Solstice by watching 'The Departed'. Don't ask me why. I had previously loved the Hong Kong-made 'Infernal Affairs' trilogy on which this is based. Usually I hate when international masterpieces get remade, but this was a sterling exception. This was controversial when it took in a cartload of Oscars, particularly finally a directorial nod for Scorsese, but don't",
+        "The Departed is directed by Martin Scorsese and written by William Monahan, Alan Mak and Felix Chong. It stars Jack Nicholson, Matt Damon, Leonardo DiCaprio, Mark Wahlberg, Martin Sheen, Ray Winstone, Vera Farmiga, Anthony Anderson, Mark Rolston and Alec Baldwin. Music is by Howard Shore and cinematography by Michael Ballhaus.",
+        "is leading them to the abyss. When the violence comes it erupts in thunderous strokes, all while the narrative pulses with paranoia. There are some irksome contrivances, but with a uniformly strong set of turns from the cast, great musical accompaniments, and a director returning to gangster form, The Departed is a sure fire winner. 8.5/10",
+        "Martin Scorsese remakes Hong Kong thriller Infernal Affairs (2002) for the English speaking world, and promptly bagged his first Best Director Oscar in the process. It's a thrilling picture packed with suspense and edginess, a psychological gangster picture driven by two men leading double lives that is leading them to the abyss. When the violence comes it erupts in thunderous strokes, all while",
+        "quality to them that, as the story develops, really does immerse you in their tawdry and shady goings-on. I can't say that I loved the ending - somehow it seemed a little bit rushed, but there's certainly vindication there for someone... This is the kind of drama that thrives by knitting the myriad of threads together without having to faff about with timelines, loops, or repetition. It's a story"
+      ],
+      "response": "The reviewer expresses a generally positive view of The Departed as a remake of Infernal Affairs, despite typically disliking remakes of international masterpieces. They describe The Departed as a \"sterling exception\" that successfully translates the thrilling and psychological elements of the original into an English-speaking context. They highlight the film's strong performances, suspense, and direction by Martin Scorsese, suggesting that it retains the essence of the original while delivering its own compelling narrative. However, the reviewer also notes some issues with the ending, which they found a bit rushed, indicating that while it is effective, it may not fully capture the mastery of the original.",
+      "reference": "A reviewer says they usually hate American remakes of international films but considers The Departed a sterling exception, calling it easily one of Scorsese's finest works despite loving the original Infernal Affairs trilogy.",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.9373231432008343,
+      "context_precision": 0.7499999999625,
+      "context_recall": 0.5,
+      "custom_id": "case_048",
+      "category": "comparison"
+    },
+    {
+      "user_input": "What do reviewers say about how The Lego Batman Movie compares to other recent Batman films?",
+      "retrieved_contexts": [
+        "How do I feel about _The Lego Batman Movie_? Pissed off. That's how I feel. Pissed off that to get another great Batman movie, we had to wait 5 years and for bloody LEGO of all properties to get their hands on the damn thing.",
+        "Not only in the fun style of the recent Lego film but the 1965-1068 TV show from Fox and Greenaways with DC with Adam West and Burt Ward, and which was produced and narrated by Bill Dozier with bat gusto, this is the second Lego film and the first real fun Batman film and treatment since that 1960s series (which, by the way, had its OWN 1966 Batman movie!). Susan \"Pewter\" Bennett, btw,also is",
+        "Seriously though _Lego Batman_ is pretty gold. Most of all I would recommend it to Batman fans, because there's a couple of tiny little off-the-cuff references you'll get an extra kick out of, but it'll also work for fans of the original _Lego Movie_, and for kids too.\r\n\r\n_Final rating:\u2605\u2605\u2605\u00bd - I strongly recommend you make the time._",
+        "The voice-over artists were awesome, but first, my praise goes to the screen and dialogue writers. As I said, nothing was great in animation, especially if you had seen the previous LEGO film. All one can see is LEGOS everywhere, the world, the city, the characters made of LEGOS and then even the explosives and other special effects are kind of LEGO brick style visual. But top to bottom a very",
+        "It took a longer time than expected to hit the screen. I'd lost hope in this, because all the sweet memories of the firs LEGO film were fading away from me. So I could not say or think anything about it. That's all changed once I watched it. While watching it, everything was restored like waking up after I was knocked down with a big blow to the head. That reminded how badly I missed it. One of"
+      ],
+      "response": "Reviewers express frustration that it took five years for another enjoyable Batman movie, particularly noting it was surprising for a LEGO property to step in. However, they appreciate that _The Lego Batman Movie_ is the first fun Batman film since the 1960s series. While touching on comparisons, the film is recognized for its unique style and humor, which sets it apart from previous Batman films. It's described as a worthy recommendation for Batman fans and fans of the original _Lego Movie_, showcasing a nostalgic and enjoyable experience. Overall, it stands out as a more lighthearted and entertaining take on the character compared to other recent Batman films.",
+      "reference": "A reviewer says they're frustrated it took five years and the LEGO franchise to get another great Batman movie, but confirms Lego Batman is genuinely great and recommends it especially to Batman fans for its references.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9795409447872823,
+      "context_precision": 0.8333333332916666,
+      "context_recall": 1.0,
+      "custom_id": "case_049",
+      "category": "comparison"
+    },
+    {
+      "user_input": "Do reviewers agree on the quality of Maleficent: Mistress of Evil compared to typical Disney live-action remakes?",
+      "retrieved_contexts": [
+        "\u2018Maleficent: Mistress of Evil\u2019 is not only a surprising follow-up to the original film, but also among 2019\u2019s live-action Disney offerings is the only one that I actually sat through and enjoyed. It made me laugh, and the action is really engaging. Jolie and Pfeiffer are having so much fun that you can't help but join in. Yes, it\u2019s filled with flaws, but it\u2019s nice to leave a Disney film not",
+        "- Chris dos Santos\r\n\r\nRead Chris' full article...\r\nhttps://www.maketheswitch.com.au/article/review-maleficent-mistress-of-evil-disney-still-have-some-magic-left-in-them",
+        "I enjoyed the first film, but <em>'Maleficent: Mistress of Evil'</em> is one I never really got into. The whole premise surrounding Angelina Jolie's character is uninteresting, not helped by a lack of serious rationale for why characters, other than Maleficent, are acting the way they are; namely Michelle Pfeiffer's Queen Ingrith. At best, it's lame motivation.",
+        "In the best tradition of Disney, this film has a rousing score and looks stunning; but just like the recent rehash of \"the Lion King\" is entirely an example of style over substance. Maleficent is meant to be evil - like Venger from \"Dungeons and Dragons\". Instead we get a sugary, goody-goody with all the venom of a water snake. Robert Lindsay, Chiwitel Ejiofor and Harris Dickinson fail to make any",
+        "you can't help but join in. Yes, it\u2019s filled with flaws, but it\u2019s nice to leave a Disney film not wanting to cry in a ball and question if you really ever liked them."
+      ],
+      "response": "Reviewers have differing opinions on the quality of \"Maleficent: Mistress of Evil\" compared to typical Disney live-action remakes. One reviewer found it enjoyable and engaging, appreciating the performances of Jolie and Pfeiffer, while another reviewer criticized the film for its lack of substance and uninteresting premise. Therefore, there is no consensus among the reviewers regarding the film's quality in relation to other Disney live-action remakes.",
+      "reference": "Opinions vary: one reviewer calls it style over substance with a weak storyline that fails to make Maleficent properly evil, while another calls it a surprising, enjoyable follow-up and the only 2019 live-action Disney film they actually sat through and liked, both agreeing Michelle Pfeiffer stands out.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.8055555555287036,
+      "context_recall": 0.6666666666666666,
+      "custom_id": "case_050",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "Do reviewers agree on Glen Powell's performance in Anyone but You?",
+      "retrieved_contexts": [
+        "Sydney Sweeney and Glen Powell portray great chemistry, I enjoyed both performances. Sweeney's stylist killed it I gotta say, heck even Powell's too. Some of their, and others', dialogue is too manufactured  at times, but that be just a minor complaint to be honest. The rest of those onscreen are satisfactory. I must say the director's father, Peter Gluck, gave me one of the film's stronger",
+        "Despite myself, I actually quite enjoyed this. After (what looked like) a platonic one night stand, \"Bea\" (Sydney Sweeney) and \"Ben\" (Glen Powell) manage to part company loathing one another. Serendipity has no intention of allowing this to be the end of things though, and so arranges for her sister to marry one of his best friends. After a few uncomfortable meetings in a bar, they all head off to",
+        "Imperfect, though <em>'Anyone But You'</em> does deliver amusing moments and works nicely as a romcom.",
+        "Nothing to offset Glen Powell\r\n\r\nI was able to enjoy Set It Up, because there were characters there that offset the Glen Powell vibe, but this movie doesn't have that. I really don't know what it is about him that rubs me the wrong way, but even if he acts likeable, I can't stomach it.",
+        "decide to pretend to be a couple to provoke envy from one and protect the other from the intent of the meddling parents. What now ensues does really depend on a plausible degree of chemistry between Sweeney and Powell and I thought they did quite well. A little bit more meddling from Bryan Brown, some Di Caprio-esque action at the front of a yacht and some kindly support from the Sydney harbour"
+      ],
+      "response": "No, reviewers do not agree on Glen Powell's performance in \"Anyone But You.\" While some appreciate the chemistry he has with Sydney Sweeney, one reviewer expresses a strong dislike for his performance, stating they can't stomach his likeable act. This indicates a divided opinion on his role.",
+      "reference": "Reviewers disagree sharply: one praises the chemistry between Sydney Sweeney and Glen Powell as a highlight of the film, while another says there's nothing to offset an off-putting Glen Powell vibe and couldn't get through the film's Australia section.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.249999999975,
+      "context_recall": 1.0,
+      "custom_id": "case_051",
+      "category": "disagreement"
+    },
+    {
+      "user_input": "Do reviewers think Demon Slayer: Mugen Train can win over viewers unfamiliar with the franchise?",
+      "retrieved_contexts": [
+        "Demon Slayer: Mugen Train won\u2019t make you a fan of the franchise if you aren\u2019t already, but it will absolutely strengthen your love for it if you\u2019re already an established fan. It\u2019s also an anime film that covers just about everything; it tries to tear at your heartstrings, it has two awesomely sinister villains, it has significantly kick-ass action sequences, and it further develops a supporting",
+        "villains, it has significantly kick-ass action sequences, and it further develops a supporting character you were only briefly introduced to previously. Mugen Train is outrageously funny and action packed and is an impressive feat of animation even if you aren\u2019t an anime fan.",
+        "Full review: https://geekshavegame.com/demon-slayer-mugen-train-review-drawn-to-a-tasty-flame/",
+        "Waited for so long to see this and at the end it did not disappoint. It's a rich story of the demon slayer and stuck in a world of weirdness and dreams. stuff gets real on the train and ends up being a filler for the series of the beginning for the next series I assume . Good watch for a weekend.",
+        "THIS ANIMATION IS AWESOME!!!!!\r\n\r\nIdiot fan : Yes, but what do you mean aw--?\r\n\r\n**AWESOME!!!**\r\n\r\nIdiot fan : Umm...yes.  I got that.  But--?\r\n\r\nLook at me!!  Look.  At.  My.  Mouth.  **AWESOME!!!**\r\n\r\nIdiot fan : >sigh--\r\n\r\n**AWWWWWWWWWWWWWWWWWWWWESOME!!!!**\r\n\r\nIdiot fan : [stares] ...  Thank you.\r\n\r\nYou're welcome.  ....  Don't forget.  This animation's--"
+      ],
+      "response": "No, reviewers believe that Demon Slayer: Mugen Train won't make viewers unfamiliar with the franchise into fans; it is more likely to strengthen the love of those who are already established fans.",
+      "reference": "A reviewer says the film won't make you a fan of the franchise if you aren't already, but will absolutely strengthen your love for it if you're already an established fan, praising its action sequences and emotional character development.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9600587911283892,
+      "context_precision": 0.9999999999,
+      "context_recall": 0.5,
+      "custom_id": "case_052",
+      "category": "comparison"
+    },
+    {
+      "user_input": "Find a review that criticizes a movie for using real disaster or conflict footage blended into its special effects.",
+      "retrieved_contexts": [
+        "Reports allege that the movie uses clips from real disasters and Middle East conflict zones (bombings, wildfires, military crashes) blended or overlaid with alien\u2011invasion CGI.\r\n\r\nThis is seriously fuc%ed up!\r\nWhat some humans will do to make money from the suffering of others.",
+        "narration is unnecessary. The characters are typical Hollywood stereotypes seen in hundreds of films. As for the special effects, there's nothing to criticize; they are what save the film.",
+        "on heavy practical effects over cheap digital tricks, every injury, splash of blood, and horrific transformation feels uncomfortably real and punishing.",
+        "The overall cinematography , the truly -Sprawling- vistas , and the visual & special effects -{ Both }- in terms of all the thoroughly gripping action-sequences, -{ As Well }- as in terms of the \"phenomenally\" -real' seeming, & quite frankly, \"Terrifying\" looking forest-fire scenes . . . . . Were just, well . . . . . 'Hands-Down-Fantastic'. The major problem for ( -Me- ) was : \" What I've now",
+        "The special effects are great, the scenery and photography is lovely but the film is as a whole a big disappointment. You would have thought that with such a budget they could have hired some guy to make a basic sanity check of the script but obviously that wasn\u2019t in the budget for this one. I do not know if a lot of Hollywood people are idiots or think the audience are idiots or both but for"
+      ],
+      "response": "The review that criticizes the movie for using clips from real disasters and Middle East conflict zones, stating that it is \"seriously fuc%ed up!\" and expressing moral outrage over making money from the suffering of others, fits the criteria.",
+      "reference": "A review of the 2025 War of the Worlds alleges the film uses clips from real disasters and conflict zones blended with alien-invasion CGI, calling it 'seriously messed up' to profit off real suffering.",
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.8991194723982455,
+      "context_precision": 0.9999999999,
+      "context_recall": 1.0,
+      "custom_id": "case_053",
+      "category": "catalog_wide"
+    },
+    {
+      "user_input": "Find a review comparing a modern zombie film favorably to Train to Busan.",
+      "retrieved_contexts": [
+        "All in all, Train to Busan is arguably the best zombie apocalypse movie of all-time, at least, until the date of this review. The subgenre finds in Yeon Sang-ho's mind-blowing flick the masterpiece it deserves. From the exceptionally subtle build-up to the emotionally devastating final act, passing through the most vivid, suspenseful, tense depiction of a zombie outbreak ever put to screen, Park",
+        "**Well worth your time at leasst once.**\r\n\r\nTrain to Busan is an excellent zombie horror film on a train!\\\r\n\\\r\nIt had great development, with character build to invest you in their survival on a zombie infested train. The pacing starts slow but by the time it hits full throttle you won't catch your breath, and you'll be on the edge of their seat.\\\r\n\\",
+        "This is another great example of how Koreans understand zombie movies. Just like with Train to Busan this movie does something interesting with the concept rather than just repeat the tropes we have already seen. There is a great deal of urgency in this movie and the actors and directors pull this off very well. The effects are very high class and the overall presentation is highly proficient. I",
+        "Yeon Sang-ho does it again! After a relatively weak \"Peninsula\" he is establishing himself as the George Romero of this generation with a zombie movie almost as good as his masterpiece \"Train to Busan\". Perhaps lacking a bit on the dialogs and missing a superb acting job like Gong Yoo's or Ma Dong-Seok's , Colony still keeps you on the edge of the seat for two hours of FAST zombie chase sequences.",
+        "reach the always high expectations that come with a story set in a time like this. When people ask, \"what's the best zombie apocalypse film ever?\", one doesn't have a clear answer simply because there isn't an outstanding, mind-blowing, near-perfect flick. Well, at least not until 2016, the year of release of the best movie in the genre, Train to Busan."
+      ],
+      "response": "The review that compares a modern zombie film favorably to \"Train to Busan\" mentions \"Colony.\" It states that Yeon Sang-ho, the director, is establishing himself as the George Romero of this generation and that while \"Colony\" may lack in dialogue and superb acting, it still keeps viewers on the edge of their seat with fast zombie chase sequences, making it almost as good as \"Train to Busan.\"",
+      "reference": "A review of Colony (2026) calls director Yeon Sang-ho 'the George Romero of this generation,' saying the film is almost as good as his earlier masterpiece Train to Busan.",
+      "faithfulness": 0.8571428571428571,
+      "answer_relevancy": 0.9018230627028264,
+      "context_precision": 0.8041666666465626,
+      "context_recall": 1.0,
+      "custom_id": "case_054",
+      "category": "catalog_wide"
+    }
+  ]
+}

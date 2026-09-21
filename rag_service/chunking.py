@@ -21,6 +21,8 @@ pip install: langchain-text-splitters (already in pyproject.toml).
 from dataclasses import dataclass
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+from rag_service.config import settings
+
 
 @dataclass
 class ReviewChunk:
@@ -46,8 +48,8 @@ def chunk_review(review_id: str, title_id: int, content: str) -> list[ReviewChun
        debug view — it's not used for retrieval itself).
     """
     text_splitter = RecursiveCharacterTextSplitter(
-       chunk_size=400,
-       chunk_overlap=100)
+       chunk_size=settings.chunk_size,
+       chunk_overlap=settings.chunk_overlap)
     review_chunks = text_splitter.split_text(content)
 
     return [

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 340" font-family="sans-serif" font-size="12">
+<rect width="660" height="340" fill="white"/>
+<line x1="60" x2="470" y1="290.0" y2="290.0" stroke="#ddd"/>
+<text x="52" y="294.0" text-anchor="end">0.6</text>
+<line x1="60" x2="470" y1="222.5" y2="222.5" stroke="#ddd"/>
+<text x="52" y="226.5" text-anchor="end">0.7</text>
+<line x1="60" x2="470" y1="154.99999999999997" y2="154.99999999999997" stroke="#ddd"/>
+<text x="52" y="158.99999999999997" text-anchor="end">0.8</text>
+<line x1="60" x2="470" y1="87.49999999999997" y2="87.49999999999997" stroke="#ddd"/>
+<text x="52" y="91.49999999999997" text-anchor="end">0.9</text>
+<line x1="60" x2="470" y1="20.0" y2="20.0" stroke="#ddd"/>
+<text x="52" y="24.0" text-anchor="end">1.0</text>
+<text x="60.0" y="318" text-anchor="middle">previous</text>
+<text x="265.0" y="318" text-anchor="middle">baseline-02</text>
+<text x="470.0" y="318" text-anchor="middle">rerank-top8</text>
+<polyline points="60.0,191.3 265.0,139.2 470.0,95.5" fill="none" stroke="#4e79a7" stroke-width="2.5"/>
+<circle cx="60.0" cy="191.3" r="4" fill="#4e79a7"/>
+<circle cx="265.0" cy="139.2" r="4" fill="#4e79a7"/>
+<circle cx="470.0" cy="95.5" r="4" fill="#4e79a7"/>
+<rect x="494" y="30" width="12" height="12" fill="#4e79a7"/>
+<text x="514" y="40">faithfulness 0.89</text>
+<polyline points="60.0,230.4 265.0,121.5 470.0,76.9" fill="none" stroke="#f28e2b" stroke-width="2.5"/>
+<circle cx="60.0" cy="230.4" r="4" fill="#f28e2b"/>
+<circle cx="265.0" cy="121.5" r="4" fill="#f28e2b"/>
+<circle cx="470.0" cy="76.9" r="4" fill="#f28e2b"/>
+<rect x="494" y="52" width="12" height="12" fill="#f28e2b"/>
+<text x="514" y="62">answer_relevancy 0.92</text>
+<polyline points="60.0,187.2 265.0,158.0 470.0,179.6" fill="none" stroke="#59a14f" stroke-width="2.5"/>
+<circle cx="60.0" cy="187.2" r="4" fill="#59a14f"/>
+<circle cx="265.0" cy="158.0" r="4" fill="#59a14f"/>
+<circle cx="470.0" cy="179.6" r="4" fill="#59a14f"/>
+<rect x="494" y="74" width="12" height="12" fill="#59a14f"/>
+<text x="514" y="84">context_precision 0.76</text>
+<polyline points="60.0,239.9 265.0,210.2 470.0,121.2" fill="none" stroke="#e15759" stroke-width="2.5"/>
+<circle cx="60.0" cy="239.9" r="4" fill="#e15759"/>
+<circle cx="265.0" cy="210.2" r="4" fill="#e15759"/>
+<circle cx="470.0" cy="121.2" r="4" fill="#e15759"/>
+<rect x="494" y="96" width="12" height="12" fill="#e15759"/>
+<text x="514" y="106">context_recall 0.85</text>
+</svg>

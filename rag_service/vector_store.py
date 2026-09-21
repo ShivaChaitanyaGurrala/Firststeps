@@ -19,32 +19,19 @@ from rag_service.embeddings import get_embeddings
 import chromadb
 from langchain_chroma import Chroma
 
+_GET_PAGE_SIZE = 1000
+
 
 def get_vector_store():
     """Returns a langchain_chroma.Chroma instance bound to the movie_reviews
-    collection.
-
-
-    TODO(you):
-        import chromadb
-        from langchain_chroma import Chroma
-
-        client = chromadb.HttpClient(host=settings.chroma_host, port=settings.chroma_port)
-        return Chroma(
-            client=client,
-            collection_name=settings.chroma_collection,
-            embedding_function=VoyageEmbeddings(),  # or langchain_voyageai's, see embeddings.py
-        )
-
-    Confirm the Docker container is actually running first
-    (`docker ps` should show tmdb-chroma) — a connection failure here means
-    the container isn't up, not a code bug.
+    collection. A connection failure here means the Chroma container isn't
+    up (`docker ps` should show tmdb-chroma), not a code bug.
     """
     client = chromadb.HttpClient(host=settings.chroma_host, port=settings.chroma_port)
     return Chroma(
         client=client,
         collection_name=settings.chroma_collection,
-        embedding_function=get_embeddings(model="voyage-4-lite"),
+        embedding_function=get_embeddings(),  # uses settings.embedding_model
     )
 
 
@@ -91,14 +78,16 @@ def existing_review_ids(vector_store: Chroma) -> set[str]:
     whole catalog on every run (the "only embed reviews that changed"
     TODO from this module's original design notes).
 
-    Pulls every stored metadata dict in one call — fine at this project's
-    scale (low thousands of chunks); would need paging via get()'s
-    limit/offset if the collection ever grew large enough for that to
-    matter.
+    Pages through the collection with limit/offset: a single get() over the
+    whole collection exceeds SQLite's bound-variable limit inside the Chroma
+    server ("too many SQL variables").
     """
-    result = vector_store.get(include=["metadatas"])
-    return {
-        metadata["review_id"]
-        for metadata in result["metadatas"]
-        if metadata and "review_id" in metadata
-    }
+    review_ids: set[str] = set()
+    offset = 0
+    while True:
+        page = vector_store.get(include=["metadatas"], limit=_GET_PAGE_SIZE, offset=offset)
+        metadatas = page["metadatas"] or []
+        review_ids.update(m["review_id"] for m in metadatas if m and "review_id" in m)
+        if len(metadatas) < _GET_PAGE_SIZE:
+            return review_ids
+        offset += _GET_PAGE_SIZE

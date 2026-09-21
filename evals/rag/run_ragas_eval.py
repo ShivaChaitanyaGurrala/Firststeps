@@ -1,69 +1,44 @@
-"""RAGAS scoring harness for the M4 RAG pipeline — this milestone's
-acceptance bar. Scores: faithfulness, answer_relevancy, context_precision,
-context_recall against eval_set.json's fixed (question, ground_truth) pairs.
+"""RAGAS scoring harness for the M4 RAG pipeline. Scores faithfulness,
+answer_relevancy, context_precision and context_recall against a LangSmith
+Dataset mirroring eval_set.json (run sync_dataset.py first, and again
+whenever eval_set.json changes).
 
-LLM decision (resolved, see .env's OPENAI_API_KEY/OPENAI_MODEL comment):
-OpenAI gpt-4o-mini plays both roles RAGAS's metrics need an LLM for —
-(1) generating an answer from the retrieved context for each question
-(there is no "answer" yet at this point in the pipeline — M4 only built
-retrieval, not generation; that's a deliberately small, non-agentic
-generation step just for this eval, distinct from M5's real LangGraph
-agent), and (2) acting as the judge RAGAS itself uses internally to score
-faithfulness/answer_relevancy. gpt-4o-mini specifically because this eval
-is 55 questions over a small local movie-review corpus, not a production
-judge workload — cheap/fast is the right tradeoff here.
+OpenAI gpt-4o-mini plays two roles: the answer generator (M4 only built
+retrieval, so this is a small non-agentic generation step just for the
+eval) and the RAGAS judge. Cheap/fast is the right tradeoff for 55
+questions over a small local corpus.
 
-Batching decision: role (1), the per-question answer generation, is what
-this script directly controls and pays for one call per eval case — so it
-goes through OpenAI's Batch API (https://platform.openai.com/docs/guides/batch)
-instead of 55 synchronous chat.completions.create() calls. The Batch API
-takes a JSONL file of requests, runs them together, and is billed at ~50%
-of the equivalent synchronous cost in exchange for a completion window (up
-to 24h, though small batches like this one typically finish in minutes) —
-a good trade for a batch eval run that isn't on any interactive path. Role
-(2), RAGAS's internal judge calls inside evaluate(), is NOT batched this
-way — RAGAS drives those itself via its own async concurrency once you hand
-it an LLM wrapper, and doesn't expose a hook to route them through the
-Batch API instead. Only the answer-generation step below is restructured
-for batching; RAGAS's own judge cost is a separate, smaller concern (it's
-scoring already-short answer/context pairs, not generating long text).
+langsmith.evaluate() is the harness: it runs _target once per example with
+bounded concurrency, traces each case as its own experiment run
+(retrieve -> generate -> score in one place), and applies the evaluators
+per example. RAGAS's own bulk evaluate() only produces one flat trace, and
+a hand-rolled per-case loop loses concurrency. The same pattern fits M5's
+LangGraph agent eval.
 
-pip install: ragas==0.4.3, langchain-community<0.4 (pinned together — see
-pyproject.toml's comment for why), openai>=1.0.0, datasets — all already in
-pyproject.toml as of the dependency-check pass.
+Metrics come from ragas.metrics.collections (the modern API, replacing the
+legacy ragas.metrics/single_turn_score path). Each metric takes only the
+fields it scores against (see _METRIC_ARGS); the judge is built with
+llm_factory (instructor-backed structured output) and OpenAIEmbeddings, and
+each metric may use a different LLM if needed. MetricResult carries .reason
+as well as .value, which is surfaced as the LangSmith comment.
 
-Usage (once implemented):
+Usage:
+    python -m evals.rag.sync_dataset   # whenever eval_set.json changes
     python -m evals.rag.run_ragas_eval
 """
 
+import asyncio
+from collections.abc import Callable
+from functools import lru_cache
 import json
-import time
 from pathlib import Path
-from typing import Literal, cast
 
-from datasets import Dataset
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from openai import OpenAI
-from pydantic import SecretStr
-from ragas import evaluate
-from ragas.dataset_schema import EvaluationResult
-from ragas.embeddings import LangchainEmbeddingsWrapper
-from ragas.llms import LangchainLLMWrapper
-from ragas.run_config import RunConfig
-
-# Deliberately the legacy ragas.metrics (deprecated-but-functional in 0.4.3,
-# not ragas.metrics.collections): evaluate() does `isinstance(m, Metric)`
-# against the legacy base class internally, so collections-API metric
-# instances (a different, unrelated base class for the newer .ascore()-based
-# API) fail that check with "All metrics must be initialised metric
-# objects" even though they're valid, constructed instances. Paired with
-# LangchainLLMWrapper/LangchainEmbeddingsWrapper (not llm_factory/
-# embedding_factory's modern objects) for the same reason: the modern
-# embeddings object is missing the legacy embed_query() method these metrics
-# call (AttributeError), and the modern LLM's own retry logic doesn't go
-# through ragas's RunConfig-based backoff, so a single rate-limited call
-# fails outright instead of retrying. Fully-legacy end to end avoids both.
-from ragas.metrics import (
+from langsmith import evaluate, traceable
+from langsmith.wrappers import wrap_openai
+from openai import AsyncOpenAI, OpenAI
+from ragas.embeddings import OpenAIEmbeddings
+from ragas.llms import llm_factory
+from ragas.metrics.collections import (
     AnswerRelevancy,
     ContextPrecision,
     ContextRecall,
@@ -71,38 +46,20 @@ from ragas.metrics import (
 )
 
 import rag_service.retriever
+from rag_service.config import retrieval_config_snapshot
 
 from evals.rag.config import settings
 
-# Columns that come from our own dataset construction, not from a RAGAS
-# metric score — whatever's left in result.to_pandas() after excluding
-# these (plus custom_id/category, added after the fact) is a metric score
-# column. Covers both v0.3-style ("question"/"answer"/...) and v0.4-style
-# ("user_input"/"response"/...) column naming, since which one to_pandas()
-# emits isn't pinned down across ragas patch versions.
-_INPUT_COLUMNS = {
-    "question",
-    "answer",
-    "contexts",
-    "ground_truth",
-    "user_input",
-    "response",
-    "retrieved_contexts",
-    "reference",
-}
-
-_EVAL_SET_PATH = Path(__file__).parent / "eval_set.json"
-_BATCH_INPUT_PATH = Path(__file__).parent / "batch_input.jsonl"
 _RESULTS_PATH = Path(__file__).parent / "results.json"
-_BATCH_ENDPOINT: Literal["/v1/chat/completions"] = "/v1/chat/completions"
-_BATCH_COMPLETION_WINDOW: Literal["24h"] = (
-    "24h"  # OpenAI's minimum/only supported window as of this writing.
-)
 
-
-def _load_eval_set() -> list[dict]:
-    data = json.loads(_EVAL_SET_PATH.read_text())
-    return data["cases"]
+# Cohere's trial key allows 10 calls/min; concurrent cases can burst past it,
+# which rerank() absorbs by retrying 429s with backoff. Keep this low so
+# retries stay rare.
+_MAX_CONCURRENCY = 2
+_EXPERIMENT_PREFIX = "rerank-top8"
+_REQUEST_TIMEOUT_SECONDS = 60  # the openai default is 600s, long enough to hang a whole run
+_METRIC_TIMEOUT_SECONDS = 240  # hard cap: a hang becomes an error, not a stalled run
+_METRIC_KEYS = ("faithfulness", "answer_relevancy", "context_precision", "context_recall")
 
 
 def _retrieve(question: str, title_id: int | None) -> list[str]:
@@ -112,186 +69,203 @@ def _retrieve(question: str, title_id: int | None) -> list[str]:
     return [result["chunk_text"] for result in results]
 
 
-def _build_batch_requests(cases_with_contexts: list[dict]) -> list[dict]:
-    """Turn each case into one Batch API request line."""
-    results = []
-    for i, case in enumerate(cases_with_contexts):
-        question = case["question"]
-        contexts = case["contexts"]
-        custom_id = case.get("custom_id", f"case_{i:03d}")
+@lru_cache(maxsize=1)
+def _generation_client() -> OpenAI:
+    """wrap_openai makes each generation call a child llm span (with token
+    usage) under eval_case."""
+    return wrap_openai(
+        OpenAI(api_key=settings.openai_api_key, timeout=_REQUEST_TIMEOUT_SECONDS),
+        chat_name="generate_answer",
+    )
 
-        request_dict = {
-            "custom_id": custom_id,
-            "method": "POST",
-            "url": _BATCH_ENDPOINT,
-            "body": {
-                "model": settings.openai_model,  # gpt-4o-mini, from .env
-                "messages": [
-                    {
-                        "role": "system",
-                        "content": "Answer using only the given context.",
-                    },
-                    {
-                        "role": "user",
-                        "content": "\n".join(contexts) + "\nQuestion: " + question,
-                    },
-                ],
+
+@traceable(name="build_answer_prompt", run_type="prompt")
+def _build_request_body(question: str, contexts: list[str]) -> dict:
+    """The chat.completions.create() kwargs for one question, used by
+    _target below."""
+    return {
+        "model": settings.openai_model,  # gpt-4o-mini, from .env
+        "temperature": 0,  # keeps answers stable across tuning runs
+        "messages": [
+            {
+                "role": "system",
+                "content": "Answer using only the given context.",
             },
+            {
+                "role": "user",
+                "content": "\n".join(contexts) + "\nQuestion: " + question,
+            },
+        ],
+    }
+
+
+# rag_search and its children nest under this span via the call stack.
+@traceable(name="eval_case", run_type="chain")
+def _target(inputs: dict) -> dict:
+    """langsmith.evaluate()'s target function — signature must
+    be exactly (inputs: dict) -> dict, where `inputs` is one Dataset
+    example's stored inputs (see sync_dataset.py: {"question": ...,
+    "title_id": ...}).
+    """
+    contexts = _retrieve(inputs["question"], inputs.get("title_id"))
+    response = _generation_client().chat.completions.create(
+        **_build_request_body(inputs["question"], contexts)
+    )
+    answer = response.choices[0].message.content
+    return {"contexts": contexts, "answer": answer}
+
+
+_METRIC_ARGS: dict[str, Callable[[dict, dict, dict], dict]] = {
+    "faithfulness": lambda inputs, outputs, _: {
+        "user_input": inputs["question"],
+        "response": outputs["answer"],
+        "retrieved_contexts": outputs["contexts"],
+    },
+    "answer_relevancy": lambda inputs, outputs, _: {
+        "user_input": inputs["question"],
+        "response": outputs["answer"],
+    },
+    "context_precision": lambda inputs, outputs, reference_outputs: {
+        "user_input": inputs["question"],
+        "reference": reference_outputs["ground_truth"],
+        "retrieved_contexts": outputs["contexts"],
+    },
+    "context_recall": lambda inputs, outputs, reference_outputs: {
+        "user_input": inputs["question"],
+        "retrieved_contexts": outputs["contexts"],
+        "reference": reference_outputs["ground_truth"],
+    },
+}
+
+
+def _make_ragas_evaluator(key: str):
+    """Wrap one RAGAS metric as a LangSmith evaluator. Each call builds a fresh
+    metric and OpenAI client: score() runs on a new event loop every time, and
+    an async client's connection pool can't be shared across loops (reuse hung
+    runs). wait_for is a hard cap so a stuck call fails instead of stalling."""
+    build_args = _METRIC_ARGS[key]
+
+    def _evaluator(inputs: dict, outputs: dict, reference_outputs: dict) -> dict:
+        if "answer" not in outputs:
+            return {"key": key, "score": None, "comment": "target failed, not scored"}
+        metric = _build_metric(key)
+        kwargs = build_args(inputs, outputs, reference_outputs)
+        result = asyncio.run(
+            asyncio.wait_for(metric.ascore(**kwargs), timeout=_METRIC_TIMEOUT_SECONDS)
+        )
+        return {"key": key, "score": result.value, "comment": result.reason}
+
+    _evaluator.__name__ = f"ragas_{key}"
+    return _evaluator
+
+
+def _trace_judge(llm, metric_key: str):
+    """Give one metric its own judge LLM whose every structured-output step is
+    a named span (e.g. faithfulness.StatementGeneratorOutput, chain) wrapping
+    the ragas_judge llm span, so steps are filterable per metric."""
+    original = llm.agenerate
+
+    async def agenerate(prompt, response_model):
+        step = traceable(
+            name=f"{metric_key}.{response_model.__name__}",
+            run_type="chain",
+            process_inputs=lambda _: {
+                "prompt": prompt,
+                "response_model": response_model.__name__,
+            },
+        )(original)
+        return await step(prompt, response_model)
+
+    llm.agenerate = agenerate
+    return llm
+
+
+def _trace_embeddings(embeddings):
+    """Embedding calls as run_type="embedding" spans (wrap_openai only covers
+    chat completions)."""
+    for method in ("aembed_text", "aembed_texts"):
+        setattr(
+            embeddings,
+            method,
+            traceable(name=f"embedding.{method}", run_type="embedding")(
+                getattr(embeddings, method)
+            ),
+        )
+    return embeddings
+
+
+def _summarize(results, metric_keys: list[str]) -> tuple[list[dict], dict]:
+    """Flatten an evaluate() result into results.json rows plus per-metric means."""
+    rows = []
+    for item in results:
+        example = item["example"]
+        outputs = item["run"].outputs or {}
+        row = {
+            "user_input": (example.inputs or {}).get("question"),
+            "retrieved_contexts": outputs.get("contexts"),
+            "response": outputs.get("answer"),
+            "reference": (example.outputs or {}).get("ground_truth"),
+            "custom_id": (example.metadata or {}).get("custom_id"),
+            "category": (example.metadata or {}).get("category"),
         }
-        results.append(request_dict)
-    return results
+        for feedback in item["evaluation_results"].get("results", []):
+            row[feedback.key] = feedback.score
+        rows.append(row)
+
+    aggregate = {}
+    for key in metric_keys:
+        scores = [row[key] for row in rows if row.get(key) is not None]
+        if scores:
+            aggregate[key] = sum(scores) / len(scores)
+    return rows, aggregate
 
 
-def _submit_batch(requests: list[dict]) -> str:
-    """Upload the batch request file and start the batch job. Returns the
-    batch id to poll.
-
-    TODO(you):
-    1. Write `requests` to _BATCH_INPUT_PATH as JSONL (one json.dumps(...)
-       request per line) — this is the file format the Batch API expects.
-    2. `client = OpenAI(api_key=settings.openai_api_key)`
-    3. `batch_file = client.files.create(file=open(_BATCH_INPUT_PATH, "rb"), purpose="batch")`
-    4. `batch = client.batches.create(input_file_id=batch_file.id, endpoint=_BATCH_ENDPOINT, completion_window=_BATCH_COMPLETION_WINDOW)`
-    5. Return `batch.id`.
-    """
-    with open(_BATCH_INPUT_PATH, "w") as f:
-        for request in requests:
-            f.write(json.dumps(request) + "\n")
-    client = OpenAI(api_key=settings.openai_api_key)
-    batch_file = client.files.create(
-        file=open(_BATCH_INPUT_PATH, "rb"), purpose="batch"
+def _build_metric(key: str):
+    """One metric with its own traced judge LLM on a fresh async client."""
+    judge_client = wrap_openai(
+        AsyncOpenAI(api_key=settings.openai_api_key, timeout=_REQUEST_TIMEOUT_SECONDS),
+        chat_name="ragas_judge",
     )
-    batch = client.batches.create(
-        input_file_id=batch_file.id,
-        endpoint=_BATCH_ENDPOINT,
-        completion_window=_BATCH_COMPLETION_WINDOW,
-    )
-    return batch.id
-
-
-_TERMINAL_BATCH_STATUSES = {"completed", "failed", "expired", "cancelled"}
-_BATCH_POLL_SECONDS = 600  # 10 min — batches have a 24h SLA, no need to poll faster
-
-
-def _wait_for_batch(batch_id: str) -> str:
-    """Poll the batch job until it reaches a terminal status. Returns the
-    output_file_id to download results from.
-    """
-    client = OpenAI(api_key=settings.openai_api_key)
-    while True:
-        batch = client.batches.retrieve(batch_id)
-        counts = batch.request_counts
-        completed = counts.completed if counts else 0
-        total = counts.total if counts else 0
-        print(f"Batch {batch_id}: {batch.status} ({completed}/{total} completed)")
-
-        if batch.status == "completed":
-            if not batch.output_file_id:
-                raise RuntimeError(
-                    f"Batch {batch_id} completed but has no output_file_id "
-                    f"(errors: {batch.errors})"
-                )
-            return batch.output_file_id
-
-        if batch.status in _TERMINAL_BATCH_STATUSES:
-            raise RuntimeError(
-                f"Batch {batch_id} ended with status {batch.status!r}: {batch.errors}"
-            )
-
-        time.sleep(_BATCH_POLL_SECONDS)
-
-
-def _collect_batch_results(output_file_id: str) -> dict[str, str]:
-    """Download the batch's output file and return {custom_id: answer_text}."""
-    client = OpenAI(api_key=settings.openai_api_key)
-    content = client.files.content(output_file_id)
-
-    answers_by_id: dict[str, str] = {}
-    for line in content.text.splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        record = json.loads(line)
-        custom_id = record["custom_id"]
-        if record.get("error"):
-            raise RuntimeError(f"Batch request {custom_id} failed: {record['error']}")
-        body = record["response"]["body"]
-        answers_by_id[custom_id] = body["choices"][0]["message"]["content"]
-    return answers_by_id
+    llm = _trace_judge(llm_factory(settings.openai_model, client=judge_client), key)
+    if key == "faithfulness":
+        return Faithfulness(llm=llm)
+    if key == "answer_relevancy":
+        embeddings = _trace_embeddings(
+            OpenAIEmbeddings(client=judge_client, model="text-embedding-ada-002")
+        )
+        return AnswerRelevancy(llm=llm, embeddings=embeddings)
+    if key == "context_precision":
+        return ContextPrecision(llm=llm)
+    if key == "context_recall":
+        return ContextRecall(llm=llm)
+    raise ValueError(f"unknown metric key: {key}")
 
 
 def run() -> None:
-    """Retrieve contexts per case, batch-generate answers via OpenAI, score
-    everything with RAGAS, and write results to _RESULTS_PATH (not stdout —
-    the UI reads this file for visualization rather than parsing a print).
+    """Evaluate every example in settings.eval_dataset_name and write
+    results.json as {"aggregate", "rows"} (the shape compare_runs.py reads).
     """
-    cases = _load_eval_set()
-
-    cases_with_contexts: list[dict] = []
-    for i, case in enumerate(cases):
-        contexts = _retrieve(case["question"], case.get("title_id"))
-        cases_with_contexts.append({**case, "contexts": contexts})
-        if i < len(cases) - 1:
-            # Cohere rerank (hit inside _retrieve, via rag_service.retriever)
-            # is capped at 10 req/min on a trial key — see config.py's
-            # cohere_wait_seconds docstring.
-            time.sleep(settings.cohere_wait_seconds)
-
-    requests = _build_batch_requests(cases_with_contexts)
-    batch_id = _submit_batch(requests)
-    output_file_id = _wait_for_batch(batch_id)
-    answers_by_id = _collect_batch_results(output_file_id)
-
-    dataset_rows = [
-        {
-            "question": case["question"],
-            "contexts": case["contexts"],
-            "answer": answers_by_id[request["custom_id"]],
-            "ground_truth": case["ground_truth"],
-        }
-        for case, request in zip(cases_with_contexts, requests)
-    ]
-    dataset = Dataset.from_list(dataset_rows)
-
-    api_key = SecretStr(settings.openai_api_key)
-    judge_llm = LangchainLLMWrapper(ChatOpenAI(model=settings.openai_model, api_key=api_key))
-    judge_embeddings = LangchainEmbeddingsWrapper(
-        OpenAIEmbeddings(model="text-embedding-ada-002", api_key=api_key)
-    )
-    metrics = [
-        Faithfulness(llm=judge_llm),
-        AnswerRelevancy(llm=judge_llm, embeddings=judge_embeddings),
-        ContextPrecision(llm=judge_llm),
-        ContextRecall(llm=judge_llm),
-    ]
-    # 55 rows x 4 metrics = 220 judge calls at RunConfig's default
-    # max_workers=16 blew through our gpt-4o-mini tier's 200k TPM budget and
-    # caused mass 429s — capping concurrency keeps us under it; ragas's own
-    # tenacity-based retry/backoff (via this fully-legacy LLM/embeddings
-    # pairing) handles the rest.
-    # evaluate()'s declared return type is EvaluationResult | Executor (the
-    # latter only when return_executor=True, which we never pass) — cast to
-    # the type it actually is here so .to_pandas() below type-checks.
-    result = cast(
-        EvaluationResult,
-        evaluate(dataset=dataset, metrics=metrics, run_config=RunConfig(max_workers=4)),
+    evaluators = [_make_ragas_evaluator(key) for key in _METRIC_KEYS]
+    results = evaluate(
+        _target,
+        data=settings.eval_dataset_name,
+        evaluators=evaluators,
+        max_concurrency=_MAX_CONCURRENCY,
+        experiment_prefix=_EXPERIMENT_PREFIX,
+        metadata={**retrieval_config_snapshot(), "judge_model": settings.openai_model},
     )
 
-    df = result.to_pandas()
-    df["custom_id"] = [request["custom_id"] for request in requests]
-    df["category"] = [case["category"] for case in cases_with_contexts]
+    rows, aggregate = _summarize(results, list(_METRIC_KEYS))
 
-    metric_columns = [
-        column
-        for column in df.columns
-        if column not in _INPUT_COLUMNS and column not in ("custom_id", "category")
-    ]
-    output = {
-        "aggregate": df[metric_columns].mean(numeric_only=True).to_dict(),
-        "rows": df.to_dict(orient="records"),
-    }
-    _RESULTS_PATH.write_text(json.dumps(output, indent=2, default=str))
-    print(f"Wrote RAGAS results ({len(dataset_rows)} rows) to {_RESULTS_PATH}")
+    failed = [r["custom_id"] for r in rows if any(r.get(k) is None for k in _METRIC_KEYS)]
+    if failed:
+        print(f"WARNING: {len(failed)} cases missing a metric score: {failed}")
+
+    output = {"aggregate": aggregate, "rows": rows}
+    _RESULTS_PATH.write_text(json.dumps(output, indent=2, default=str), encoding="utf-8")
+    print(f"Wrote {len(rows)} rows to {_RESULTS_PATH}")
+    for key, value in aggregate.items():
+        print(f"  {key:<20} {value:.3f}")
 
 
 def main() -> None:

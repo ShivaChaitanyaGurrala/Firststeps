@@ -37,24 +37,26 @@
     {
       "question": "Do any reviewers defend Transformers: The Last Knight, or is the consensus entirely negative?",
       "title_id": 335988,
-      "ground_truth": "All three reviewers are negative, but to varying degrees - one calls it 'soulless garbage' with jokes that fall flat, another says it's at least as bad as the franchise's worst entry and arguably worse, while a third gives it a mild pass as 'minutely better' than Dark of the Moon while still calling it disappointing.",
-      "category": "agreement",
+      "ground_truth": "Opinion splits: three reviewers are negative to varying degrees - one calls it 'soulless garbage' with jokes that fall flat, another says it's at least as bad as the franchise's worst entry and arguably worse, and a third gives it a mild pass as 'minutely better' than Dark of the Moon while still calling it disappointing - but other reviewers do defend it, with one enjoying the special effects, robots, and the Pendragon-myth tie-in, and another pushing back on 'detractors' by praising the more mature-seeming leads.",
+      "category": "disagreement",
       "source_review_ids": [
         "6790fef5fb609d926828bb5c",
         "5a92b386c3a368250201d898",
         "59c0e2fec3a368044a00f6aa"
-      ]
+      ],
+      "_ground_truth_note": "Broadened 2026-09-10 after RAGAS review found the corpus has genuine defenders of this film not covered by the original 3 source_review_ids (which only captured the negative reviews) - the question asks 'do any reviewers defend it' and the honest answer was 'yes', which the original ground_truth didn't reflect. IDs for the two added defender reviews still need backfilling into source_review_ids once the corpus is queryable."
     },
     {
       "question": "What common thread do multiple reviewers highlight as Ready Player One's biggest strength?",
       "title_id": 333339,
-      "ground_truth": "Multiple reviewers highlight nostalgia and pop-culture references as the film's biggest strength - one calls it 'honest Nostalgia Candy' distinct from forced Hollywood reboots, and another says the biggest treat is counting pop culture references alongside the killer 80s soundtrack.",
+      "ground_truth": "Multiple reviewers highlight nostalgia and pop-culture references as the film's biggest strength - one calls it 'honest Nostalgia Candy' distinct from forced Hollywood reboots, and another says the biggest treat is counting pop culture references alongside the killer 80s soundtrack. A few reviewers instead point to the film's visual spectacle as its standout quality, recommending it be seen on the biggest screen possible, especially during the race sequence.",
       "category": "agreement",
       "source_review_ids": [
         "5bf85fc00e0a2626740fe0ed",
         "63bf8875df857c00bc20dd4a",
         "66d73fef4a4ad40e369dad60"
-      ]
+      ],
+      "_ground_truth_note": "Broadened 2026-09-10: the corpus has other reviews citing visual spectacle rather than nostalgia as the strongest element, which the original ground_truth's exclusive nostalgia framing didn't allow for. ID for the added visual-spectacle review still needs backfilling."
     },
     {
       "question": "What do reviewers say about Ryan Reynolds' casting in IF?",
@@ -89,12 +91,13 @@
     {
       "question": "What common criticism do multiple reviewers share about Joker: Folie à Deux's pacing and payoff?",
       "title_id": 889737,
-      "ground_truth": "Multiple reviewers say the expected explosion of chaos and violence never comes - one says the underlying tension never erupts, leaving a comparatively subdued courtroom drama, and another says the execution is too lengthy with too many singing scenes and not enough action.",
-      "category": "agreement",
+      "ground_truth": "Multiple reviewers say the expected explosion of chaos and violence never comes - one says the underlying tension never erupts, leaving a comparatively subdued courtroom drama, and another says the execution is too lengthy with too many singing scenes and not enough action. A third reviewer pushes back on the harsh consensus, saying the film isn't as resoundingly awful as many reviewers made it out to be, citing its artistic and aesthetic merit even while agreeing the middle stretch feels more like filler than substance.",
+      "category": "disagreement",
       "source_review_ids": [
         "67de7cea5f977836ab7aa631",
         "69d46c4a17a9feb6d56adfec"
-      ]
+      ],
+      "_ground_truth_note": "Broadened 2026-09-10: the corpus has a reviewer who pushes back on the negative pacing consensus, which the original 'multiple reviewers agree' framing didn't leave room for. Category changed agreement -> disagreement to match. ID for the added review still needs backfilling."
     },
     {
       "question": "What connection does a reviewer draw between Tangled and Frozen?",
@@ -116,13 +119,14 @@
       ]
     },
     {
-      "question": "What other films does a reviewer compare The Martian to?",
+      "question": "What other films do reviewers compare The Martian to?",
       "title_id": 286217,
-      "ground_truth": "A reviewer compares The Martian to Armageddon, Mission to Mars, Gravity, and 2001: A Space Odyssey, and even the first acts of the Planet of the Apes films, though without their fantastical elements.",
+      "ground_truth": "Reviewers draw multiple comparisons: one lists Armageddon, Mission to Mars, Gravity, and 2001: A Space Odyssey, and even the first acts of the Planet of the Apes films, though without their fantastical elements, while another situates it within director Ridley Scott's own filmography, comparing it to his earlier Alien, Blade Runner, and Prometheus.",
       "category": "comparison",
       "source_review_ids": [
         "5cd1cf339251417df726b940"
-      ]
+      ],
+      "_ground_truth_note": "Broadened 2026-09-10 and question pluralized (reviewer -> reviewers): the corpus has a second, equally valid review comparing The Martian to Scott's own filmography rather than to other space films, which the original single-reviewer framing didn't allow for. ID for the added Ridley-Scott-filmography review still needs backfilling."
     },
     {
       "question": "Do reviewers think The Mummy Returns' special effects hold up as well as the original film's?",
@@ -217,12 +221,13 @@
     {
       "question": "What musical contribution do reviewers praise in Disney's Tarzan (1999)?",
       "title_id": 37135,
-      "ground_truth": "Both reviewers praise Phil Collins' music, with one specifically highlighting the song 'Son of Man' as working very well with a training montage and adding a lot to the film.",
+      "ground_truth": "Both reviewers praise Phil Collins' music - one specifically highlights the song 'Son of Man' as working very well with a training montage and adding a lot to the film, while another praises the emphatic power of Collins' voice throughout, though finds the repeated reprises of 'Two Worlds' minimize lyrical diversity by the end.",
       "category": "agreement",
       "source_review_ids": [
         "5f03cd705545ca0038d833b9",
         "64ec73611feac100c46fed0e"
-      ]
+      ],
+      "_ground_truth_note": "Broadened 2026-09-10: original ground_truth locked to one specific song ('Son of Man'); the corpus has a second reviewer praising the same composer's music via a different song ('Two Worlds'), which is an equally valid answer to 'what musical contribution do reviewers praise'."
     },
     {
       "question": "Do reviewers think San Andreas measures up to classic disaster films like The Poseidon Adventure?",
@@ -284,13 +289,14 @@
     {
       "question": "Why are reviewers' reactions to the 2025 War of the Worlds so different from each other?",
       "title_id": 755898,
-      "ground_truth": "Reactions vary widely: one reviewer finds the film charming despite calling it ridiculous and stupid, another is outraged by reports that it blended real disaster footage with alien-invasion CGI, and a third calls it a simple but watchable sci-fi experience let down only by passable special effects.",
+      "ground_truth": "Reactions vary widely: one reviewer finds the film charming despite calling it ridiculous and stupid, another is outraged by reports that it blended real disaster footage with alien-invasion CGI, a third calls it a simple but watchable sci-fi experience let down only by passable special effects, and a fourth appreciates the novel choice of framing the invasion through a surveillance agent's control room, raising no complaints about the acting.",
       "category": "disagreement",
       "source_review_ids": [
         "68a6310b410b9983f0d5504b",
         "68f1cc6d91c2020a290e476b",
         "688b04a2e6ed8e883ab5b289"
-      ]
+      ],
+      "_ground_truth_note": "Broadened 2026-09-10: the corpus has a 4th distinct reaction (novel surveillance-agent framing) which the question's open-ended 'why are reactions so different' invites but the original 3-reviewer ground_truth excluded. ID for the added review still needs backfilling."
     },
     {
       "question": "Do all reviewers rate Coco among Pixar's best, or are opinions mixed?",

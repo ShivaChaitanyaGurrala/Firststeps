@@ -15,6 +15,8 @@ Run it (once main.py exists):
     uvicorn rag_service.main:app --port 8020
 """
 
+import os
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -40,5 +42,75 @@ class Settings(BaseSettings):
     chroma_port: int = 8001
     chroma_collection: str = "movie_reviews"
 
+    # --- Tunable retrieval knobs -------------------------------------
+    # Centralized here (instead of hardcoded literals scattered across
+    # chunking.py/embeddings.py/reranker.py/retriever.py) so RAG tuning is
+    # "change a value in .env, re-run ingest.py/run_ragas_eval.py, compare
+    # results.json" rather than a code edit per experiment. Current values
+    # are what M4 originally launched with; diagnose_retrieval.py's verdicts
+    # (embedding_miss / reranker_demoted / chunk-boundary splits) are what
+    # should drive which of these you actually change.
+    chunk_size: int = 400  # chunking.py's RecursiveCharacterTextSplitter chunk_size
+    chunk_overlap: int = 100  # ...chunk_overlap
+    embedding_model: str = "voyage-4-lite"  # embeddings.py's get_embeddings() default
+    rerank_model: str = "rerank-v3.5"  # reranker.py's Cohere model
+    fetch_k: int = 20  # retriever.py's pre-rerank candidate count from Chroma
+    rerank_top_n: int = 5  # retriever.py's post-rerank result count
+
+    # --- LangSmith (observability) ------------------------------------
+    # LangSmith's own SDK reads LANGSMITH_TRACING/LANGSMITH_API_KEY/
+    # LANGSMITH_PROJECT directly from the process environment (not from
+    # this Settings object) — that's how `@traceable`-decorated functions
+    # know where to send traces with zero plumbing. langsmith_tracing below
+    # is this project's own on/off switch, surfaced here (like every other
+    # rag_service setting) instead of being an invisible ambient env var;
+    # wiring it to actually set LANGSMITH_TRACING at process startup is a
+    # TODO — see main.py.
+    langsmith_tracing: bool = False
+    langsmith_api_key: str = ""
+    langsmith_project: str = "tmdb-rag"
+
 
 settings = Settings()
+
+# LangSmith's SDK reads LANGSMITH_TRACING/LANGSMITH_API_KEY/LANGSMITH_PROJECT
+# directly from os.environ, not from this Settings object — but
+# pydantic-settings' env_file loading only populates Settings' own fields,
+# it does NOT write .env's values into the actual process environment. This
+# translation has to happen somewhere BEFORE any @traceable-decorated
+# function first runs. It used to live in main.py, which only covers the
+# uvicorn/FastAPI entry point — every other entry point (run_ragas_eval.py,
+# ingest.py, diagnose_retrieval.py, anything importing rag_service.retriever
+# or .reranker directly) never imports main.py, so tracing silently stayed
+# off for all of them despite langsmith_tracing=True in .env. config.py is
+# the one module every entry point imports, directly or transitively (via
+# retriever.py/reranker.py), so it's the only place this is guaranteed to
+# run first regardless of which script is the entry point.
+if settings.langsmith_tracing:
+    os.environ.setdefault("LANGSMITH_TRACING", "true")
+    os.environ.setdefault("LANGSMITH_API_KEY", settings.langsmith_api_key)
+    os.environ.setdefault("LANGSMITH_PROJECT", settings.langsmith_project)
+
+
+def retrieval_config_snapshot() -> dict[str, int | str]:
+    """The tunable-knob values active in THIS process, for stamping onto
+    LangSmith traces as metadata (see retriever.py/reranker.py's @traceable
+    calls). Defined here rather than in retriever.py so both it and
+    reranker.py can import the same snapshot without a circular import
+    (reranker.py is imported BY retriever.py).
+
+    Read once, at import time — correct because every tuning experiment is
+    a fresh process (change .env, re-run the eval), so "current process's
+    settings" already means "the config this run actually used." A trace
+    made under one config stays correctly labeled even after you edit .env
+    and start the next experiment, since that's a different process with
+    its own snapshot.
+    """
+    return {
+        "chunk_size": settings.chunk_size,
+        "chunk_overlap": settings.chunk_overlap,
+        "embedding_model": settings.embedding_model,
+        "fetch_k": settings.fetch_k,
+        "rerank_top_n": settings.rerank_top_n,
+        "rerank_model": settings.rerank_model,
+    }

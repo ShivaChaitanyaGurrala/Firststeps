@@ -34,7 +34,7 @@ from langchain_voyageai import VoyageAIEmbeddings
 from rag_service.config import settings
 
 
-def get_embeddings(model: str = "voyage-4-lite") -> VoyageAIEmbeddings:
+def get_embeddings(model: str = settings.embedding_model) -> VoyageAIEmbeddings:
     if not settings.voyage_api_key:
         raise RuntimeError(
             "VOYAGE_API_KEY is not set — add it to .env before using "

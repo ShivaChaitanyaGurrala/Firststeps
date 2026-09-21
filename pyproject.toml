@@ -50,6 +50,15 @@ dependencies = [
     # declared explicitly since we import it ourselves, not just through
     # ragas's internals.
     "langchain-openai",
+    # Observability layer for rag_service (and, later, M5's LangGraph
+    # agent) — LangSmith over Phoenix/Langfuse/TruLens specifically because
+    # embeddings.py (langchain-voyageai) and vector_store.py
+    # (langchain-chroma) already speak LangChain's interfaces, so LangSmith
+    # is the tightest-integration option available rather than a bolt-on;
+    # it's also the natural pairing for M5 (LangGraph is built by the same
+    # org and traces agent graphs with zero extra config once this env is
+    # set up). See rag_service/config.py's langsmith_* settings.
+    "langsmith",
 ]
 
 [dependency-groups]

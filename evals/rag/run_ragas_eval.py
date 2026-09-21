@@ -56,9 +56,27 @@ _RESULTS_PATH = Path(__file__).parent / "results.json"
 # which rerank() absorbs by retrying 429s with backoff. Keep this low so
 # retries stay rare.
 _MAX_CONCURRENCY = 2
-_EXPERIMENT_PREFIX = "rerank-top8"
+_EXPERIMENT_PREFIX = "chunk700-top8"
 _REQUEST_TIMEOUT_SECONDS = 60  # the openai default is 600s, long enough to hang a whole run
 _METRIC_TIMEOUT_SECONDS = 240  # hard cap: a hang becomes an error, not a stalled run
+
+# Answer-generation system prompts. Versioned so a prompt experiment stays
+# attributable: change _PROMPT_VERSION (or add a version), rename the
+# experiment, re-run. v2 (verdict-first, "mixed"/"not covered" wording) scored
+# WORSE than v1 on answer_relevancy and faithfulness, so v1 stays the default.
+_SYSTEM_PROMPTS = {
+    "v1": "Answer using only the given context.",
+    "v2": (
+        "You answer questions about movies using only the review excerpts provided. "
+        "Begin with a one-sentence direct answer to the question; for questions about "
+        "whether reviewers agree, say plainly whether they agree, disagree, or are mixed. "
+        "Then support it with what specific reviewers said, and state any disagreement "
+        "explicitly. Never add facts the excerpts do not contain. If the excerpts cover "
+        "only part of the question, give the best-supported answer and say which part is "
+        "not covered instead of refusing."
+    ),
+}
+_PROMPT_VERSION = "v1"
 _METRIC_KEYS = ("faithfulness", "answer_relevancy", "context_precision", "context_recall")
 
 
@@ -89,7 +107,7 @@ def _build_request_body(question: str, contexts: list[str]) -> dict:
         "messages": [
             {
                 "role": "system",
-                "content": "Answer using only the given context.",
+                "content": _SYSTEM_PROMPTS[_PROMPT_VERSION],
             },
             {
                 "role": "user",
@@ -252,7 +270,11 @@ def run() -> None:
         evaluators=evaluators,
         max_concurrency=_MAX_CONCURRENCY,
         experiment_prefix=_EXPERIMENT_PREFIX,
-        metadata={**retrieval_config_snapshot(), "judge_model": settings.openai_model},
+        metadata={
+            **retrieval_config_snapshot(),
+            "judge_model": settings.openai_model,
+            "prompt_version": _PROMPT_VERSION,
+        },
     )
 
     rows, aggregate = _summarize(results, list(_METRIC_KEYS))

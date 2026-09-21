@@ -17,9 +17,9 @@ class _FakeStore:
     docs: list
     calls: list = field(default_factory=list)
 
-    def similarity_search(self, query, k, filter=None):
+    def similarity_search_with_score(self, query, k, filter=None):
         self.calls.append({"query": query, "k": k, "filter": filter})
-        return self.docs
+        return [(doc, 0.1) for doc in self.docs]
 
 
 def _doc(review_id, title_id, title, author, rating, text):

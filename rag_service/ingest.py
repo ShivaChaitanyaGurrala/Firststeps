@@ -33,6 +33,7 @@ from rag_service.http_client import DataServiceClient
 from rag_service.vector_store import existing_review_ids, get_vector_store, upsert_chunks
 
 _PAGE_SIZE = 100
+_BATCH_REVIEWS = 25  # ~90 chunks per Voyage call, well under its per-request limits
 
 # Mirrors tmdb_client.py's connect-retry shape (bounded retries, short fixed
 # delay) applied per-review instead of per-HTTP-call: a live run showed an
@@ -67,17 +68,12 @@ def _all_reviews(client: DataServiceClient) -> Iterator[dict]:
         yield from reviews
 
 
-def _ingest_one(vector_store, review: dict) -> int:
+def _review_records(review: dict) -> tuple[list[str], list[str], list[dict]]:
     """Chunk one review (a dict from data_service's ReviewOut JSON, not an
-    ORM row — rag_service has no ORM) and upsert its chunks into Chroma.
-    Returns the number of chunks written.
-
-    Takes vector_store rather than building one itself — see
-    vector_store.upsert_chunks's docstring for why (built once per run(),
-    not rebuilt per review).
-    """
+    ORM row — rag_service has no ORM) into parallel (ids, texts, metadatas)
+    lists ready for upsert_chunks."""
     chunks = chunk_review(review["id"], review["title_id"], review["content"])
-    chunk_ids = [f"{review['id']}:{c.chunk_index}" for c in chunks]
+    ids = [f"{review['id']}:{c.chunk_index}" for c in chunks]
     texts = [c.text for c in chunks]
     metadatas = [
         {
@@ -90,18 +86,37 @@ def _ingest_one(vector_store, review: dict) -> int:
         }
         for c in chunks
     ]
-    upsert_chunks(vector_store, chunk_ids, texts, metadatas)
-    return len(chunks)
+    return ids, texts, metadatas
 
 
-def _ingest_one_with_retry(vector_store, review: dict) -> int:
-    """_ingest_one, retrying a bounded number of times on transient
-    connection failures before giving up on this one review. See the
+def _ingest_batch(vector_store, reviews: list[dict]) -> int:
+    """Chunk several reviews and embed+upsert them in ONE call: a per-review
+    upsert costs a full Voyage + Chroma round trip each, which dominated
+    ingest time. Returns the number of chunks written.
+
+    Takes vector_store rather than building one itself — see
+    vector_store.upsert_chunks's docstring for why (built once per run(),
+    not rebuilt per batch)."""
+    ids: list[str] = []
+    texts: list[str] = []
+    metadatas: list[dict] = []
+    for review in reviews:
+        review_ids, review_texts, review_metadatas = _review_records(review)
+        ids += review_ids
+        texts += review_texts
+        metadatas += review_metadatas
+    upsert_chunks(vector_store, ids, texts, metadatas)
+    return len(ids)
+
+
+def _ingest_batch_with_retry(vector_store, reviews: list[dict]) -> int:
+    """_ingest_batch, retrying a bounded number of times on transient
+    connection failures before giving up on this batch. See the
     _MAX_INGEST_RETRIES comment above for why this exists and why the catch
     is broad."""
     for attempt in range(_MAX_INGEST_RETRIES + 1):
         try:
-            return _ingest_one(vector_store, review)
+            return _ingest_batch(vector_store, reviews)
         except Exception:
             if attempt == _MAX_INGEST_RETRIES:
                 raise
@@ -109,29 +124,51 @@ def _ingest_one_with_retry(vector_store, review: dict) -> int:
     raise RuntimeError("unreachable")  # loop always returns or raises above
 
 
+def _flush(vector_store, batch: list[dict]) -> tuple[int, int]:
+    """Ingest one batch; if it still fails after retries, fall back to one
+    review at a time so a single bad review doesn't fail its neighbours.
+    Returns (upserted, failed) review counts."""
+    try:
+        _ingest_batch_with_retry(vector_store, batch)
+        return len(batch), 0
+    except Exception:
+        upserted = failed = 0
+        for review in batch:
+            try:
+                _ingest_batch_with_retry(vector_store, [review])
+                upserted += 1
+            except Exception as e:
+                failed += 1
+                print(f"Failed to ingest review {review['id']}: {e}")
+        return upserted, failed
+
+
 def run() -> None:
     """Pull every review from data_service (skipping ones already embedded
-    in a prior run — see existing_review_ids), chunk+embed+upsert each into
-    Chroma, and print an examined/skipped/upserted/failed summary. See this
-    file's module docstring on why there's no SyncRun row to write it to
-    instead.
+    in a prior run — see existing_review_ids), chunk+embed+upsert them into
+    Chroma _BATCH_REVIEWS at a time, and print an
+    examined/skipped/upserted/failed summary. See this file's module
+    docstring on why there's no SyncRun row to write it to instead.
     """
     client = DataServiceClient()
     vector_store = get_vector_store()
     already_ingested = existing_review_ids(vector_store)
 
     examined = skipped = upserted = failed = 0
+    batch: list[dict] = []
     for review in _all_reviews(client):
         if review["id"] in already_ingested:
             skipped += 1
             continue
         examined += 1
-        try:
-            _ingest_one_with_retry(vector_store, review)
-            upserted += 1
-        except Exception as e:
-            failed += 1
-            print(f"Failed to ingest review {review['id']}: {e}")
+        batch.append(review)
+        if len(batch) == _BATCH_REVIEWS:
+            done, bad = _flush(vector_store, batch)
+            upserted, failed, batch = upserted + done, failed + bad, []
+            print(f"progress: upserted={upserted} failed={failed}", flush=True)
+    if batch:
+        done, bad = _flush(vector_store, batch)
+        upserted, failed = upserted + done, failed + bad
     print(
         f"Done. examined={examined} skipped={skipped} "
         f"upserted={upserted} failed={failed}"

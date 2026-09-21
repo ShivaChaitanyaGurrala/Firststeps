@@ -46,7 +46,7 @@ def test_all_reviews_empty_catalog_makes_one_call():
     assert len(client.calls) == 1
 
 
-def test_ingest_one_builds_metadata_and_defaults_missing_rating(fake_vector_store):
+def test_ingest_batch_builds_metadata_and_defaults_missing_rating(fake_vector_store):
     review = {
         "id": "r1",
         "title_id": 27205,
@@ -56,7 +56,7 @@ def test_ingest_one_builds_metadata_and_defaults_missing_rating(fake_vector_stor
         "content": "A genuinely good movie. " * 50,
     }
 
-    chunk_count = ingest._ingest_one(fake_vector_store, review)
+    chunk_count = ingest._ingest_batch(fake_vector_store, [review])
 
     assert chunk_count > 0
     stored = fake_vector_store.get(where={"review_id": "r1"}, include=["metadatas"])
@@ -66,38 +66,51 @@ def test_ingest_one_builds_metadata_and_defaults_missing_rating(fake_vector_stor
     assert {m["chunk_index"] for m in stored["metadatas"]} == set(range(chunk_count))
 
 
-def test_ingest_one_with_retry_retries_then_succeeds(monkeypatch):
+def test_ingest_batch_writes_every_review_in_one_call(fake_vector_store):
+    reviews = [
+        {"id": rid, "title_id": 1, "title": "T", "author": "a", "rating": 4.0, "content": "solid film. " * 40}
+        for rid in ("r1", "r2")
+    ]
+
+    chunk_count = ingest._ingest_batch(fake_vector_store, reviews)
+
+    stored = fake_vector_store.get(include=["metadatas"])
+    assert len(stored["metadatas"]) == chunk_count
+    assert {m["review_id"] for m in stored["metadatas"]} == {"r1", "r2"}
+
+
+def test_ingest_batch_with_retry_retries_then_succeeds(monkeypatch):
     calls = {"n": 0}
 
-    def flaky_ingest_one(vector_store, review):
+    def flaky_ingest_batch(vector_store, reviews):
         calls["n"] += 1
         if calls["n"] < 3:
             raise ConnectionResetError("simulated WinError 10054")
         return 5
 
-    monkeypatch.setattr(ingest, "_ingest_one", flaky_ingest_one)
+    monkeypatch.setattr(ingest, "_ingest_batch", flaky_ingest_batch)
     sleeps = []
     monkeypatch.setattr(time, "sleep", lambda s: sleeps.append(s))
 
-    result = ingest._ingest_one_with_retry(object(), {"id": "r1"})
+    result = ingest._ingest_batch_with_retry(object(), [{"id": "r1"}])
 
     assert result == 5
     assert calls["n"] == 3
     assert sleeps == [ingest._RETRY_DELAY_SECONDS, ingest._RETRY_DELAY_SECONDS]
 
 
-def test_ingest_one_with_retry_raises_after_exhausting_retries(monkeypatch):
+def test_ingest_batch_with_retry_raises_after_exhausting_retries(monkeypatch):
     calls = {"n": 0}
 
-    def always_fails(vector_store, review):
+    def always_fails(vector_store, reviews):
         calls["n"] += 1
         raise ConnectionResetError("simulated permanent failure")
 
-    monkeypatch.setattr(ingest, "_ingest_one", always_fails)
+    monkeypatch.setattr(ingest, "_ingest_batch", always_fails)
     monkeypatch.setattr(time, "sleep", lambda s: None)
 
     with pytest.raises(ConnectionResetError):
-        ingest._ingest_one_with_retry(object(), {"id": "r1"})
+        ingest._ingest_batch_with_retry(object(), [{"id": "r1"}])
 
     assert calls["n"] == ingest._MAX_INGEST_RETRIES + 1
 
@@ -129,14 +142,16 @@ def test_run_ingests_new_reviews_and_counts_failures(monkeypatch, capsys, fake_v
     monkeypatch.setattr(ingest, "get_vector_store", lambda: fake_vector_store)
     monkeypatch.setattr(ingest, "existing_review_ids", lambda vector_store: set())
 
-    real_retry = ingest._ingest_one_with_retry
+    real_retry = ingest._ingest_batch_with_retry
 
-    def flaky_retry(vector_store, review):
-        if review["id"] == "r-bad":
+    def flaky_retry(vector_store, reviews):
+        if any(review["id"] == "r-bad" for review in reviews):
             raise RuntimeError("boom")
-        return real_retry(vector_store, review)
+        return real_retry(vector_store, reviews)
 
-    monkeypatch.setattr(ingest, "_ingest_one_with_retry", flaky_retry)
+    # the two reviews share one batch, so the batch fails and run() must fall
+    # back to per-review ingest to save r-good
+    monkeypatch.setattr(ingest, "_ingest_batch_with_retry", flaky_retry)
 
     ingest.run()
 

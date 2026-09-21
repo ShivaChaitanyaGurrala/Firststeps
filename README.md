@@ -111,8 +111,10 @@ then the Experiments tab. They are not in the plain Tracing Projects list.
 
 ### Experiments
 
-Tuning loop: change one knob in `.env`, set `_EXPERIMENT_PREFIX` in
-`run_ragas_eval.py` to name the run, re-run, snapshot `results.json` as
+Tuning loop: change one knob in `.env` (chunking or embedding changes also
+need a fresh `CHROMA_COLLECTION` name and `python -m rag_service.ingest`, since
+ingest skips reviews already stored and would leave the old chunks in place),
+set `_EXPERIMENT_PREFIX` in `run_ragas_eval.py` to name the run, re-run, snapshot `results.json` as
 `results_<name>.json` (`results.json` itself is gitignored), then diff with
 `compare_runs.py` and re-run `plot_experiments.py`. Change one thing per
 experiment so each delta has one cause.
@@ -122,7 +124,10 @@ experiment so each delta has one cause.
 | `previous` (old harness) | Legacy RAGAS `single_turn_score`, generation at default temperature 1.0. **Not comparable** to the rows below | 0.746 | 0.688 | 0.752 | 0.674 |
 | `baseline-02` | New harness (modern RAGAS API, temp 0, `langsmith.evaluate`), `RERANK_TOP_N=5`, `FETCH_K=20`, chunks 400/100, `voyage-4-lite`, `rerank-v3.5` | 0.823 | 0.850 | 0.796 | 0.718 |
 | `rerank-top8` | `RERANK_TOP_N` 5 to 8, nothing else | 0.888 | 0.916 | 0.764 | **0.850** |
+| `chunk700-top8` | `CHUNK_SIZE` 400 to 700, `CHUNK_OVERLAP` 100 to 150 (new Chroma collection, full re-ingest), `RERANK_TOP_N` stays 8 | 0.902 | 0.849 | **0.835** | 0.858 |
+| `prompt-v2` | Generation system prompt only (verdict-first answers); retrieval identical to `chunk700-top8`. **Worse; v1 prompt kept** | 0.861 | 0.684 | 0.827 | 0.875 |
 | Change, baseline-02 to rerank-top8 | | +0.065 | +0.066 | -0.032 | **+0.132** |
+| Change, rerank-top8 to chunk700-top8 | | +0.014 | -0.066 (see below) | **+0.071** | +0.008 |
 
 ![RAGAS metrics across experiments](evals/rag/experiments.svg)
 
@@ -149,14 +154,54 @@ category, `baseline-02` to `rerank-top8`:
 | catalog_wide (2) | 1.00 | 1.00 |
 
 Verdict: for this corpus, 8 beats 5. Recall gains 0.13 for 0.03 of precision.
-The next experiments to try are `RERANK_TOP_N` 6-7 (a better precision/recall
-tradeoff), then `FETCH_K` (2 cases were true embedding misses).
+
+**What `chunk700-top8` did.** Chunks went from about 317 to 510 characters on
+average (35,747 chunks down to 20,999 for the same 7,318 reviews), so the 8
+returned chunks now carry about 55% more text per query (2.5k to 3.9k
+characters). Context precision improved on 24 cases and dropped on 8, lifting
+the mean by 0.071, and recall held (+0.008: up on 11 cases, down on 6, with
+`case_005` falling from 1.00 to 0.00). Faithfulness rose slightly.
+Caveat: the extra precision and the longer prompt come together, so weigh it
+against the higher generation cost and latency per query.
+
+**Why `answer_relevancy` "fell" 0.066 and why it's not a real regression.**
+RAGAS scores an answer 0.00 outright when its judge decides the answer is
+"noncommittal". Hedged answers ("some reviewers liked it, others didn't") trip
+this, and hedging is the correct answer to many "do reviewers agree" questions.
+The zeros are repeatable: re-scoring the same answer gives 0.00 every time.
+The 700-character run produced 6 such zeros against 2 in the previous run
+(`case_018` and `case_029` in both). Excluding exact zeros, mean relevancy is
+0.950 before and 0.953 after, so read this metric as "how many answers hedged",
+not as noise, and compare the non-zero mean alongside the headline.
+
+**What `prompt-v2` did (a failed hypothesis).** The idea was that a
+verdict-first prompt ("say plainly whether reviewers agree, disagree, or are
+mixed") would stop RAGAS marking answers noncommittal. It did the opposite:
+exact-0.00 relevancy scores went from 6 cases to 15, faithfulness fell 0.041
+(21 cases down, 11 up), and answers grew 47% longer (399 to 588 characters).
+"Reviewers are mixed" is precisely the kind of answer RAGAS's noncommittal
+check penalises, and asking the model to say what isn't covered gave it more
+to hedge about (`ending_analysis` relevancy went 0.99 to 0.00). Excluding
+zeros, relevancy barely moved (0.953 to 0.941), so the answers were not worse
+in content, only more often flagged. Precision and recall, which don't read the
+answer, moved by -0.008 and +0.017 with identical retrieval, which is a useful
+**noise floor of about +/-0.02** on this eval: `chunk700-top8`'s +0.071
+precision gain is well outside it, its +0.008 recall gain is not.
+Takeaway: for "do reviewers agree" questions, `answer_relevancy` structurally
+punishes honest mixed answers, so track its non-zero mean and its zero count
+separately and don't tune the prompt to chase it. M5's agent prompt should be
+judged on faithfulness and on real answers, not this number.
+
+Next experiments: `RERANK_TOP_N` 5-6 on the 700-character chunks (bigger
+chunks may need fewer of them to match the old context size), a
+relevance-score cutoff in place of a fixed count, and `FETCH_K` (2 cases were
+true embedding misses).
 
 **Caveats.** One run per configuration, 55 cases, and an LLM judge, so small
 per-case moves are noise; the `ending_analysis` and `catalog_wide` categories
-have only 2 cases each. Some `answer_relevancy` scores are exactly 0.00 in one
-run and not the other for the same case (`case_005`, `case_007`, `case_011`),
-so treat that metric's changes as approximate. Six cases (`case_003`, `004`,
+have only 2 cases each. `answer_relevancy` has flat 0.00
+scores for answers RAGAS judges noncommittal (see above), which can swing its
+mean by several points on its own. Six cases (`case_003`, `004`,
 `008`, `011`, `021`, `028`) have broadened ground truth flagged with
 `_ground_truth_note`; their `source_review_ids` still need backfilling.
 
@@ -170,6 +215,9 @@ so treat that metric's changes as approximate. Six cases (`case_003`, `004`,
   Unconfirmed on a full clean run.
 - Cohere's trial key allows 10 calls/min, so `rerank()` retries 429s with
   backoff and concurrency is capped at 2.
+- `rag_service.ingest` embeds 25 reviews per Voyage call (falling back to one
+  review at a time if a batch fails). The per-review version needed about 2.5
+  hours for the full corpus; batched it takes about 20 minutes.
 - OpenAI's Batch API was tried for answer generation and removed: it can't
   nest under a LangSmith trace and made tuning runs slow to re-run.
 

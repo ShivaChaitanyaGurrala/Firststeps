@@ -46,6 +46,7 @@ from ragas.metrics.collections import (
 )
 
 import rag_service.retriever
+from rag_service.reranker import BATCH_RETRY
 from rag_service.config import retrieval_config_snapshot
 
 from evals.rag.config import settings
@@ -83,7 +84,7 @@ _METRIC_KEYS = ("faithfulness", "answer_relevancy", "context_precision", "contex
 def _retrieve(question: str, title_id: int | None) -> list[str]:
     """Get the retrieved context strings for one question"""
     client = rag_service.retriever
-    results = client.search(question, title_id=title_id)
+    results = client.search(question, title_id=title_id, retry=BATCH_RETRY)
     return [result["chunk_text"] for result in results]
 
 

@@ -26,7 +26,7 @@ leaking in here.
 from langchain_core.documents import Document
 
 from rag_service.config import retrieval_config_snapshot, settings
-from rag_service.reranker import rerank
+from rag_service.reranker import LIVE_RETRY, RetryPolicy, rerank
 from rag_service.vector_store import get_vector_store
 from langsmith import traceable
 
@@ -84,7 +84,10 @@ def _fetch_candidates(query: str, title_id: int | None) -> list[tuple[Document, 
 # reranker/compressor, structurally identical to embed-then-rerank here).
 @traceable(name="rag_search", run_type="retriever", metadata=retrieval_config_snapshot())
 def search(
-    query: str, top_n: int = settings.rerank_top_n, title_id: int | None = None
+    query: str,
+    top_n: int = settings.rerank_top_n,
+    title_id: int | None = None,
+    retry: RetryPolicy = LIVE_RETRY,
 ) -> list[dict]:
     """Retrieve the top_n most relevant review chunks for `query`.
     first stage: vector similarity search from chroma DB
@@ -93,7 +96,7 @@ def search(
     """
     candidates_with_scores = _fetch_candidates(query, title_id)
     candidates = [doc for doc, _ in candidates_with_scores]
-    hits = rerank(query, [doc.page_content for doc in candidates], top_n=top_n)
+    hits = rerank(query, [doc.page_content for doc in candidates], top_n=top_n, retry=retry)
     return [
         {
             "review_id": (c := candidates[hit.index]).metadata["review_id"],

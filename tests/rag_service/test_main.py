@@ -5,6 +5,7 @@ tests the FastAPI route wiring/response shaping, not retrieval quality."""
 from fastapi.testclient import TestClient
 
 from rag_service import main as main_module
+from rag_service.errors import RerankUnavailableError
 from rag_service.main import app
 
 
@@ -72,3 +73,19 @@ def test_search_limit_out_of_range_returns_422():
     with TestClient(app) as client:
         resp = client.get("/search", params={"query": "x", "limit": 100})
     assert resp.status_code == 422
+
+
+def test_search_returns_503_with_retry_after_when_rerank_is_unavailable(monkeypatch):
+    def fake_retrieve_chunks(query, top_n, title_id):
+        raise RerankUnavailableError("Review search is rate limited right now.", 60)
+
+    monkeypatch.setattr(main_module, "retrieve_chunks", fake_retrieve_chunks)
+
+    with TestClient(app) as client:
+        resp = client.get("/search", params={"query": "great movie"})
+
+    assert resp.status_code == 503
+    assert resp.headers["Retry-After"] == "60"
+    assert resp.json()["detail"] == (
+        "Review search is rate limited right now. Retry in about 60 seconds."
+    )

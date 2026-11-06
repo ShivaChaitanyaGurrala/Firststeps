@@ -46,7 +46,7 @@ def test_search_maps_reranked_hit_back_to_its_candidate(monkeypatch):
     monkeypatch.setattr(
         retriever,
         "rerank",
-        lambda query, texts, top_n: [RerankedHit(index=1, relevance_score=0.95)],
+        lambda query, texts, top_n, retry: [RerankedHit(index=1, relevance_score=0.95)],
     )
 
     results = retriever.search("was the ending good", top_n=1)
@@ -67,7 +67,7 @@ def test_search_maps_reranked_hit_back_to_its_candidate(monkeypatch):
 def test_search_passes_title_id_as_chroma_filter(monkeypatch):
     fake_store = _FakeStore(docs=[])
     monkeypatch.setattr(retriever, "get_vector_store", lambda: fake_store)
-    monkeypatch.setattr(retriever, "rerank", lambda query, texts, top_n: [])
+    monkeypatch.setattr(retriever, "rerank", lambda query, texts, top_n, retry: [])
 
     retriever.search("query", title_id=27205)
 
@@ -77,7 +77,7 @@ def test_search_passes_title_id_as_chroma_filter(monkeypatch):
 def test_search_no_filter_when_title_id_omitted(monkeypatch):
     fake_store = _FakeStore(docs=[])
     monkeypatch.setattr(retriever, "get_vector_store", lambda: fake_store)
-    monkeypatch.setattr(retriever, "rerank", lambda query, texts, top_n: [])
+    monkeypatch.setattr(retriever, "rerank", lambda query, texts, top_n, retry: [])
 
     retriever.search("query")
 

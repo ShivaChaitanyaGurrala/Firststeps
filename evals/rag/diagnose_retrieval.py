@@ -19,7 +19,7 @@ from langchain_core.documents import Document
 
 from evals.rag.config import settings
 from rag_service.config import settings as rag_settings
-from rag_service.reranker import RerankedHit, rerank
+from rag_service.reranker import BATCH_RETRY, RerankedHit, rerank
 from rag_service.retriever import _DEFAULT_FETCH_K  # keep in sync with retriever.py
 from rag_service.vector_store import existing_review_ids, get_vector_store
 
@@ -74,7 +74,9 @@ def _rank_case(
         k=_DEFAULT_FETCH_K,
         filter={"title_id": title_id} if title_id else None,  # type: ignore
     )
-    hits = rerank(question, [c.page_content for c in candidates], top_n=len(candidates))
+    hits = rerank(
+        question, [c.page_content for c in candidates], top_n=len(candidates), retry=BATCH_RETRY
+    )
     time.sleep(settings.cohere_wait_seconds)
     return tuple(candidates), tuple(hits)
 

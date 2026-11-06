@@ -41,6 +41,16 @@ class UpstreamError(DataServiceError):
     """The data_service returned an unexpected 4xx/5xx."""
 
 
+class RerankUnavailableError(Exception):
+    """Cohere stayed unavailable for the whole retry budget. main.py returns
+    this as a 503 with Retry-After. The message reaches the LLM, so keep it
+    short and free of internals."""
+
+    def __init__(self, message: str, retry_after_seconds: int) -> None:
+        super().__init__(message)
+        self.retry_after_seconds = retry_after_seconds
+
+
 def from_httpx_error(exc: httpx.HTTPStatusError) -> DataServiceError:
     try:
         message = exc.response.json()["detail"]

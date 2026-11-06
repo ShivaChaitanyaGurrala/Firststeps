@@ -24,8 +24,21 @@ Three services, one shared `pyproject.toml`:
 | M2 | Streamable HTTP transport, Resources, Prompts, Sampling, schema versioning | ✅ Done |
 | M3 | API-wrapping robustness — pagination, backoff, idempotency, error normalization, response contract validation, inbound throttling | ✅ Done |
 | M4 | RAG subsystem — ChromaDB + Voyage embeddings + Cohere reranker, `search_reviews` MCP tool, RAGAS eval harness | ✅ Done |
-| M5 | LangGraph agent layer | ⏳ Next |
+| M5 | LangGraph agent layer: ReAct, planner-executor, supervisor-worker, memory, guardrails, model routing | 🚧 Scaffolded, in progress |
 | M6–M11 | UI, multi-tenant, security, infra/devops, testing/evals, alternatives lab | Planned |
+
+## Agent (M5, in progress)
+
+`agent/` is the LangGraph layer. It talks to the system only through
+`mcp_server`'s tools over Streamable HTTP, never to `data_service`,
+`rag_service`, Postgres or Chroma directly, so the agent team's code depends
+on the tool contract and nothing else. Layout: `config.py`, `llm.py` (model
+routing), `mcp_tools.py`, `prompts.py` (versioned), `state.py`,
+`guardrails.py` (human approval before mutating tools, budgets, untrusted tool
+output), `memory.py`, `graphs/` (react, plan_execute, supervisor) and `cli.py`.
+Its eval harness is `evals/agent/`, built to the same pattern as `evals/rag/`.
+The `agent/__init__.py` docstring holds the ground rules carried over from M4
+and the suggested build order.
 
 ## Setup
 
@@ -213,8 +226,9 @@ mean by several points on its own. Six cases (`case_003`, `004`,
   240-second timeout. Reusing one client across the fresh event loops that
   `asyncio.run` creates is the suspected cause of runs hanging at 54/55.
   Unconfirmed on a full clean run.
-- Cohere's trial key allows 10 calls/min, so `rerank()` retries 429s with
-  backoff and concurrency is capped at 2.
+- Cohere's trial key allows 10 calls/min. The evals pass `BATCH_RETRY` (long
+  backoff, up to 100s of sleep) and cap concurrency at 2. Live `/search` uses
+  `LIVE_RETRY` (one call, no retry), then returns 503 with `Retry-After`.
 - `rag_service.ingest` embeds 25 reviews per Voyage call (falling back to one
   review at a time if a batch fails). The per-review version needed about 2.5
   hours for the full corpus; batched it takes about 20 minutes.

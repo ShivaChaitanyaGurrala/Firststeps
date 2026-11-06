@@ -16,10 +16,17 @@ from http_client import _validate_model
 
 import httpx
 
+# Explicit rather than httpx's 5s default, which is no longer than Cohere's own
+# 5s budget alone. rag_service/reranker.py's LIVE_RETRY has to fit inside the
+# read timeout along with Voyage + Chroma.
+_TIMEOUT = httpx.Timeout(20.0, connect=2.0)
+
 
 class RagServiceClient:
     def __init__(self) -> None:
-        self._client = httpx.Client(base_url=settings.rag_service_base_url)
+        self._client = httpx.Client(
+            base_url=settings.rag_service_base_url, timeout=_TIMEOUT
+        )
 
     def search_reviews(
         self, query: str, title_id: int | None = None, limit: int = 5
@@ -32,9 +39,13 @@ class RagServiceClient:
         params: dict[str, Any] = {"query": query, "limit": limit}
         if title_id is not None:
             params["title_id"] = title_id
-        response = self._client.get("/search", params=params)
         try:
+            response = self._client.get("/search", params=params)
             response.raise_for_status()
         except httpx.HTTPStatusError as exc:
             raise errors.from_httpx_error(exc) from exc
+        except httpx.TransportError as exc:
+            raise errors.UpstreamError(
+                "Review search timed out or is unreachable. Try again shortly."
+            ) from exc
         return _validate_model(schemas.ReviewSearchResponse, response.json())

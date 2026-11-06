@@ -59,6 +59,12 @@ dependencies = [
     # org and traces agent graphs with zero extra config once this env is
     # set up). See rag_service/config.py's langsmith_* settings.
     "langsmith",
+    # M5 agent layer (agent/). Was already resolving transitively, declared
+    # explicitly now that agent/ imports it directly. The LLM provider package
+    # (langchain-anthropic vs langchain-openai) and the MCP client adapter are
+    # deliberately NOT added: those are open choices in agent/llm.py and
+    # agent/mcp_tools.py.
+    "langgraph>=1.2",
 ]
 
 [dependency-groups]
